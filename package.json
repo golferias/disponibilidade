@@ -27,7 +27,6 @@
     "redux-thunk": "^2.3.0",
     "rimraf": "^2.6.2",
     "serialize-javascript": "^1.5.0",
-    "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1",
     "webpack-node-externals": "^1.6.0"
@@ -40,7 +39,8 @@
     "babel-preset-stage-2": "^6.24.1",
     "express": "^4.16.2",
     "redux-devtools-extension": "^2.13.5",
-    "redux-immutable-state-invariant": "^2.1.0"
+    "redux-immutable-state-invariant": "^2.1.0",
+    "webpack": "^3.12.0"
   },
   "scripts": {
     "start:dev": "webpack-dev-server --config webpack.client.js --hot  --content-base public --history-api-fallback",
@@ -48,8 +48,9 @@
     "dev:build-client": "webpack --config  webpack.client.js",
     "dev:server": "nodemon build/serverbundle.js",
     "dev:all": "npm-run-all --serial dev:build-server dev:build-client dev:server",
-    "cleanwwwroot": "rimraf ../WebApp/wwwroot",
-    "copytowwwroot": "cpx 'public/**/*' ../WebApp/wwwroot",
+    "cleanwwwroot": "rimraf ../WebApplication1/wwwroot",
+    "copytowwwroot": "cpx public/**/* ../WebApplication1/wwwroot",
+    "prod:deploy" :"npm-run-all --serial dev:build-client cleanwwwroot copytowwwroot",
     "jsonserver": "nodemon jsonserver.js",
     "start": "npm-run-all --parallel start:dev jsonserver",
     "x": "npm-run-all --serial dev:build-server dev:build-client dev:server"
