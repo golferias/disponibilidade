@@ -36487,7 +36487,7 @@ exports.default = Route;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = configureStore;
 
@@ -36513,37 +36513,50 @@ var _reduxDevtoolsExtension = __webpack_require__(120);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var production = "development" && "development" === "production";
+var production = "development" && "development" === 'production';
 
 if (!production) {
-    __webpack_require__(121).config();
+  __webpack_require__(121).config();
 }
 
-var restUrl = production ? "https://svcc-react1.azurewebsites.net/rest" : "http://localhost:4000/rest";
+var restUrl = production ? "https://svcc-react1.azurewebsites.net/rest" : "https://localhost:44370/";
 
-var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({ baseURL: restUrl }))];
+var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
+  baseURL: restUrl,
+  crossdomain: true,
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+  }
+}))];
 
 if (!production) {
-    middleware.push(__webpack_require__(124).default());
-    console.log('added redux-immutable-state-invariant');
+  middleware.push(__webpack_require__(124).default());
+  console.log('added redux-immutable-state-invariant');
 }
 
 function configureStore() {
-    var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+  var composeEnhancers = (0, _reduxDevtoolsExtension.composeWithDevTools)({
+    // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+  });
 
-    var composeEnhancers = (0, _reduxDevtoolsExtension.composeWithDevTools)({
-        // Specify name here, actionsBlacklist, actionsCreators and other options if needed
-    });
+  //const restUrl = 'http://localhost:4000/rest';
+  console.log('configureStore: ' + restUrl);
+  var client = _axios2.default.create({
+    //all axios can be used, shown in axios documentation
+    baseURL: restUrl,
+    crossdomain: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+      //responseType: 'json'
+    } });
 
-    //const restUrl = 'http://localhost:4000/rest';
-    //console.log('configureStore: ' + restUrl);
-    var client = _axios2.default.create({ //all axios can be used, shown in axios documentation
-        baseURL: restUrl
-        //responseType: 'json'
-    });
-
-    return (0, _redux.createStore)(_reducers2.default, initialState, composeEnhancers(_redux.applyMiddleware.apply(undefined, middleware)));
+  return (0, _redux.createStore)(_reducers2.default, initialState, composeEnhancers(_redux.applyMiddleware.apply(undefined, middleware)));
 }
 
 /***/ }),
@@ -39002,7 +39015,7 @@ function HomeHeader() {
           _react2.default.createElement(
             'div',
             { className: 'jumbo-events__participants' },
-            '528'
+            '532'
           ),
           _react2.default.createElement(
             'div',
