@@ -26,7 +26,7 @@
     "redux-axios-middleware": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "rimraf": "^2.6.2",
-    "serialize-javascript": "^1.5.0",
+    "serialize-javascript": "^1.9.1",
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1",
     "webpack-node-externals": "^1.6.0"
@@ -50,7 +50,7 @@
     "dev:all": "npm-run-all --serial dev:build-server dev:build-client dev:server",
     "cleanwwwroot": "rimraf ../WebApplication1/wwwroot",
     "copytowwwroot": "cpx public/**/* ../WebApplication1/wwwroot",
-    "prod:deploy" :"npm-run-all --serial dev:build-client cleanwwwroot copytowwwroot",
+    "prod:deploy": "npm-run-all --serial dev:build-client cleanwwwroot copytowwwroot",
     "jsonserver": "nodemon jsonserver.js",
     "start": "npm-run-all --parallel start:dev jsonserver",
     "x": "npm-run-all --serial dev:build-server dev:build-client dev:server"
