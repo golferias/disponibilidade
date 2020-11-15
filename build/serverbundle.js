@@ -38324,7 +38324,7 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(0);
@@ -38348,23 +38348,23 @@ var _Footer2 = _interopRequireDefault(_Footer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App(_ref) {
-    var route = _ref.route;
+  var route = _ref.route;
 
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            _PageTop2.default,
-            null,
-            _react2.default.createElement(_CodeCampMenu2.default, null)
-        ),
-        (0, _reactRouterConfig.renderRoutes)(route.routes),
-        _react2.default.createElement(_Footer2.default, null)
-    );
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      _PageTop2.default,
+      null,
+      _react2.default.createElement(_CodeCampMenu2.default, null)
+    ),
+    (0, _reactRouterConfig.renderRoutes)(route.routes),
+    _react2.default.createElement(_Footer2.default, null)
+  );
 };
 
 exports.default = {
-    component: App
+  component: App
 };
 
 /***/ }),
@@ -38375,8 +38375,11 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 exports.default = CodeCampMenu;
 
 var _react = __webpack_require__(0);
@@ -38388,96 +38391,108 @@ var _reactRouterDom = __webpack_require__(23);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function CodeCampMenu() {
-    return _react2.default.createElement(
-        'div',
+  var _React$useState = _react2.default.useState(true),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      isVisible = _React$useState2[0],
+      setIsVisible = _React$useState2[1];
+
+  var handleClick = function handleClick() {
+    setIsVisible(!isVisible);
+  };
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'div',
+      { onClick: handleClick, className: 'header__open-button-mobile' },
+      _react2.default.createElement(
+        'a',
+        { href: '', className: 'js-open-main-menu' },
+        _react2.default.createElement('i', { className: 'fa fa-bars' })
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'header__user' },
+      _react2.default.createElement('img', {
+        src: 'assets/images/user-icon.png',
+        className: 'header__user__icon',
+        alt: 'User Icon'
+      }),
+      _react2.default.createElement(
+        'span',
+        { className: 'header__user__hello' },
+        'Hello, stranger'
+      ),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/login' },
+        'Login'
+      )
+    ),
+    _react2.default.createElement(
+      'ul',
+      {
+        style: { display: isVisible ? 'block' : 'none' },
+        className: 'header__menu-list js-menu'
+      },
+      _react2.default.createElement(
+        'li',
+        { className: 'close-button-mobile' },
+        _react2.default.createElement(
+          'a',
+          { href: '', className: 'js-close-main-menu' },
+          _react2.default.createElement('i', { className: 'fa fa-remove' })
+        )
+      ),
+      _react2.default.createElement(
+        'li',
         null,
         _react2.default.createElement(
-            'div',
-            { className: 'header__open-button-mobile' },
-            _react2.default.createElement(
-                'a',
-                { href: '', className: 'js-open-main-menu' },
-                _react2.default.createElement('i', { className: 'fa fa-bars' })
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            { className: 'header__user' },
-            _react2.default.createElement('img', {
-                src: 'assets/images/user-icon.png',
-                className: 'header__user__icon',
-                alt: 'User Icon'
-            }),
-            _react2.default.createElement(
-                'span',
-                { className: 'header__user__hello' },
-                'Hello, stranger'
-            ),
-            _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: '/login' },
-                'Login'
-            )
-        ),
-        _react2.default.createElement(
-            'ul',
-            { className: 'header__menu-list js-menu' },
-            _react2.default.createElement(
-                'li',
-                { className: 'close-button-mobile' },
-                _react2.default.createElement(
-                    'a',
-                    { href: '', className: 'js-close-main-menu' },
-                    _react2.default.createElement('i', { className: 'fa fa-remove' })
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/' },
-                    'Home'
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/speakers' },
-                    'Speakers'
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                { className: 'social-icon' },
-                _react2.default.createElement(
-                    'a',
-                    { href: '' },
-                    _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' })
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                { className: 'social-icon' },
-                _react2.default.createElement(
-                    'a',
-                    { href: '' },
-                    _react2.default.createElement('i', { className: 'fa fa-facebook', 'aria-hidden': 'true' })
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                { className: 'social-icon' },
-                _react2.default.createElement(
-                    'a',
-                    { href: '' },
-                    _react2.default.createElement('i', { className: 'fa fa-linkedin', 'aria-hidden': 'true' })
-                )
-            )
+          _reactRouterDom.Link,
+          { to: '/' },
+          'Clientes'
         )
-    );
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/speakers' },
+          'Servicos'
+        )
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/speakers' },
+          'Produtos'
+        )
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/speakers' },
+          'Marcacoes'
+        )
+      ),
+      _react2.default.createElement(
+        'li',
+        { className: 'social-icon' },
+        _react2.default.createElement(
+          'a',
+          { href: '' },
+          _react2.default.createElement('i', { className: 'fa fa-facebook', 'aria-hidden': 'true' })
+        )
+      )
+    )
+  );
 }
 
 /***/ }),
@@ -38585,7 +38600,7 @@ function Footer() {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = configureStore;
 
@@ -38611,37 +38626,39 @@ var _reduxDevtoolsExtension = __webpack_require__(283);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var production = process.env.NODE_ENV && process.env.NODE_ENV === "production";
+var production = process.env.NODE_ENV && process.env.NODE_ENV === 'production';
 
 if (!production) {
-    __webpack_require__(104).config();
+  __webpack_require__(104).config();
 }
 
 var restUrl = production ? process.env.PROD_RESTURL : process.env.JSONSERVER_RESTURL;
 
-var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({ baseURL: restUrl }))];
+var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
+  baseURL: restUrl
+}))];
 
 if (!production) {
-    middleware.push(__webpack_require__(284).default());
-    console.log('added redux-immutable-state-invariant');
+  middleware.push(__webpack_require__(284).default());
+  console.log('added redux-immutable-state-invariant');
 }
 
 function configureStore() {
-    var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+  var composeEnhancers = (0, _reduxDevtoolsExtension.composeWithDevTools)({
+    // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+  });
 
-    var composeEnhancers = (0, _reduxDevtoolsExtension.composeWithDevTools)({
-        // Specify name here, actionsBlacklist, actionsCreators and other options if needed
-    });
+  //const restUrl = 'http://localhost:4000/rest';
+  console.log('configureStore: ' + restUrl);
+  var client = _axios2.default.create({
+    //all axios can be used, shown in axios documentation
+    baseURL: restUrl
+    //responseType: 'json'
+  });
 
-    //const restUrl = 'http://localhost:4000/rest';
-    console.log('configureStore: ' + restUrl);
-    var client = _axios2.default.create({ //all axios can be used, shown in axios documentation
-        baseURL: restUrl
-        //responseType: 'json'
-    });
-
-    return (0, _redux.createStore)(_reducers2.default, initialState, composeEnhancers(_redux.applyMiddleware.apply(undefined, middleware)));
+  return (0, _redux.createStore)(_reducers2.default, initialState, composeEnhancers(_redux.applyMiddleware.apply(undefined, middleware)));
 }
 
 /***/ }),

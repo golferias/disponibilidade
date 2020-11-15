@@ -20,13 +20,7 @@ let middleware = [
   thunk,
   axiosMiddleware(
     axios.create({
-      baseURL: restUrl,
-      crossdomain: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-      }
+      baseURL: restUrl
     })
   )
 ]
@@ -45,13 +39,7 @@ export default function configureStore (initialState = {}) {
   console.log('configureStore: ' + restUrl)
   const client = axios.create({
     //all axios can be used, shown in axios documentation
-    baseURL: restUrl,
-    crossdomain: true,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-    }
+    baseURL: restUrl
     //responseType: 'json'
   })
 

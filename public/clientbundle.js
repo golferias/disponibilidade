@@ -489,7 +489,7 @@ module.exports = {
  * same logic and follow the same code paths.
  */
 
-var __DEV__ = "development" !== 'production';
+var __DEV__ = "producion" !== 'production';
 
 var warning = function() {};
 
@@ -2464,7 +2464,7 @@ function applyMiddleware() {
 
 function isCrushed() {}
 
-if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+if ("producion" !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
   warning('You are currently using minified code outside of NODE_ENV === "production". ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) ' + 'to ensure you have the correct code for your production build.');
 }
 
@@ -34240,7 +34240,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
           );
           err.name = 'Invariant Violation';
           throw err;
-        } else if ("development" !== 'production' && typeof console !== 'undefined') {
+        } else if ("producion" !== 'production' && typeof console !== 'undefined') {
           // Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
@@ -34776,7 +34776,7 @@ function valueEqual(a, b) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var isProduction = "development" === 'production';
+var isProduction = "producion" === 'production';
 function warning(condition, message) {
   if (!isProduction) {
     if (condition) {
@@ -34803,7 +34803,7 @@ function warning(condition, message) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var isProduction = "development" === 'production';
+var isProduction = "producion" === 'production';
 var prefix = 'Invariant failed';
 function invariant(condition, message) {
     if (condition) {
@@ -36513,22 +36513,16 @@ var _reduxDevtoolsExtension = __webpack_require__(120);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var production = "development" && "development" === 'production';
+var production = "producion" && "producion" === 'production';
 
 if (!production) {
   __webpack_require__(121).config();
 }
 
-var restUrl = production ? "https://svcc-react1.azurewebsites.net/rest" : "https://localhost:44370/";
+var restUrl = production ? "http://magest.eu-west-2.elasticbeanstalk.com" : "http://localhost:4000/rest";
 
 var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
-  baseURL: restUrl,
-  crossdomain: true,
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-  }
+  baseURL: restUrl
 }))];
 
 if (!production) {
@@ -36547,14 +36541,9 @@ function configureStore() {
   console.log('configureStore: ' + restUrl);
   var client = _axios2.default.create({
     //all axios can be used, shown in axios documentation
-    baseURL: restUrl,
-    crossdomain: true,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-      //responseType: 'json'
-    } });
+    baseURL: restUrl
+    //responseType: 'json'
+  });
 
   return (0, _redux.createStore)(_reducers2.default, initialState, composeEnhancers(_redux.applyMiddleware.apply(undefined, middleware)));
 }
@@ -39015,7 +39004,7 @@ function HomeHeader() {
           _react2.default.createElement(
             'div',
             { className: 'jumbo-events__participants' },
-            '532'
+            '528'
           ),
           _react2.default.createElement(
             'div',
@@ -40276,7 +40265,7 @@ function SpeakerListItem(_ref) {
 
     var basename = "";
     var img = function img() {
-        if (true) {
+        if (false) {
             return _react2.default.createElement('img', {
                 src: basename + '/assets/images/speakers/speaker-' + id + '.jpg',
                 alt: '{this.props.firstName} {this.props.lastName}'
@@ -40408,7 +40397,7 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(0);
@@ -40432,23 +40421,23 @@ var _Footer2 = _interopRequireDefault(_Footer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App(_ref) {
-    var route = _ref.route;
+  var route = _ref.route;
 
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            _PageTop2.default,
-            null,
-            _react2.default.createElement(_CodeCampMenu2.default, null)
-        ),
-        (0, _reactRouterConfig.renderRoutes)(route.routes),
-        _react2.default.createElement(_Footer2.default, null)
-    );
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      _PageTop2.default,
+      null,
+      _react2.default.createElement(_CodeCampMenu2.default, null)
+    ),
+    (0, _reactRouterConfig.renderRoutes)(route.routes),
+    _react2.default.createElement(_Footer2.default, null)
+  );
 };
 
 exports.default = {
-    component: App
+  component: App
 };
 
 /***/ }),
@@ -40459,8 +40448,11 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 exports.default = CodeCampMenu;
 
 var _react = __webpack_require__(0);
@@ -40472,96 +40464,126 @@ var _reactRouterDom = __webpack_require__(6);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function CodeCampMenu() {
-    return _react2.default.createElement(
-        'div',
+  var _React$useState = _react2.default.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      isVisible = _React$useState2[0],
+      setIsVisible = _React$useState2[1];
+
+  var _React$useState3 = _react2.default.useState({
+    '--transform': 'translateY(-100%)'
+  }),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      cssProperties = _React$useState4[0],
+      setCSS = _React$useState4[1];
+
+  var handleClick = function handleClick(e) {
+    e.preventDefault();
+    if (!isVisible) {
+      setCSS({ '--transform': 'translateY(0%)' });
+    } else {
+      setCSS({ '--transform': 'translateY(-100%)' });
+    }
+    setIsVisible(!isVisible);
+  };
+
+  var setCssVisibility = function setCssVisibility(e) {
+    if (!isVisible) {
+      setCSS({ '--transform': 'translateY(0%)' });
+    } else {
+      setCSS({ '--transform': 'translateY(-100%)' });
+    }
+    setIsVisible(!isVisible);
+  };
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'div',
+      { onClick: handleClick, className: 'header__open-button-mobile' },
+      _react2.default.createElement(
+        'a',
+        { href: '', className: 'js-open-main-menu' },
+        _react2.default.createElement('i', { className: 'fa fa-bars' })
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'header__user' },
+      _react2.default.createElement('img', {
+        src: 'assets/images/user-icon.png',
+        className: 'header__user__icon',
+        alt: 'User Icon'
+      }),
+      _react2.default.createElement(
+        'span',
+        { className: 'header__user__hello' },
+        'Hello, stranger'
+      ),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/login' },
+        'Login'
+      )
+    ),
+    _react2.default.createElement(
+      'ul',
+      { className: 'header__menu-list js-menu', style: cssProperties },
+      _react2.default.createElement(
+        'li',
+        { className: (!isVisible ? 'open' : 'close') + '-button-mobile' },
+        _react2.default.createElement(
+          'a',
+          { href: '', className: 'js-close-main-menu' },
+          _react2.default.createElement('i', { className: 'fa fa-remove' })
+        )
+      ),
+      _react2.default.createElement(
+        'li',
         null,
         _react2.default.createElement(
-            'div',
-            { className: 'header__open-button-mobile' },
-            _react2.default.createElement(
-                'a',
-                { href: '', className: 'js-open-main-menu' },
-                _react2.default.createElement('i', { className: 'fa fa-bars' })
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            { className: 'header__user' },
-            _react2.default.createElement('img', {
-                src: 'assets/images/user-icon.png',
-                className: 'header__user__icon',
-                alt: 'User Icon'
-            }),
-            _react2.default.createElement(
-                'span',
-                { className: 'header__user__hello' },
-                'Hello, stranger'
-            ),
-            _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: '/login' },
-                'Login'
-            )
-        ),
-        _react2.default.createElement(
-            'ul',
-            { className: 'header__menu-list js-menu' },
-            _react2.default.createElement(
-                'li',
-                { className: 'close-button-mobile' },
-                _react2.default.createElement(
-                    'a',
-                    { href: '', className: 'js-close-main-menu' },
-                    _react2.default.createElement('i', { className: 'fa fa-remove' })
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/' },
-                    'Home'
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/speakers' },
-                    'Speakers'
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                { className: 'social-icon' },
-                _react2.default.createElement(
-                    'a',
-                    { href: '' },
-                    _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' })
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                { className: 'social-icon' },
-                _react2.default.createElement(
-                    'a',
-                    { href: '' },
-                    _react2.default.createElement('i', { className: 'fa fa-facebook', 'aria-hidden': 'true' })
-                )
-            ),
-            _react2.default.createElement(
-                'li',
-                { className: 'social-icon' },
-                _react2.default.createElement(
-                    'a',
-                    { href: '' },
-                    _react2.default.createElement('i', { className: 'fa fa-linkedin', 'aria-hidden': 'true' })
-                )
-            )
+          _reactRouterDom.Link,
+          { to: '/', onClick: setCssVisibility },
+          'Clientes'
         )
-    );
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/speakers', onClick: setCssVisibility },
+          'Servicos'
+        )
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/speakers', onClick: setCssVisibility },
+          'Produtos'
+        )
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/speakers', onClick: setCssVisibility },
+          'Marcacoes'
+        )
+      ),
+      _react2.default.createElement(
+        'li',
+        { className: 'social-icon' },
+        _react2.default.createElement(
+          'a',
+          { href: 'https://www.facebook.com/Margarida-Arag%C3%A3o-cabeleireirosest%C3%A9tica-100236801356384/' },
+          _react2.default.createElement('i', { className: 'fa fa-facebook', 'aria-hidden': 'true' })
+        )
+      )
+    )
+  );
 }
 
 /***/ }),
