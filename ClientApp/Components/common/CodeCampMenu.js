@@ -47,7 +47,7 @@ export default function CodeCampMenu () {
 
       <ul className='header__menu-list js-menu' style={cssProperties}>
         <li className={(!isVisible ? 'open' : 'close') + '-button-mobile'}>
-          <a className='js-close-main-menu'>
+          <a onClick={setCssVisibility} className='js-close-main-menu'>
             <i className='fa fa-remove' />
           </a>
         </li>
