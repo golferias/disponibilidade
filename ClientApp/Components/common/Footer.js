@@ -1,21 +1,17 @@
-import React from 'react';
+import React from 'react'
 
-export default function Footer() {
+export default function Footer () {
   return (
-    <footer className="footer">
-      <div className="container-main">
-        <div className="footer__menu" />
-        <div className="footer__disclaimer">
+    <footer className='footer'>
+      <div className='container-main'>
+        <div className='footer__menu' />
+        <div className='footer__disclaimer'>
+          <p>Versao: 1</p>
           <p>
-            Code Stars Summit and Silicon Valley Code Camp (tm) are trademarks
-            of 73rd Street Associates (Copyright ©
-          </p>
-          <p>
-            Site built with ASP.NET, WebAPI2, React and more by
-            <strong>PeterKellner.net</strong>
+            Desenvolvido por <strong>Pedro Costa</strong>
           </p>
         </div>
       </div>
     </footer>
-  );
+  )
 }
