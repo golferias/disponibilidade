@@ -8630,7 +8630,7 @@ body {
     color: #ffffff; }
 
 .header {
-  height: 7.1875rem;
+  height: 9.1875rem;
   background-color: #ffffff; }
   .header .container-main {
     height: 100%; }
@@ -8642,7 +8642,10 @@ body {
       color: #000000; }
      @media screen and (max-width: 786px) {
       .header__open-button-mobile {
-        display: block; } } 
+        display: block;
+        padding-left: 10px;
+        padding-top: 10px;
+      } } 
   .header__user {
     text-align: right;
     margin-bottom: 0.625rem;

@@ -35,7 +35,7 @@ export default function CodeCampMenu () {
         </a>
       </div>
 
-      <div className='header__user'>
+      {/* <div className='header__user'>
         <img
           src='assets/images/user-icon.png'
           className='header__user__icon'
@@ -43,7 +43,7 @@ export default function CodeCampMenu () {
         />
         <span className='header__user__hello'>Hello, stranger</span>
         <Link to='/login'>Login</Link>
-      </div>
+      </div> */}
 
       <ul className='header__menu-list js-menu' style={cssProperties}>
         <li className='close-button-mobile'>
@@ -62,7 +62,7 @@ export default function CodeCampMenu () {
           </Link>
         </li>
 
-        {/* <li>
+        <li>
           <Link to='/speakers' onClick={setCssVisibility}>
             Produtos
           </Link>
@@ -71,7 +71,7 @@ export default function CodeCampMenu () {
           <Link to='/speakers' onClick={setCssVisibility}>
             Marcacoes
           </Link>
-        </li> */}
+        </li>
 
         <li className='social-icon'>
           <a href='https://www.facebook.com/Margarida-Arag%C3%A3o-cabeleireirosest%C3%A9tica-100236801356384/'>
