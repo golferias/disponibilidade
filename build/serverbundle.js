@@ -36856,7 +36856,6 @@ var Home = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_HomeHeader2.default, null),
                 _react2.default.createElement(_HomeContainer2.default, {
                     sessions: this.props.sessions,
                     updateSession: function updateSession(rec) {
@@ -38391,15 +38390,38 @@ var _reactRouterDom = __webpack_require__(23);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function CodeCampMenu() {
-  var _React$useState = _react2.default.useState(true),
+  //const [lastPath, setLastPath] = React.useState('/')
+  var _React$useState = _react2.default.useState(false),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       isVisible = _React$useState2[0],
       setIsVisible = _React$useState2[1];
 
-  var handleClick = function handleClick() {
+  var _React$useState3 = _react2.default.useState({
+    '--transform': 'translateY(-100%)'
+  }),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      cssProperties = _React$useState4[0],
+      setCSS = _React$useState4[1];
+
+  var handleClick = function handleClick(e) {
+    e.preventDefault();
+    if (!isVisible) {
+      setCSS({ '--transform': 'translateY(0%)' });
+    } else {
+      setCSS({ '--transform': 'translateY(-100%)' });
+    }
     setIsVisible(!isVisible);
   };
 
+  var setCssVisibility = function setCssVisibility(e) {
+    if (!isVisible) {
+      setCSS({ '--transform': 'translateY(0%)' });
+    } else {
+      setCSS({ '--transform': 'translateY(-100%)' });
+    }
+    //  setLastPath(path);
+    setIsVisible(!isVisible);
+  };
   return _react2.default.createElement(
     'div',
     null,
@@ -38413,36 +38435,14 @@ function CodeCampMenu() {
       )
     ),
     _react2.default.createElement(
-      'div',
-      { className: 'header__user' },
-      _react2.default.createElement('img', {
-        src: 'assets/images/user-icon.png',
-        className: 'header__user__icon',
-        alt: 'User Icon'
-      }),
-      _react2.default.createElement(
-        'span',
-        { className: 'header__user__hello' },
-        'Hello, stranger'
-      ),
-      _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: '/login' },
-        'Login'
-      )
-    ),
-    _react2.default.createElement(
       'ul',
-      {
-        style: { display: isVisible ? 'block' : 'none' },
-        className: 'header__menu-list js-menu'
-      },
+      { className: 'header__menu-list js-menu', style: cssProperties },
       _react2.default.createElement(
         'li',
         { className: 'close-button-mobile' },
         _react2.default.createElement(
           'a',
-          { href: '', className: 'js-close-main-menu' },
+          { onClick: setCssVisibility, className: 'js-close-main-menu' },
           _react2.default.createElement('i', { className: 'fa fa-remove' })
         )
       ),
@@ -38451,7 +38451,7 @@ function CodeCampMenu() {
         null,
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/' },
+          { to: '/', onClick: setCssVisibility },
           'Clientes'
         )
       ),
@@ -38460,7 +38460,7 @@ function CodeCampMenu() {
         null,
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/speakers' },
+          { to: '/speakers', onClick: setCssVisibility },
           'Servicos'
         )
       ),
@@ -38469,7 +38469,7 @@ function CodeCampMenu() {
         null,
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/speakers' },
+          { to: '/speakers', onClick: setCssVisibility },
           'Produtos'
         )
       ),
@@ -38478,7 +38478,7 @@ function CodeCampMenu() {
         null,
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/speakers' },
+          { to: '/speakers', onClick: setCssVisibility },
           'Marcacoes'
         )
       ),
@@ -38487,7 +38487,7 @@ function CodeCampMenu() {
         { className: 'social-icon' },
         _react2.default.createElement(
           'a',
-          { href: '' },
+          { href: 'https://www.facebook.com/Margarida-Arag%C3%A3o-cabeleireirosest%C3%A9tica-100236801356384/' },
           _react2.default.createElement('i', { className: 'fa fa-facebook', 'aria-hidden': 'true' })
         )
       )
@@ -38518,7 +38518,6 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function PageTop(props) {
-
   return _react2.default.createElement(
     'div',
     null,
@@ -38527,13 +38526,13 @@ function PageTop(props) {
       { className: 'header' },
       _react2.default.createElement(
         'div',
-        { className: 'container-main d-flex align-items-center justify-content-between' },
+        { className: 'container-main d-flex align-items-left justify-content-around' },
+        props.children,
         _react2.default.createElement(
           'a',
           { href: '/', rel: 'home', className: 'header-logo' },
           _react2.default.createElement('img', { src: 'assets/images/SVCClogo.png', alt: 'SVCC' })
-        ),
-        props.children
+        )
       )
     )
   );
@@ -38563,28 +38562,28 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Footer() {
   return _react2.default.createElement(
-    "footer",
-    { className: "footer" },
+    'footer',
+    { className: 'footer' },
     _react2.default.createElement(
-      "div",
-      { className: "container-main" },
-      _react2.default.createElement("div", { className: "footer__menu" }),
+      'div',
+      { className: 'container-main' },
+      _react2.default.createElement('div', { className: 'footer__menu' }),
       _react2.default.createElement(
-        "div",
-        { className: "footer__disclaimer" },
+        'div',
+        { className: 'footer__disclaimer' },
         _react2.default.createElement(
-          "p",
+          'p',
           null,
-          "Code Stars Summit and Silicon Valley Code Camp (tm) are trademarks of 73rd Street Associates (Copyright \xA9"
+          'Version: 1'
         ),
         _react2.default.createElement(
-          "p",
+          'p',
           null,
-          "Site built with ASP.NET, WebAPI2, React and more by",
+          'Desenvolvido por ',
           _react2.default.createElement(
-            "strong",
+            'strong',
             null,
-            "PeterKellner.net"
+            'Pedro Costa'
           )
         )
       )

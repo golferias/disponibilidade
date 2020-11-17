@@ -23,7 +23,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <HomeHeader />
+                {/* <HomeHeader /> */}
                 <HomeContainer
                     sessions={this.props.sessions}
                     updateSession={(rec) => {
