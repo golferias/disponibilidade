@@ -11475,3 +11475,36 @@ body {
     @media screen and (max-width: 768px) {
       .events-customers-list .item {
         margin-bottom: 0.9375rem; } }
+
+        .customers-title {
+          font-size: 1.75rem;
+          font-family: "Handel Gothic", sans-serif;
+          color: #333333;
+          text-transform: uppercase;
+          padding-left: 2.5rem;
+          padding-top: 2.8125rem;
+          padding-bottom: 0.625rem;
+          position: relative;
+          border-bottom: 1px solid #cbd6da; }
+          .customers-title::before {
+            content: ' ';
+            display: block;
+            position: absolute;
+            left: 12px;
+            top: 68%;
+            transform: translateY(-80%);
+            width: 0.75rem;
+            height: 0.8125rem;
+            background-image: url("sassAssets/images/timeline-icon-transparent.png");
+            background-size: 100%;
+            background-position: 50% 50%;
+            background-repeat: no-repeat; }
+          .customers-title::after {
+            content: ' ';
+            display: block;
+            position: absolute;
+            left: 1.0625rem;
+            top: -2.8125rem;
+            width: 2px;
+            background-color: #cbd6da;
+            bottom: 2.5rem; }

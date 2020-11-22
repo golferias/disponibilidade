@@ -63,7 +63,7 @@ export default function CodeCampMenu () {
         </li>
 
         <li>
-          <Link to='/speakers' onClick={setCssVisibility}>
+          <Link to='/Home' onClick={setCssVisibility}>
             Produtos
           </Link>
         </li>

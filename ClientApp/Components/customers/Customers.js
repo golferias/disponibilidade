@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import CustomerContainer from './CustomerContainer'
 import { connect } from 'react-redux'
 import { customersFetchData } from '.././../../redux/actions/customers'
@@ -9,17 +9,35 @@ class Customers extends Component {
   }
 
   render () {
-    return (
-      <div>
-        {/* <HomeHeader /> */}
-        <CustomerContainer
-          customers={this.props.customers}
-          // updateSession={(rec) => {
-          //     this.props.updateSession(rec);
-          // }}
-        />
-      </div>
-    )
+    if (this.props.isLoading) {
+      // return <span><i>Loading...</i></span>
+      return (
+        <div className='alert alert-info alert-dismissible fade show'>
+          <h1>Loading...</h1>
+        </div>
+      )
+    } else if (this.props.hasErrored) {
+      return (
+        <div className='alert alert-danger alert-dismissible fade show'>
+          <h1>Falha ao ler dados:{this.props.errorMessage}</h1>
+        </div>
+        // <span>
+        //   <b>Failed to load data: {this.props.errorMessage}</b>
+        // </span>
+      )
+    } else {
+      return (
+        <div>
+          {/* <HomeHeader /> */}
+          <CustomerContainer
+            customers={this.props.customers}
+            // updateSession={(rec) => {
+            //     this.props.updateSession(rec);
+            // }}
+          />
+        </div>
+      )
+    }
   }
 }
 
