@@ -1708,5 +1708,31 @@
       "speakersNamesCsv": "Corey Weathers",
       "interestLevel": 0
     }
+  ],
+  "customers":[
+    {
+      "Id": "1",
+      "Name": "Popota Silva",
+      "Email": "popotas@hotmail.com",
+      "Phone": "915475987"
+    },
+    {
+      "Id": "10",
+      "Name": "Toni Bruxo",
+      "Email": "bruxo@gmail.com",
+      "Phone": "939457896"
+    },
+    {
+      "Id": "2",
+      "Name": "ze becas",
+      "Email": "zeca@gmail.com",
+      "Phone": "968975987"
+    },
+    {
+      "Id": "3",
+      "Name": "Paulo pirata",
+      "Email": "pirata82@gmail.com",
+      "Phone": "939457104"
+    }
   ]
 }

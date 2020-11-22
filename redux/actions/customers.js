@@ -9,7 +9,7 @@ export function customersFetchData () {
     type: CUSTOMER_LOAD,
     payload: {
       request: {
-        url: '/sessions'
+        url: '/customers'
       }
     }
   }

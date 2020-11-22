@@ -1,5 +1,6 @@
 import React from 'react'
 import CustomerHeaderTitle from './CustomerHeaderTitle'
+import HomeCustomers  from "./HomeCustomers";
 
 export default function CustomerContainer (props) {
   return (
@@ -8,8 +9,8 @@ export default function CustomerContainer (props) {
         <div className='col-12'>
           <CustomerHeaderTitle />
           {/* <HomeSessionFilter/>
-                    <HomeFilterView/>
-                    <HomeSessions sessions={props.sessions}/> */}
+                    <HomeFilterView/>*/}
+                    <HomeCustomers customers={props.customers}/> 
         </div>
       </div>
     </div>
