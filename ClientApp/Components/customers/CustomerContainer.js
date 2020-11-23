@@ -9,7 +9,7 @@ export default function CustomerContainer (props) {
         <div className='col-12'>
           <CustomerHeaderTitle />
           <div className='customers-title'>
-            <div className='filter-bar__more-filters col-12 col-md-3 d-flex align-items-center'>
+            <div className='filter-bar__more-filters col-12 d-flex align-items-center'>
               <span className='square-icon square-icon--primary '>
                 <i className='fa fa-plus' aria-hidden='true' />
               </span>

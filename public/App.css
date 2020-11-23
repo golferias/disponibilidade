@@ -9773,6 +9773,13 @@ body {
     background-size: 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat; }
+    @media (max-width: 575px) {
+      .jumbo-common__title::before {
+        left: -9.3000rem;
+        top: 2.625rem;
+      } 
+     
+    }
   .jumbo-common__title--no-icon::before {
     display: none; }
 
