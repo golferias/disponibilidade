@@ -10,8 +10,7 @@ class Customers extends Component {
 
   render () {
     if (this.props.isLoading) {
-      // return <span><i>Loading...</i></span>
-      return (
+        return (
         <div className='alert alert-info alert-dismissible fade show'>
           <h1>Loading...</h1>
         </div>
@@ -19,11 +18,8 @@ class Customers extends Component {
     } else if (this.props.hasErrored) {
       return (
         <div className='alert alert-danger alert-dismissible fade show'>
-          <h1>Falha ao ler dados:{this.props.errorMessage}</h1>
+          <h1>Falha ao ler os dados:{this.props.errorMessage}</h1>
         </div>
-        // <span>
-        //   <b>Failed to load data: {this.props.errorMessage}</b>
-        // </span>
       )
     } else {
       return (

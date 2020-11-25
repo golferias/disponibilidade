@@ -1,6 +1,7 @@
 import React from 'react'
 import CustomerHeaderTitle from './CustomerHeaderTitle'
 import HomeCustomers from './HomeCustomers'
+import { Link } from 'react-router-dom'
 
 export default function CustomerContainer (props) {
   return (
@@ -13,9 +14,9 @@ export default function CustomerContainer (props) {
               <span className='square-icon square-icon--primary '>
                 <i className='fa fa-plus' aria-hidden='true' />
               </span>
-              <span className='filter-bar__more-filters__label'>
+              <Link className='filter-bar__more-filters__label' to='/customer'>
                 Adicionar Clientes
-              </span>
+              </Link>
             </div>
           </div>
           {/* <HomeSessionFilter/>

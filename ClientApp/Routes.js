@@ -3,7 +3,7 @@ import Login from './Components/common/Login'
 import Speakers from './Components/speakers/Speakers'
 import RouteNotFound from './RouteNotFound'
 import Customers from './Components/customers/Customers'
-
+import ManageCustomers from './Components/customers/ManageCustomers'
 import App from './Components/common/App'
 
 export default [
@@ -18,6 +18,11 @@ export default [
       {
         ...Customers,
         path: '/',
+        exact: true
+      },
+      {
+        ...ManageCustomers,
+        path: '/customer',
         exact: true
       },
       {
