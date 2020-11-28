@@ -40,16 +40,19 @@ export function customers (
     }
     ///////////// UPDATE (PUT) /////////////////////////////////////////////////////////////////
     case CUSTOMER_UPDATE: {
+      console.log("--- Triggered CUSTOMER_UPDATE ---");
       const customerIdToUpdate = action.payload.request.data.id
       const newState = updateOneCustomer(state, customerIdToUpdate)
       return newState
     }
     case CUSTOMER_UPDATE_SUCCESS: {
+      console.log("--- Triggered CUSTOMER_UPDATE_SUCCESS ---");
       const customerIdToUpdate = action.payload.data.id
       const newState = updateOneCustomer(state, customerIdToUpdate)
       return newState
     }
     case CUSTOMER_UPDATE_FAIL: {
+      console.log("--- Triggered CUSTOMER_UPDATE_FAIL ---");
       const customerIdToUpdate =
         action.meta.previousAction.payload.request.data.id
       const newState = updateOneCustomer(state, customerIdToUpdate)

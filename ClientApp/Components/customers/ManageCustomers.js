@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import CustomerForm from './CustomerForm'
+import { connect } from 'react-redux'
+import { updateCustomer } from '.././../../redux/actions/customers'
 
 export const ManageCustomerPage = props => {
   const [errors, setErrors] = useState({})
-  const [courses, setCourses] = useState([])
-  const [customer, setCourse] = useState({
+  const [customer, setCustomer] = useState({
     Id: null,
-    Name: '',
-    Email: '',
-    Phone: ''
+    Name: 'a',
+    Email: 'b',
+    Phone: '1'
   })
 
   function handleChange ({ target }) {
-    //   const updatedCourse = { ...course, [target.name]: target.value }
-    //   setCourse(updatedCourse)
+    const updatedCustomer = { ...customer, [target.name]: target.value }
+    setCustomer(updatedCustomer)
   }
 
   function handleSubmit (event) {
     event.preventDefault()
     if (!formIsValid()) return
+    props.update(customer);
+    //this.props.updateCustomer(customer)
+    //props.customer.props.dispatch({type:'CUSTOMER_UPDATE'})
+    //  props.updateCustomer(customer).then(() => {
+    //   props.history.push('/')
+    //  })
     // courseActions.saveCourse(course).then(() => {
     //   props.history.push('/courses')
     // //   toast.success('Customer Saved.', {
@@ -46,15 +53,17 @@ export const ManageCustomerPage = props => {
 
   useEffect(() => {
     //  courseStore.addChangeListener(onChange)
-    const slug = props.match.params.slug
-    if (courses.length === 0) {
-      // courseActions.loadCourses()
-    } else if (slug) {
-      // setCourse(courseStore.getCourseBySlug(slug))
-    }
-    return () => courseStore.removeChangeListener(onChange)
-  }, [courses.length, props.match.params.slug])
-
+    // const slug = props.match.params.slug
+    // if (courses.length === 0) {
+    //   // courseActions.loadCourses()
+    // } else if (slug) {
+    //   // setCourse(courseStore.getCourseBySlug(slug))
+    // }
+    //   return () => courseStore.removeChangeListener(onChange)
+    // }, [courses.length, props.match.params.slug])
+    return
+  }, [])
+  
   function onChange () {
     // setCourses(courseStore.getCoursesFromStore())
   }
@@ -69,6 +78,18 @@ export const ManageCustomerPage = props => {
   )
 }
 
+//export default connect(null)(ManageCustomerPage)
+// export default {
+//   component: ManageCustomerPage
+// }
+const mapDispatchToProps = (dispatch, customer) => {
+  console.log('ManageCustomers.js CUSTOMER_UPDATE....')
+  return {
+    // dispatching plain actions
+    update: customer => props.customer.updateCustomer(customer)
+  }
+}
+
 export default {
-  component: ManageCustomerPage
+  component: connect(null,mapDispatchToProps)(ManageCustomerPage)
 }

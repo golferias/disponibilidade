@@ -35,7 +35,7 @@ function CustomerForm (props) {
 }
 
 CustomerForm.propTypes = {
-  course: PropTypes.object.isRequired,
+  customer: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
