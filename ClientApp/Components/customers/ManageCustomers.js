@@ -20,7 +20,8 @@ export const ManageCustomerPage = props => {
   function handleSubmit (event) {
     event.preventDefault()
     if (!formIsValid()) return
-    props.update(customer);
+    props.updateCustomer()
+    //props.update(customer);
     //this.props.updateCustomer(customer)
     //props.customer.props.dispatch({type:'CUSTOMER_UPDATE'})
     //  props.updateCustomer(customer).then(() => {
@@ -63,10 +64,10 @@ export const ManageCustomerPage = props => {
     // }, [courses.length, props.match.params.slug])
     return
   }, [])
-  
-  function onChange () {
-    // setCourses(courseStore.getCoursesFromStore())
-  }
+
+  // function onChange () {
+  //   // setCourses(courseStore.getCoursesFromStore())
+  // }
 
   return (
     <CustomerForm
@@ -82,14 +83,14 @@ export const ManageCustomerPage = props => {
 // export default {
 //   component: ManageCustomerPage
 // }
-const mapDispatchToProps = (dispatch, customer) => {
+const mapDispatchToProps = dispatch => {
   console.log('ManageCustomers.js CUSTOMER_UPDATE....')
   return {
     // dispatching plain actions
-    update: customer => props.customer.updateCustomer(customer)
+    updateCustomer: customer => dispatch(updateCustomer(customer))
   }
 }
 
 export default {
-  component: connect(null,mapDispatchToProps)(ManageCustomerPage)
+  component: connect(null, mapDispatchToProps)(ManageCustomerPage)
 }
