@@ -5,7 +5,12 @@ import {
   CUSTOMER_UPDATE,
   CUSTOMER_UPDATE_SUCCESS,
   CUSTOMER_UPDATE_FAIL,
-  CUSTOMER_DELETE,CUSTOMER_DELETE_SUCCESS,CUSTOMER_DELETE_FAIL
+  CUSTOMER_DELETE,
+  CUSTOMER_DELETE_SUCCESS,
+  CUSTOMER_DELETE_FAIL,
+  CUSTOMER_CREATE,
+  CUSTOMER_CREATE_SUCCESS,
+  CUSTOMER_CREATE_FAIL
 } from '../actions/customers'
 
 export function customers (
@@ -17,6 +22,10 @@ export function customers (
   },
   action
 ) {
+  function createCustomer (state, customerToCreate) {
+    return { ...state, data: [...state.data, customerToCreate] }
+  }
+
   switch (action.type) {
     case CUSTOMER_LOAD: {
       return Object.assign({}, state, {
@@ -40,19 +49,19 @@ export function customers (
     }
     ///////////// UPDATE (PUT) /////////////////////////////////////////////////////////////////
     case CUSTOMER_UPDATE: {
-      console.log("--- Triggered CUSTOMER_UPDATE ---");
+      console.log('--- Triggered CUSTOMER_UPDATE ---')
       const customerIdToUpdate = action.payload.request.data.id
       const newState = updateOneCustomer(state, customerIdToUpdate)
       return newState
     }
     case CUSTOMER_UPDATE_SUCCESS: {
-      console.log("--- Triggered CUSTOMER_UPDATE_SUCCESS ---");
+      console.log('--- Triggered CUSTOMER_UPDATE_SUCCESS ---')
       const customerIdToUpdate = action.payload.data.id
       const newState = updateOneCustomer(state, customerIdToUpdate)
       return newState
     }
     case CUSTOMER_UPDATE_FAIL: {
-      console.log("--- Triggered CUSTOMER_UPDATE_FAIL ---");
+      console.log('--- Triggered CUSTOMER_UPDATE_FAIL ---')
       const customerIdToUpdate =
         action.meta.previousAction.payload.request.data.id
       const newState = updateOneCustomer(state, customerIdToUpdate)
@@ -60,21 +69,52 @@ export function customers (
     }
     ///////////// DELETE  /////////////////////////////////////////////////////////////////
     case CUSTOMER_DELETE: {
-        const customerIdToDelete = action.payload.request.data.id
-        const newState = deleteOneCustomer(state, customerIdToDelete)
-        return newState
+      const customerIdToDelete = action.payload.request.data.id
+      const newState = deleteOneCustomer(state, customerIdToDelete)
+      return newState
     }
     case CUSTOMER_DELETE_SUCCESS: {
-        const customerIdToDelete = action.payload.data.id
-        const newState = deleteOneCustomer(state, customerIdToDelete)
-        return newState
-      }
-      case CUSTOMER_DELETE_FAIL: {
-        const customerIdToDelete =
-          action.meta.previousAction.payload.request.data.id
-        const newState = updateOneCustomer(state, customerIdToDelete)
-        return newState
-      }
+      const customerIdToDelete = action.payload.data.id
+      const newState = deleteOneCustomer(state, customerIdToDelete)
+      return newState
+    }
+    case CUSTOMER_DELETE_FAIL: {
+      const customerIdToDelete =
+        action.meta.previousAction.payload.request.data.id
+      const newState = updateOneCustomer(state, customerIdToDelete)
+      return newState
+    }
+    ///////////// CREATE  /////////////////////////////////////////////////////////////////
+    case CUSTOMER_CREATE: {
+      console.log('--- Triggered CUSTOMER_CREATE ---')
+      Object.assign({}, state, {
+        isLoading: false,
+        hasErrored: false
+      })
+      const customerToCreate = action.payload.request.data
+      const newState = createCustomer(state, customerToCreate)
+      return newState
+    }
+    case CUSTOMER_CREATE_SUCCESS: {
+      console.log('--- Triggered CUSTOMER_CREATE_SUCCESS ---')
+
+      Object.assign({}, state, {
+        data: action.payload.data,
+        isLoading: false,
+        hasErrored: false
+      })
+      const customerToCreate = action.payload.data
+      const newState = createCustomer(state, customerToCreate)
+      return newState
+    }
+    case CUSTOMER_CREATE_FAIL: {
+      console.log('--- Triggered CUSTOMER_CREATE_FAIL ---')
+      return Object.assign({}, state, {
+        isLoading: false,
+        hasErrored: true,
+        errorMessage: action.error.message
+      })
+    }
     default:
       return state
   }

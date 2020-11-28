@@ -4,7 +4,7 @@ import CustomerRec from './CustomerRec'
 class HomeCustomers extends Component {
   render () {
     const customerItemComponents = this.props.customers.map(customerRec => {
-      return <CustomerRec key={customerRec.Id} customer={customerRec} />
+      return <CustomerRec key={customerRec.id} customer={customerRec} />
     })
 
     return (

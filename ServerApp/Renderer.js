@@ -1,26 +1,24 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { renderToString } from 'react-dom/server';
-import {StaticRouter as Router} from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
-import serialize from 'serialize-javascript';
-import Routes from '../ClientApp/Routes';
-
+import React from 'react'
+import { Provider } from 'react-redux'
+import { renderToString } from 'react-dom/server'
+import { StaticRouter as Router } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
+import serialize from 'serialize-javascript'
+import Routes from '../ClientApp/Routes'
 
 export default (req, store, context) => {
+  const content = renderToString(
+    <Provider store={store}>
+      <Router location={req.path} context={context}>
+        {renderRoutes(Routes)}
+      </Router>
+    </Provider>
+  )
 
-    const content = renderToString(
-        <Provider store={store}>
-            <Router location={req.path} context={context}>
-                {renderRoutes(Routes)}
-            </Router>
-        </Provider>
-    );
-
-    return {
-        htmlcode: `<html>
+  return {
+    htmlcode: `<html>
           <head>
-            <title>SVCC React Application</title>
+            <title>Ma Gestao</title>
             <link rel="stylesheet" href="App.css">            
           </head>
           
@@ -34,6 +32,6 @@ export default (req, store, context) => {
           
         </html>
       `,
-        routestatus: context.status
-    }
-};
+    routestatus: context.status
+  }
+}

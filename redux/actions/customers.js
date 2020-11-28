@@ -10,6 +10,10 @@ export const CUSTOMER_DELETE = 'CUSTOMER_DELETE'
 export const CUSTOMER_DELETE_SUCCESS = 'CUSTOMER_DELETE_SUCCESS'
 export const CUSTOMER_DELETE_FAIL = 'CUSTOMER_DELETE_FAIL'
 
+export const CUSTOMER_CREATE = 'CUSTOMER_CREATE'
+export const CUSTOMER_CREATE_SUCCESS = 'CUSTOMER_CREATE_SUCCESS'
+export const CUSTOMER_CREATE_FAIL = 'CUSTOMER_CREATE_FAIL'
+
 export function customersFetchData () {
   console.log('actions/customers.js/customersFetchData CUSTOMER_LOAD....')
 
@@ -23,6 +27,22 @@ export function customersFetchData () {
   }
 }
 
+export function AddCustomer (customerRec) {
+  console.log('actions/customers.js/AddCustomer CUSTOMER_CREATE....')
+  return {
+    type: CUSTOMER_CREATE,
+    payload: {
+      request: {
+        method: 'POST',
+        url: '/customers',
+        data: {
+          ...customerRec
+        }
+      }
+    }
+  }
+}
+
 export function updateCustomer (customerRec) {
   console.log('actions/customers.js/updateCustomer CUSTOMER_UPDATE....')
   return {
@@ -30,7 +50,7 @@ export function updateCustomer (customerRec) {
     payload: {
       request: {
         method: 'PUT',
-        url: '/customer/' + customerRec.Id,
+        url: '/customer/' + customerRec.id,
         data: {
           ...customerRec
         }

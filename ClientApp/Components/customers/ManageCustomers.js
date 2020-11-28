@@ -1,44 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import CustomerForm from './CustomerForm'
 import { connect } from 'react-redux'
-import { updateCustomer } from '.././../../redux/actions/customers'
+import { AddCustomer } from '.././../../redux/actions/customers'
 
 export const ManageCustomerPage = props => {
   const [errors, setErrors] = useState({})
   const [customer, setCustomer] = useState({
-    Id: null,
-    Name: 'a',
-    Email: 'b',
-    Phone: '1'
+    id: null,
+    Name: '',
+    Email: '',
+    Phone: ''
   })
-
+  
   function handleChange ({ target }) {
     const updatedCustomer = { ...customer, [target.name]: target.value }
     setCustomer(updatedCustomer)
+    
   }
 
   function handleSubmit (event) {
     event.preventDefault()
     if (!formIsValid()) return
-    props.updateCustomer()
-    //props.update(customer);
-    //this.props.updateCustomer(customer)
-    //props.customer.props.dispatch({type:'CUSTOMER_UPDATE'})
-    //  props.updateCustomer(customer).then(() => {
-    //   props.history.push('/')
-    //  })
-    // courseActions.saveCourse(course).then(() => {
-    //   props.history.push('/courses')
-    // //   toast.success('Customer Saved.', {
-    // //     position: 'top-right',
-    // //     autoClose: 5000,
-    // //     hideProgressBar: false,
-    // //     closeOnClick: true,
-    // //     pauseOnHover: true,
-    // //     draggable: true,
-    // //     progress: undefined
-    // //   })
-    // })
+
+    props.AddCustomer(customer)
+    props.history.push('/')
   }
 
   function formIsValid () {
@@ -48,7 +33,6 @@ export const ManageCustomerPage = props => {
     // if (!customer.Phone) _errors.Phone = 'Telemovel'
 
     setErrors(_errors)
-
     return Object.keys(_errors).length === 0
   }
 
@@ -65,9 +49,6 @@ export const ManageCustomerPage = props => {
     return
   }, [])
 
-  // function onChange () {
-  //   // setCourses(courseStore.getCoursesFromStore())
-  // }
 
   return (
     <CustomerForm
@@ -79,15 +60,12 @@ export const ManageCustomerPage = props => {
   )
 }
 
-//export default connect(null)(ManageCustomerPage)
-// export default {
-//   component: ManageCustomerPage
-// }
+
 const mapDispatchToProps = dispatch => {
   console.log('ManageCustomers.js CUSTOMER_UPDATE....')
   return {
     // dispatching plain actions
-    updateCustomer: customer => dispatch(updateCustomer(customer))
+    AddCustomer: customer => dispatch(AddCustomer(customer))
   }
 }
 
