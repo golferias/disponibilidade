@@ -28,7 +28,7 @@ export const ManageCustomerPage = props => {
   function formIsValid () {
     const _errors = {}
     if (!customer.Name) _errors.Name = 'Nome obrigatorio'
-    debugger
+  
     if (customer.Email) {
       if (
         !customer.Email.match(
