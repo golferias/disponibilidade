@@ -22,7 +22,7 @@ function TextInput (props) {
           className='form-control text'
         />
       </div>
-      {props.error && <div className='alert alert-danger'>{props.error}</div>}
+      {props.error && <div className='alert alert-danger text'>{props.error}</div>}
     </div>
   )
 }

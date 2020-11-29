@@ -19,14 +19,16 @@ function CustomerForm (props) {
         name='Email'
         value={props.customer.Email}
         onChange={props.onChange}
+        error={props.errors.Email}
       />
 
       <TextInput
         id='Phone'
-        label='Telemovel'
+        label='Telemóvel'
         name='Phone'
         value={props.customer.Phone}
         onChange={props.onChange}
+        error={props.errors.Phone}
       />
 
       <input

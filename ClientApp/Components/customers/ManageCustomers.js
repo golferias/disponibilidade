@@ -11,11 +11,10 @@ export const ManageCustomerPage = props => {
     Email: '',
     Phone: ''
   })
-  
+
   function handleChange ({ target }) {
     const updatedCustomer = { ...customer, [target.name]: target.value }
     setCustomer(updatedCustomer)
-    
   }
 
   function handleSubmit (event) {
@@ -29,9 +28,20 @@ export const ManageCustomerPage = props => {
   function formIsValid () {
     const _errors = {}
     if (!customer.Name) _errors.Name = 'Nome obrigatorio'
-    // if (!customer.Email) _errors.Email = 'Email'
-    // if (!customer.Phone) _errors.Phone = 'Telemovel'
-
+    debugger
+    if (customer.Email) {
+      if (
+        !customer.Email.match(
+          /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+        )
+      )
+        _errors.Email = 'Email inválido'
+    }
+    if (customer.Phone) {
+      if (!customer.Phone.match(/^[0-9]{9}$/))
+        _errors.Phone = 'Telemóvel inválido'
+    }
+    //[\d+]
     setErrors(_errors)
     return Object.keys(_errors).length === 0
   }
@@ -49,7 +59,6 @@ export const ManageCustomerPage = props => {
     return
   }, [])
 
-
   return (
     <CustomerForm
       customer={customer}
@@ -59,7 +68,6 @@ export const ManageCustomerPage = props => {
     />
   )
 }
-
 
 const mapDispatchToProps = dispatch => {
   console.log('ManageCustomers.js CUSTOMER_UPDATE....')

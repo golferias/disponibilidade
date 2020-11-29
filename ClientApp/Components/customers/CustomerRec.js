@@ -13,6 +13,20 @@ export default class CustomerRec extends Component {
             <i>&nbsp;&nbsp;Phone: </i>
             {this.props.customer.Phone}
           </div>
+          <div>
+            <button
+              className='btn btn-outline-danger customerRec'
+              onClick={() => props.deleteCourse(course.id)}
+            >
+              Apagar
+            </button>
+            <button
+              className='btn btn-outline-dark customerRec'
+              onClick={() => props.deleteCourse(course.id)}
+            >
+              Editar
+            </button>
+          </div>
         </div>
       </div>
     )
