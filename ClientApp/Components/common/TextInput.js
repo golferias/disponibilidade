@@ -9,7 +9,9 @@ function TextInput (props) {
 
   return (
     <div className={wrapperClass}>
-      <label htmlFor={props.id}>{props.label}</label>
+      <label className='textinput' htmlFor={props.id}>
+        {props.label}
+      </label>
       <div className='field'>
         <input
           id={props.id}
@@ -17,7 +19,7 @@ function TextInput (props) {
           onChange={props.onChange}
           name={props.name}
           value={props.value}
-          className='form-control'
+          className='form-control text'
         />
       </div>
       {props.error && <div className='alert alert-danger'>{props.error}</div>}

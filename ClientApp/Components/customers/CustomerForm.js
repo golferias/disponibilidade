@@ -29,7 +29,11 @@ function CustomerForm (props) {
         onChange={props.onChange}
       />
 
-      <input type='submit' value='Salvar' className='btn btn-primary' />
+      <input
+        type='submit'
+        value='Salvar'
+        className='btn btn-primary btn-customer'
+      />
     </form>
   )
 }

@@ -4147,7 +4147,7 @@ fieldset[disabled] a.btn {
     background-color: #198bbb;
     background-image: none;
     border-color: #1884b2; }
-
+  
 .btn-secondary {
   color: #ffffff;
   background-color: #3ab54b;
@@ -11515,3 +11515,26 @@ body {
             width: 2px;
             background-color: #cbd6da;
             bottom: 2.5rem; }
+            .textinput {
+             /* font-weight: 600;*/
+              margin-top: 1.5rem;
+              margin-left: 0.8rem;
+             }
+             .btn-customer {
+    
+              margin-top: 3.5rem;
+              margin-left: 0.5rem;
+            }
+            @media screen and (max-width: 768px) {
+              .btn-customer {
+                margin-top: 3.5rem;
+                margin-left: 8.5rem; } }
+            .text{
+              border-top-right-radius: 0rem;
+              border-bottom-left-radius: 0rem;
+              margin-left: .5rem;
+              width: 99%;
+            }
+            @media screen and (max-width: 768px) {
+              .text {
+                width: 95%; } }
