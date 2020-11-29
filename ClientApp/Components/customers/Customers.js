@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import CustomerContainer from './CustomerContainer'
 import { connect } from 'react-redux'
-import { customersFetchData } from '.././../../redux/actions/customers'
+import { customersFetchData,deleteCustomer } from '.././../../redux/actions/customers'
 
 class Customers extends Component {
   componentDidMount () {
     this.props.customersFetchData()
   }
-
+  deleteCustomer (customer) {
+    this.props.deleteCustomer(customer)
+  }
   render () {
     if (this.props.isLoading) {
-        return (
+      return (
         <div className='alert alert-info alert-dismissible fade show'>
           <h1>Loading...</h1>
         </div>
@@ -27,9 +29,9 @@ class Customers extends Component {
           {/* <HomeHeader /> */}
           <CustomerContainer
             customers={this.props.customers}
-            // updateSession={(rec) => {
-            //     this.props.updateSession(rec);
-            // }}
+            deleteCustomer={customer => {
+              this.props.deleteCustomer(customer)
+            }}
           />
         </div>
       )
@@ -53,6 +55,8 @@ function loadData (customer) {
 }
 
 export default {
-  component: connect(mapStateToProps, { customersFetchData })(Customers),
+  component: connect(mapStateToProps, { customersFetchData, deleteCustomer })(
+    Customers
+  ),
   loadData
 }

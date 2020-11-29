@@ -26,6 +26,13 @@ export function customers (
     return { ...state, data: [...state.data, customerToCreate] }
   }
 
+  function deleteOneCustomer (state, customerToDelete) {
+    var filteredArray = state.data.filter(
+      item => item.id !== customerToDelete.id
+    )
+    return { ...state, data: [...filteredArray] }
+  }
+
   switch (action.type) {
     case CUSTOMER_LOAD: {
       return Object.assign({}, state, {
@@ -69,20 +76,30 @@ export function customers (
     }
     ///////////// DELETE  /////////////////////////////////////////////////////////////////
     case CUSTOMER_DELETE: {
-      const customerIdToDelete = action.payload.request.data.id
+      console.log('--- Triggered CUSTOMER_DELETE ---')
+      Object.assign({}, state, {
+        isLoading: true,
+        hasErrored: false
+      })
+
+      const customerIdToDelete = action.payload.request.data
       const newState = deleteOneCustomer(state, customerIdToDelete)
       return newState
     }
     case CUSTOMER_DELETE_SUCCESS: {
-      const customerIdToDelete = action.payload.data.id
-      const newState = deleteOneCustomer(state, customerIdToDelete)
-      return newState
+      console.log('--- Triggered CUSTOMER_DELETE_SUCCESS ---')
+      return Object.assign({}, state, {
+        isLoading: false,
+        hasErrored: false
+      })
     }
     case CUSTOMER_DELETE_FAIL: {
-      const customerIdToDelete =
-        action.meta.previousAction.payload.request.data.id
-      const newState = updateOneCustomer(state, customerIdToDelete)
-      return newState
+      console.log('--- Triggered CUSTOMER_DELETE_FAIL ---')
+      return Object.assign({}, state, {
+        isLoading: false,
+        hasErrored: true,
+        errorMessage: action.error.message
+      })
     }
     ///////////// CREATE  /////////////////////////////////////////////////////////////////
     case CUSTOMER_CREATE: {

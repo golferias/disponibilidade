@@ -16,7 +16,7 @@ export default class CustomerRec extends Component {
           <div>
             <button
               className='btn btn-outline-danger customerRec'
-              onClick={() => props.deleteCustomer(this.props.customer.id)}
+              onClick={() => this.props.deleteCustomer(this.props.customer)}
             >
               Apagar
             </button>

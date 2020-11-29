@@ -59,16 +59,16 @@ export function updateCustomer (customerRec) {
   }
 }
 
-export function deleteCustomer (id) {
+export function deleteCustomer (customer) {
   console.log('actions/customers.js/deleteCustomer CUSTOMER_DELETE....')
   return {
     type: CUSTOMER_DELETE,
     payload: {
       request: {
         method: 'Delete',
-        url: '/customer/' + id,
+        url: '/customers/' + customer.id,
         data: {
-          ...id
+          ...customer
         }
       }
     }

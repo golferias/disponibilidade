@@ -21,7 +21,12 @@ export default function CustomerContainer (props) {
           </div>
           {/* <HomeSessionFilter/>
                     <HomeFilterView/>*/}
-          <HomeCustomers customers={props.customers} />
+          <HomeCustomers
+            customers={props.customers}
+            deleteCustomer={customer => {
+              return props.deleteCustomer(customer)
+            }}
+          />
         </div>
       </div>
     </div>
