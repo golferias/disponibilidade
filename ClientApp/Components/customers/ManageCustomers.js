@@ -21,9 +21,23 @@ export const ManageCustomerPage = props => {
     event.preventDefault()
     if (!formIsValid()) return
     if (!customer.id) {
-      props.AddCustomer(customer)
+      const prom1 = props.AddCustomer(customer)
+      Promise.all([prom1])
+        .then(() => {
+          props.history.push('/')
+        })
+        .catch(() => {
+          console.log('error on action')
+        })
     } else {
-      props.UpdateCustomer(customer)
+      const prom1 = props.UpdateCustomer(customer)
+      Promise.all([prom1])
+        .then(() => {
+          props.history.push('/')
+        })
+        .catch(() => {
+          console.log('error on action')
+        })
     }
   }
 
