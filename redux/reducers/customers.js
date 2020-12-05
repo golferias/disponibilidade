@@ -32,6 +32,12 @@ export function customers (
     )
     return { ...state, data: [...filteredArray] }
   }
+  function updateOneCustomer (state, customerToUpdate) {
+    var newCustomerList = state.data.map(item =>
+      item.id === customerToUpdate.id ? { ...item, ...customerToUpdate } : item
+    )
+    return { ...state, data: [...newCustomerList] }
+  }
 
   switch (action.type) {
     case CUSTOMER_LOAD: {
@@ -57,22 +63,28 @@ export function customers (
     ///////////// UPDATE (PUT) /////////////////////////////////////////////////////////////////
     case CUSTOMER_UPDATE: {
       console.log('--- Triggered CUSTOMER_UPDATE ---')
-      const customerIdToUpdate = action.payload.request.data.id
-      const newState = updateOneCustomer(state, customerIdToUpdate)
+      Object.assign({}, state, {
+        isLoading: true,
+        hasErrored: false
+      })
+      const customerToUpdate = action.payload.request.data
+      const newState = updateOneCustomer(state, customerToUpdate)
       return newState
     }
     case CUSTOMER_UPDATE_SUCCESS: {
       console.log('--- Triggered CUSTOMER_UPDATE_SUCCESS ---')
-      const customerIdToUpdate = action.payload.data.id
-      const newState = updateOneCustomer(state, customerIdToUpdate)
-      return newState
+      return Object.assign({}, state, {
+        isLoading: false,
+        hasErrored: false
+      })
     }
     case CUSTOMER_UPDATE_FAIL: {
-      console.log('--- Triggered CUSTOMER_UPDATE_FAIL ---')
-      const customerIdToUpdate =
-        action.meta.previousAction.payload.request.data.id
-      const newState = updateOneCustomer(state, customerIdToUpdate)
-      return newState
+      console.log('--- Triggered CUSTOMER_Update_FAIL ---')
+      return Object.assign({}, state, {
+        isLoading: false,
+        hasErrored: true,
+        errorMessage: action.error.message
+      })
     }
     ///////////// DELETE  /////////////////////////////////////////////////////////////////
     case CUSTOMER_DELETE: {

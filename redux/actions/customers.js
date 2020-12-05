@@ -50,7 +50,7 @@ export function updateCustomer (customerRec) {
     payload: {
       request: {
         method: 'PUT',
-        url: '/customer/' + customerRec.id,
+        url: '/customers/' + customerRec.id,
         data: {
           ...customerRec
         }

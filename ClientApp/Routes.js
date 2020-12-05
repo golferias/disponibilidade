@@ -22,6 +22,11 @@ export default [
       },
       {
         ...ManageCustomers,
+        path: '/customer/:id',
+        exact: true
+      },
+      {
+        ...ManageCustomers,
         path: '/customer',
         exact: true
       },

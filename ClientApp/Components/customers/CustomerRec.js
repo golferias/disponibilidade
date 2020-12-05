@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class CustomerRec extends Component {
   render () {
@@ -20,12 +21,16 @@ export default class CustomerRec extends Component {
             >
               Apagar
             </button>
-            <button
-              className='btn btn-outline-dark customerRec'
-              onClick={() => props.deleteCourse(course.id)}
+            <Link 
+              to={{
+                pathname: '/customer/' + this.props.customer.id,
+                param1: this.props.customer.id
+              }}
             >
-              Editar
-            </button>
+              <button className='btn btn-outline-primary customerRec'>
+                Editar
+              </button>
+            </Link>
           </div>
         </div>
       </div>

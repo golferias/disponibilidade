@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CustomerForm from './CustomerForm'
 import { connect } from 'react-redux'
-import { AddCustomer } from '.././../../redux/actions/customers'
+import { AddCustomer, updateCustomer } from '.././../../redux/actions/customers'
 
 export const ManageCustomerPage = props => {
   const [errors, setErrors] = useState({})
@@ -20,15 +20,17 @@ export const ManageCustomerPage = props => {
   function handleSubmit (event) {
     event.preventDefault()
     if (!formIsValid()) return
-
-    props.AddCustomer(customer)
-    props.history.push('/')
+    if (!customer.id) {
+      props.AddCustomer(customer)
+    } else {
+      props.UpdateCustomer(customer)
+    }
   }
 
   function formIsValid () {
     const _errors = {}
     if (!customer.Name) _errors.Name = 'Nome obrigatorio'
-  
+
     if (customer.Email) {
       if (
         !customer.Email.match(
@@ -47,17 +49,14 @@ export const ManageCustomerPage = props => {
   }
 
   useEffect(() => {
-    //  courseStore.addChangeListener(onChange)
-    // const slug = props.match.params.slug
-    // if (courses.length === 0) {
-    //   // courseActions.loadCourses()
-    // } else if (slug) {
-    //   // setCourse(courseStore.getCourseBySlug(slug))
-    // }
-    //   return () => courseStore.removeChangeListener(onChange)
-    // }, [courses.length, props.match.params.slug])
+    const id = props.match.params.id
+
+    if (id) {
+      var filteredArray = props.customers.data.filter(item => item.id === id)
+      setCustomer(filteredArray[0])
+    }
     return
-  }, [])
+  }, [props.match.params.id])
 
   return (
     <CustomerForm
@@ -70,13 +69,19 @@ export const ManageCustomerPage = props => {
 }
 
 const mapDispatchToProps = dispatch => {
-  console.log('ManageCustomers.js CUSTOMER_UPDATE....')
   return {
     // dispatching plain actions
-    AddCustomer: customer => dispatch(AddCustomer(customer))
+    AddCustomer: customer => dispatch(AddCustomer(customer)),
+    UpdateCustomer: customer => dispatch(updateCustomer(customer))
+  }
+}
+
+function mapStateToProps (state) {
+  return {
+    customers: state.customers
   }
 }
 
 export default {
-  component: connect(null, mapDispatchToProps)(ManageCustomerPage)
+  component: connect(mapStateToProps, mapDispatchToProps)(ManageCustomerPage)
 }
