@@ -41,12 +41,14 @@ export function customers (
 
   switch (action.type) {
     case CUSTOMER_LOAD: {
+      console.log('--- Triggered CUSTOMER_LOAD ---')
       return Object.assign({}, state, {
         isLoading: true,
         hasErrored: false
       })
     }
     case CUSTOMER_LOAD_SUCCESS: {
+      console.log('--- Triggered CUSTOMER_LOAD_SUCCESS ---')
       return Object.assign({}, state, {
         data: action.payload.data,
         isLoading: false,
@@ -54,6 +56,7 @@ export function customers (
       })
     }
     case CUSTOMER_LOAD_FAIL: {
+      console.log('--- Triggered CUSTOMER_LOAD_FAIL ---')
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,

@@ -7,9 +7,9 @@ export const ManageCustomerPage = props => {
   const [errors, setErrors] = useState({})
   const [customer, setCustomer] = useState({
     id: null,
-    Name: '',
-    Email: '',
-    Phone: ''
+    name: '',
+    email: '',
+    phone: ''
   })
 
   function handleChange ({ target }) {
@@ -43,19 +43,19 @@ export const ManageCustomerPage = props => {
 
   function formIsValid () {
     const _errors = {}
-    if (!customer.Name) _errors.Name = 'Nome obrigatorio'
+    if (!customer.name) _errors.name = 'Nome obrigatorio'
 
-    if (customer.Email) {
+    if (customer.email) {
       if (
-        !customer.Email.match(
+        !customer.email.match(
           /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
         )
       )
-        _errors.Email = 'Email inválido'
+        _errors.email = 'Email inválido'
     }
-    if (customer.Phone) {
-      if (!customer.Phone.match(/^[0-9]{9}$/))
-        _errors.Phone = 'Telemóvel inválido'
+    if (customer.phone) {
+      if (!customer.phone.match(/^[0-9]{9}$/))
+        _errors.phone = 'Telemóvel inválido'
     }
     //[\d+]
     setErrors(_errors)

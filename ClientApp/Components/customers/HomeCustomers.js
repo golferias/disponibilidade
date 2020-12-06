@@ -21,7 +21,11 @@ class HomeCustomers extends Component {
 
     return (
       <div className='events-customers-list container-fluid js-list-view active'>
-        {customerItemComponents}
+        {customerItemComponents.length ? (
+          customerItemComponents
+        ) : (
+          <p>Sem dados</p>
+        )}
       </div>
     )
   }

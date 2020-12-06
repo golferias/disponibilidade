@@ -6,29 +6,29 @@ function CustomerForm (props) {
   return (
     <form onSubmit={props.onSubmit}>
       <TextInput
-        id='Name'
+        id='name'
         label='Nome'
-        name='Name'
-        value={props.customer.Name}
+        name='name'
+        value={props.customer.name}
         onChange={props.onChange}
-        error={props.errors.Name}
+        error={props.errors.name}
       />
       <TextInput
-        id='Email'
+        id='email'
         label='Email'
-        name='Email'
-        value={props.customer.Email}
+        name='email'
+        value={props.customer.email}
         onChange={props.onChange}
-        error={props.errors.Email}
+        error={props.errors.email}
       />
 
       <TextInput
-        id='Phone'
+        id='phone'
         label='Telemóvel'
-        name='Phone'
-        value={props.customer.Phone}
+        name='phone'
+        value={props.customer.phone}
         onChange={props.onChange}
-        error={props.errors.Phone}
+        error={props.errors.phone}
       />
 
       <input

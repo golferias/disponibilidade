@@ -29,6 +29,10 @@ export function customersFetchData () {
 
 export function AddCustomer (customerRec) {
   console.log('actions/customers.js/AddCustomer CUSTOMER_CREATE....')
+  customerRec.id = 0
+  if (customerRec.phone.length > 0) {
+    customerRec.phone = parseInt(customerRec.phone)
+  }
   return {
     type: CUSTOMER_CREATE,
     payload: {
