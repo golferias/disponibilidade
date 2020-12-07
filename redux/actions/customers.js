@@ -33,6 +33,10 @@ export function AddCustomer (customerRec) {
   if (customerRec.phone.length > 0) {
     customerRec.phone = parseInt(customerRec.phone)
   }
+  if (customerRec.phone === '') {
+    customerRec.phone = null
+  }
+
   return {
     type: CUSTOMER_CREATE,
     payload: {
@@ -49,6 +53,13 @@ export function AddCustomer (customerRec) {
 
 export function updateCustomer (customerRec) {
   console.log('actions/customers.js/updateCustomer CUSTOMER_UPDATE....')
+
+  if (customerRec.phone.length > 0) {
+    customerRec.phone = parseInt(customerRec.phone)
+  }
+  if (customerRec.phone === '') {
+    customerRec.phone = null
+  }
   return {
     type: CUSTOMER_UPDATE,
     payload: {
@@ -63,16 +74,23 @@ export function updateCustomer (customerRec) {
   }
 }
 
-export function deleteCustomer (customer) {
+export function deleteCustomer (customerRec) {
   console.log('actions/customers.js/deleteCustomer CUSTOMER_DELETE....')
+  
+    if (customerRec.phone.length > 0) {
+      customerRec.phone = parseInt(customerRec.phone)
+    }
+    if (customerRec.phone === '') {
+      customerRec.phone = null
+    }
   return {
     type: CUSTOMER_DELETE,
     payload: {
       request: {
         method: 'Delete',
-        url: '/customers/' + customer.id,
+        url: '/customers/' + customerRec.id,
         data: {
-          ...customer
+          ...customerRec
         }
       }
     }

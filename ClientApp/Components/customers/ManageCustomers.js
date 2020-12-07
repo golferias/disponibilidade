@@ -43,7 +43,7 @@ export const ManageCustomerPage = props => {
 
   function formIsValid () {
     const _errors = {}
-    if (!customer.name) _errors.name = 'Nome obrigatorio'
+    if (!customer.name) _errors.name = 'Nome obrigat\u00F3rio'
 
     if (customer.email) {
       if (
@@ -51,11 +51,11 @@ export const ManageCustomerPage = props => {
           /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
         )
       )
-        _errors.email = 'Email inválido'
+        _errors.email = 'Email inv\u00E1lido'
     }
     if (customer.phone) {
-      if (!customer.phone.match(/^[0-9]{9}$/))
-        _errors.phone = 'Telemóvel inválido'
+      if (!customer.phone.toString().match(/^[0-9]{9}$/))
+        _errors.phone = 'Telemóvel inv\u00E1lido'
     }
     //[\d+]
     setErrors(_errors)
@@ -66,7 +66,10 @@ export const ManageCustomerPage = props => {
     const id = props.match.params.id
 
     if (id) {
-      var filteredArray = props.customers.data.filter(item => item.id === id)
+      var filteredArray = props.customers.data.filter(
+        item => item.id === parseInt(id)
+      )
+
       setCustomer(filteredArray[0])
     }
     return
