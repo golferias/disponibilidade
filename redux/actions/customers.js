@@ -30,7 +30,7 @@ export function customersFetchData () {
 export function AddCustomer (customerRec) {
   console.log('actions/customers.js/AddCustomer CUSTOMER_CREATE....')
   customerRec.id = 0
-  if (customerRec.phone.length > 0) {
+  if (customerRec.phone && customerRec.phone.length > 0) {
     customerRec.phone = parseInt(customerRec.phone)
   }
   if (customerRec.phone === '') {
@@ -54,7 +54,7 @@ export function AddCustomer (customerRec) {
 export function updateCustomer (customerRec) {
   console.log('actions/customers.js/updateCustomer CUSTOMER_UPDATE....')
 
-  if (customerRec.phone.length > 0) {
+  if (customerRec.phone && customerRec.phone.length > 0) {
     customerRec.phone = parseInt(customerRec.phone)
   }
   if (customerRec.phone === '') {
@@ -76,13 +76,13 @@ export function updateCustomer (customerRec) {
 
 export function deleteCustomer (customerRec) {
   console.log('actions/customers.js/deleteCustomer CUSTOMER_DELETE....')
-  
-    if (customerRec.phone.length > 0) {
-      customerRec.phone = parseInt(customerRec.phone)
-    }
-    if (customerRec.phone === '') {
-      customerRec.phone = null
-    }
+
+  if (customerRec.phone && customerRec.phone.length > 0) {
+    customerRec.phone = parseInt(customerRec.phone)
+  }
+  if (customerRec.phone === '') {
+    customerRec.phone = null
+  }
   return {
     type: CUSTOMER_DELETE,
     payload: {

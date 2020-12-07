@@ -1712,27 +1712,27 @@
   "customers":[
     {
       "id": "1",
-      "Name": "Popota Silva",
-      "Email": "popotas@hotmail.com",
-      "Phone": "915475987"
+      "name": "Popota Silva",
+      "email": "popotas@hotmail.com",
+      "phone": "915475987"
     },
     {
       "id": "10",
-      "Name": "Toni Bruxo",
-      "Email": "bruxo@gmail.com",
-      "Phone": "939457896"
+      "name": "Toni Bruxo",
+      "email": "bruxo@gmail.com",
+      "phone": "939457896"
     },
     {
       "id": "2",
-      "Name": "ze becas",
-      "Email": "zeca@gmail.com",
-      "Phone": "968975987"
+      "name": "ze becas",
+      "email": "zeca@gmail.com",
+      "phone": "968975987"
     },
     {
       "id": "3",
-      "Name": "Paulo pirata",
-      "Email": "pirata82@gmail.com",
-      "Phone": "939457104"
+      "name": "Paulo pirata",
+      "email": "pirata82@gmail.com",
+      "phone": "939457104"
     }
   ]
 }
