@@ -8010,7 +8010,7 @@ if (!production) {
   __webpack_require__(120).config();
 }
 
-var restUrl = production ? "http://magestao.eu-west-2.elasticbeanstalk.com" : "http://localhost:4000/rest";
+var restUrl = production ? "http://magestapi.eu-west-2.elasticbeanstalk.com" : "http://localhost:4000/rest";
 
 var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
   baseURL: restUrl
