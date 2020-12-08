@@ -67,7 +67,7 @@ export const ManageCustomerPage = props => {
 
     if (id) {
       var filteredArray = props.customers.data.filter(
-        item => item.id === parseInt(id)
+        item => item.id.toString() === id.toString()
       )
 
       setCustomer(filteredArray[0])

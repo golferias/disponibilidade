@@ -3359,16 +3359,23 @@ function customersFetchData() {
   };
 }
 
-function AddCustomer(customerRec) {
-  console.log('actions/customers.js/AddCustomer CUSTOMER_CREATE....');
-  customerRec.id = 0;
+function ParsePhone(customerRec) {
   if (customerRec.phone && customerRec.phone.length > 0) {
-    customerRec.phone = parseInt(customerRec.phone);
+    return _extends({}, customerRec, { phone: parseInt(customerRec.phone) });
   }
   if (customerRec.phone === '') {
-    customerRec.phone = null;
+    return _extends({}, customerRec, { phone: null });
   }
+  return customerRec;
+}
+function SetIdZero(customerRec) {
+  return _extends({}, customerRec, { id: 0 });
+}
 
+function AddCustomer(customerRec) {
+  console.log('actions/customers.js/AddCustomer CUSTOMER_CREATE....');
+  customerRec = ParsePhone(customerRec);
+  customerRec = SetIdZero(customerRec);
   return {
     type: CUSTOMER_CREATE,
     payload: {
@@ -3384,12 +3391,7 @@ function AddCustomer(customerRec) {
 function updateCustomer(customerRec) {
   console.log('actions/customers.js/updateCustomer CUSTOMER_UPDATE....');
 
-  if (customerRec.phone && customerRec.phone.length > 0) {
-    customerRec.phone = parseInt(customerRec.phone);
-  }
-  if (customerRec.phone === '') {
-    customerRec.phone = null;
-  }
+  customerRec = ParsePhone(customerRec);
   return {
     type: CUSTOMER_UPDATE,
     payload: {
@@ -3405,12 +3407,7 @@ function updateCustomer(customerRec) {
 function deleteCustomer(customerRec) {
   console.log('actions/customers.js/deleteCustomer CUSTOMER_DELETE....');
 
-  if (customerRec.phone && customerRec.phone.length > 0) {
-    customerRec.phone = parseInt(customerRec.phone);
-  }
-  if (customerRec.phone === '') {
-    customerRec.phone = null;
-  }
+  customerRec = ParsePhone(customerRec);
   return {
     type: CUSTOMER_DELETE,
     payload: {
@@ -8013,7 +8010,7 @@ if (!production) {
   __webpack_require__(120).config();
 }
 
-var restUrl = production ? "https://localhost:32774/" : "https://localhost:44370/";
+var restUrl = production ? "https://localhost:32774/" : "http://localhost:4000/rest";
 
 var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
   baseURL: restUrl
@@ -12583,7 +12580,7 @@ var ManageCustomerPage = exports.ManageCustomerPage = function ManageCustomerPag
 
     if (id) {
       var filteredArray = props.customers.data.filter(function (item) {
-        return item.id === parseInt(id);
+        return item.id.toString() === id.toString();
       });
 
       setCustomer(filteredArray[0]);
