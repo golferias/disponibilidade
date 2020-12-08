@@ -6,7 +6,7 @@ export default function Footer () {
       <div className='container-main'>
         <div className='footer__menu' />
         <div className='footer__disclaimer'>
-          <p>Version: 1</p>
+          <p>Version: 2</p>
           <p>
             Desenvolvido por <strong>Pedro Costa</strong>
           </p>
