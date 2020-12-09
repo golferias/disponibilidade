@@ -20,9 +20,12 @@ function TextInput (props) {
           name={props.name}
           value={props.value}
           className='form-control text'
+          placeholder={props.placeholder}
         />
       </div>
-      {props.error && <div className='alert alert-danger text'>{props.error}</div>}
+      {props.error && (
+        <div className='alert alert-danger text'>{props.error}</div>
+      )}
     </div>
   )
 }
@@ -33,7 +36,8 @@ TextInput.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
-  error: PropTypes.string
+  error: PropTypes.string,
+  placeholder: PropTypes.string
 }
 
 TextInput.defaultProps = {

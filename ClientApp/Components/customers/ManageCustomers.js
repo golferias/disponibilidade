@@ -9,7 +9,8 @@ export const ManageCustomerPage = props => {
     id: null,
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+    birth: ''
   })
 
   function handleChange ({ target }) {
@@ -57,7 +58,23 @@ export const ManageCustomerPage = props => {
       if (!customer.phone.toString().match(/^[0-9]{9}$/))
         _errors.phone = 'Telemóvel inv\u00E1lido'
     }
-    //[\d+]
+    if (customer.birth) {
+      if (!customer.birth.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/)) {
+        _errors.birth = 'Data inv\u00E1lida'
+      } else {
+        var date = customer.birth.split('-')
+        if (date[1] > 12 || date[1] < 1) {
+          _errors.birth = 'Mes inv\u00E1lido'
+        }
+        if (date[2] > 31 || date[2] < 1) {
+          _errors.birth = 'Dia inv\u00E1lido'
+        }
+        if (date[0] > 2200 || date[0] < 1700) {
+          _errors.birth = 'Ano inv\u00E1lido'
+        }
+      }
+    }
+
     setErrors(_errors)
     return Object.keys(_errors).length === 0
   }

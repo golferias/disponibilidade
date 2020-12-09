@@ -30,7 +30,15 @@ function CustomerForm (props) {
         onChange={props.onChange}
         error={props.errors.phone}
       />
-
+      <TextInput
+        id='birth'
+        label='Data de Nascimento'
+        name='birth'
+        value={props.customer.birth}
+        onChange={props.onChange}
+        error={props.errors.birth}
+        placeholder='aaaa-mm-dd'
+      />
       <input
         type='submit'
         value='Salvar'
