@@ -26,6 +26,13 @@ export function customersFetchData () {
     }
   }
 }
+function ParseBirth (customerRec) {
+  if (customerRec.birth === '') {
+    return { ...customerRec, birth: null }
+  }
+  
+  return customerRec
+}
 
 function ParsePhone (customerRec) {
   if (customerRec.phone && customerRec.phone.length > 0) {
@@ -40,9 +47,16 @@ function SetIdZero (customerRec) {
   return { ...customerRec, id: 0 }
 }
 
+function ParseValidations (customerRec) {
+  customerRec = ParsePhone(customerRec)
+  customerRec = ParseBirth(customerRec)
+  return customerRec
+}
+
 export function AddCustomer (customerRec) {
   console.log('actions/customers.js/AddCustomer CUSTOMER_CREATE....')
-  customerRec = ParsePhone(customerRec)
+  customerRec = ParseValidations(customerRec)
+
   customerRec = SetIdZero(customerRec)
   return {
     type: CUSTOMER_CREATE,
@@ -61,7 +75,7 @@ export function AddCustomer (customerRec) {
 export function updateCustomer (customerRec) {
   console.log('actions/customers.js/updateCustomer CUSTOMER_UPDATE....')
 
-  customerRec = ParsePhone(customerRec)
+  customerRec = ParseValidations(customerRec)
   return {
     type: CUSTOMER_UPDATE,
     payload: {
@@ -79,7 +93,7 @@ export function updateCustomer (customerRec) {
 export function deleteCustomer (customerRec) {
   console.log('actions/customers.js/deleteCustomer CUSTOMER_DELETE....')
 
-  customerRec = ParsePhone(customerRec)
+  customerRec = ParseValidations(customerRec)
   return {
     type: CUSTOMER_DELETE,
     payload: {

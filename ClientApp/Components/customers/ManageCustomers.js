@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CustomerForm from './CustomerForm'
 import { connect } from 'react-redux'
 import { AddCustomer, updateCustomer } from '.././../../redux/actions/customers'
+import { toStringDate } from '../common/ToStringComponent'
 
 export const ManageCustomerPage = props => {
   const [errors, setErrors] = useState({})
@@ -58,25 +59,63 @@ export const ManageCustomerPage = props => {
       if (!customer.phone.toString().match(/^[0-9]{9}$/))
         _errors.phone = 'Telemóvel inv\u00E1lido'
     }
-    if (customer.birth) {
-      if (!customer.birth.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/)) {
-        _errors.birth = 'Data inv\u00E1lida'
-      } else {
-        var date = customer.birth.split('-')
-        if (date[1] > 12 || date[1] < 1) {
-          _errors.birth = 'Mes inv\u00E1lido'
-        }
-        if (date[2] > 31 || date[2] < 1) {
-          _errors.birth = 'Dia inv\u00E1lido'
-        }
-        if (date[0] > 2200 || date[0] < 1700) {
-          _errors.birth = 'Ano inv\u00E1lido'
-        }
+
+    if (!customer.birth) {
+      setErrors(_errors)
+      return Object.keys(_errors).length === 0
+    }
+
+    var validationMessage = ''
+
+    if (customer.birth.includes('T')) {
+      validationMessage = ValidateDateRegularExpression(true)
+      if (!validationMessage.length) {
+        _errors.birth = ValidateDateValue(customer.birth)
       }
+    } else {
+      validationMessage = ValidateDateRegularExpression(false)
+      if (!validationMessage.length) {
+        validationMessage = ValidateDateValue(customer.birth)
+      }
+    }
+    if (validationMessage.length > 0) {
+      _errors.birth = validationMessage
     }
 
     setErrors(_errors)
     return Object.keys(_errors).length === 0
+  }
+
+  function ValidateDateRegularExpression (containsTime) {
+    if (containsTime) {
+      if (
+        !customer.birth.match(
+          /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$/
+        )
+      ) {
+        return 'Data inv\u00E1lida'
+      }
+      return {}
+    }
+
+    if (!customer.birth.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/)) {
+      return 'Data inv\u00E1lida'
+    }
+    return {}
+  }
+
+  function ValidateDateValue () {
+    var date = customer.birth.split('-')
+    if (date[1] > 12 || date[1] < 1) {
+      return 'Mes inv\u00E1lido'
+    }
+    if (date[2] > 31 || date[2] < 1) {
+      return 'Dia inv\u00E1lido'
+    }
+    if (date[0] > 2200 || date[0] < 1700) {
+      return 'Ano inv\u00E1lido'
+    }
+    return {}
   }
 
   useEffect(() => {
@@ -87,7 +126,11 @@ export const ManageCustomerPage = props => {
         item => item.id.toString() === id.toString()
       )
 
-      setCustomer(filteredArray[0])
+      filteredArray = {
+        ...filteredArray[0],
+        birth: toStringDate(filteredArray[0].birth)
+      }
+      setCustomer(filteredArray)
     }
     return
   }, [props.match.params.id])

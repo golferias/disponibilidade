@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import {toStringDate} from '../common/ToStringComponent'
 
 export default class CustomerRec extends Component {
   render () {
@@ -14,6 +15,10 @@ export default class CustomerRec extends Component {
             <i>&nbsp;&nbsp;Phone: </i>
             {this.props.customer.phone}
           </div>
+          <div className='customer-details'>
+            <i>&nbsp;&nbsp;Data de Nascimento: </i>
+            {toStringDate(this.props.customer.birth)}
+          </div>
           <div>
             <button
               className='btn btn-outline-danger customerRec'
@@ -21,7 +26,7 @@ export default class CustomerRec extends Component {
             >
               Apagar
             </button>
-            <Link 
+            <Link
               to={{
                 pathname: '/customer/' + this.props.customer.id,
                 param1: this.props.customer.id

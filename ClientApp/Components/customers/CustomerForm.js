@@ -3,6 +3,7 @@ import TextInput from '../common/TextInput'
 import { PropTypes } from 'prop-types'
 
 function CustomerForm (props) {
+  let DATE_OPTIONS = { year: 'numeric', month: 'short', day: 'numeric' }
   return (
     <form onSubmit={props.onSubmit}>
       <TextInput
@@ -12,6 +13,7 @@ function CustomerForm (props) {
         value={props.customer.name}
         onChange={props.onChange}
         error={props.errors.name}
+        
       />
       <TextInput
         id='email'
@@ -20,20 +22,23 @@ function CustomerForm (props) {
         value={props.customer.email}
         onChange={props.onChange}
         error={props.errors.email}
+        
       />
 
       <TextInput
         id='phone'
         label='Telemóvel'
         name='phone'
-        value={props.customer.phone}
+        value={props.customer.phone.toString()}
         onChange={props.onChange}
         error={props.errors.phone}
+        
       />
       <TextInput
         id='birth'
         label='Data de Nascimento'
         name='birth'
+        //value={new Date().toLocaleDateString('pt-PT', DATE_OPTIONS)}
         value={props.customer.birth}
         onChange={props.onChange}
         error={props.errors.birth}

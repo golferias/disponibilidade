@@ -1709,30 +1709,34 @@
       "interestLevel": 0
     }
   ],
-  "customers":[
+  "customers": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Popota Silva",
       "email": "popotas@hotmail.com",
-      "phone": "915475987"
+      "phone": 915475987,
+      "birth":"2011-11-18T00:00:00.000"
     },
     {
-      "id": "10",
+      "id": 10,
       "name": "Toni Bruxo",
       "email": "bruxo@gmail.com",
-      "phone": "939457896"
+      "phone": 939457896,
+      "birth":"2011-01-26T00:00:00.000"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "ze becas",
       "email": "zeca@gmail.com",
-      "phone": "968975987"
+      "phone": 968975987,
+      "birth":""
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Paulo pirata",
       "email": "pirata82@gmail.com",
-      "phone": "939457104"
+      "phone": 939457104,
+      "birth":""
     }
   ]
 }
