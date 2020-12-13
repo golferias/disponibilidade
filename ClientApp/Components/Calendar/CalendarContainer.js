@@ -4,6 +4,7 @@ import Home from './HomeCalendar'
 import { Link } from 'react-router-dom'
 import { HeaderCalendar } from './HeaderCalendar'
 import { HeaderTextCalendar } from './HeaderTextCalendar'
+import { FooterCalendar } from './FooterCalendar'
 
 export default function CalendarContainer (props) {
   return (
@@ -17,9 +18,10 @@ export default function CalendarContainer (props) {
           <div>
             <HeaderCalendar />
           </div>
-          {/* {/* <HomeSessionFilter/> */}
-
-          <Home customers={props.customers} />
+          <div className='calendar-headertext'>
+            <FooterCalendar />
+          </div>
+                   <Home customers={props.customers} />
         </div>
       </div>
     </div>

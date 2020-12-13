@@ -11620,7 +11620,6 @@ body {
            }
            .calendar-table{
              width: 100%;
-             margin-top: 5px;
              border-color: #ccc;
            }
   .btn-calendar{
@@ -11644,4 +11643,10 @@ body {
 .calendar-td-btright{
   text-align:right;
   width: 5%;
+}
+.calendar-footer{
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid;
+  border-bottom-color: #ccc; 
 }

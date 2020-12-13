@@ -39,7 +39,7 @@ export const HeaderCalendar = props => {
               </td>
             )
           })}
-           <td className='calendar-dayweek-text-empty'></td>
+          <td className='calendar-dayweek-text-empty'></td>
         </tr>
         <tr>
           <td className='calendar-td-btleft'>
