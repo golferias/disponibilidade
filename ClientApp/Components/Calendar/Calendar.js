@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import Container from './CalendarContainer'
 import { connect } from 'react-redux'
-import {
-    customersFetchData,
-    deleteCustomer
-  } from '.././../../redux/actions/customers'
+import { updateDate } from '.././../../redux/actions/calendar'
 
 class Calendar extends Component {
-//   componentDidMount () {
-//     this.props.customersFetchData()
-//   }
+  componentDidMount () {
+    //  this.props.updateDate()
+  }
+
+  updateDate(newDate) {
+    props.updateDate(newDate)
+  }
 
   render () {
     if (this.props.isLoading) {
@@ -27,7 +28,13 @@ class Calendar extends Component {
     } else {
       return (
         <div>
-          <Container customers={this.props.customers} />
+          <Container
+            customers={this.props.customers}
+            calendar={this.props.calendar}
+            updateDate={newDate => {
+              this.props.updateDate(newDate)
+            }}
+          />
         </div>
       )
     }
@@ -36,6 +43,7 @@ class Calendar extends Component {
 
 const mapStateToProps = state => {
   return {
+    calendar: state.calendar.data,
     customers: state.customers.data,
     hasErrored: state.customers.hasErrored,
     isLoading: state.customers.isLoading,
@@ -53,20 +61,14 @@ const mapStateToProps = state => {
 //   component: connect(mapStateToProps, customersFetchData)(Calendar),
 //   loadData
 // }
-const mapDispatchToProps = dispatch => {
-    return {
-      // dispatching plain actions
-    //   AddCustomer: customer => dispatch(AddCustomer(customer)),
-    //   UpdateCustomer: customer => dispatch(updateCustomer(customer))
-    }
-  }
-  
-//   function mapStateToProps (state) {
-//     return {
-//       customers: state.customers
-//     }
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     // dispatching plain actions
+//     //   AddCustomer: customer => dispatch(AddCustomer(customer)),
+//     //   UpdateCustomer: customer => dispatch(updateCustomer(customer))
 //   }
-  
-  export default {
-    component: connect(mapStateToProps, mapDispatchToProps)(Calendar)
-  }
+// }
+
+export default {
+  component: connect(mapStateToProps, {  updateDate })(Calendar)
+}

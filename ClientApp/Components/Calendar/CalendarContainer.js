@@ -16,12 +16,14 @@ export default function CalendarContainer (props) {
             <HeaderTextCalendar />
           </div>
           <div>
-            <HeaderCalendar />
+            <HeaderCalendar calendar={props.calendar} updateDate={newDate => {
+              props.updateDate(newDate)
+            }}/>
           </div>
           <div className='calendar-headertext'>
-            <FooterCalendar />
+            <FooterCalendar calendar={props.calendar} />
           </div>
-                   <Home customers={props.customers} />
+          <Home customers={props.customers} />
         </div>
       </div>
     </div>

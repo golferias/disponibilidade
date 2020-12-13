@@ -1,31 +1,49 @@
 import React, { useEffect, useState } from 'react'
 
 export const HeaderCalendar = props => {
-  const [days, setDays] = useState([])
+    const [days, setDays] = useState([])
   const [daysName, setDaysName] = useState([])
+  const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
+  const [currentDate, setCurrentDate] = useState()
 
-  useEffect(() => {
-    var weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
-    let currentDate = new Date()
-    let finishDay = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate() + 7
-    )
+    function fillInStates (startDate) {
+    let finishDay = new Date(startDate)
+    finishDay.setDate(startDate.getDate() + 7)
+
     let arrDays = []
     let arrDaysName = []
 
-    for (let q = currentDate; q <= finishDay; q.setDate(q.getDate() + 1)) {
+    for (let q = startDate; q <= finishDay; q.setDate(q.getDate() + 1)) {
       arrDays.push(q.getDate().toString())
       arrDaysName.push(weekDays[q.getDay()])
-      //console.log(weekDays[q.getDay()])
     }
+
+    setCurrentDate(startDate)
+
     setDays(arrDays)
+
     setDaysName(arrDaysName)
+    props.updateDate(startDate)
+    //props.updateFooter(currentDate)
+  }
+
+  useEffect(() => {
+    let startDate = new Date()
+    fillInStates(startDate)
 
     return
   }, [days.length])
-  function UpdateDaysBack () {}
+
+  function UpdateDaysBack () {
+    let newDate = new Date(currentDate)
+    newDate.setDate(currentDate.getDate() - 16)
+    fillInStates(newDate)
+  }
+
+  function UpdateDaysForward () {
+    fillInStates(currentDate)
+       
+  }
 
   return (
     <table className='calendar-table'>
@@ -61,7 +79,7 @@ export const HeaderCalendar = props => {
           <td className='calendar-td-btright'>
             <button
               className='btn-calendar btn-primary'
-              onClick={() => this.props.deleteCustomer(this.props.customer)}
+              onClick={UpdateDaysForward}
             >
               {' '}
               &gt;
@@ -72,3 +90,6 @@ export const HeaderCalendar = props => {
     </table>
   )
 }
+
+
+
