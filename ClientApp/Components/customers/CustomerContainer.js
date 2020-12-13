@@ -1,6 +1,6 @@
 import React from 'react'
-import CustomerHeaderTitle from './CustomerHeaderTitle'
-import HomeCustomers from './HomeCustomers'
+import HeaderTitle from '../common/HeaderTitle'
+import Home from './HomeCustomers'
 import { Link } from 'react-router-dom'
 
 export default function CustomerContainer (props) {
@@ -8,7 +8,7 @@ export default function CustomerContainer (props) {
     <div className='container-main'>
       <div className='row'>
         <div className='col-12'>
-          <CustomerHeaderTitle />
+          <HeaderTitle title='Clientes' />
           <div className='customers-title'>
             <div className='filter-bar__more-filters col-12 d-flex align-items-center'>
               <span className='square-icon square-icon--primary '>
@@ -21,7 +21,7 @@ export default function CustomerContainer (props) {
           </div>
           {/* <HomeSessionFilter/>
                     <HomeFilterView/>*/}
-          <HomeCustomers
+          <Home
             customers={props.customers}
             deleteCustomer={customer => {
               return props.deleteCustomer(customer)

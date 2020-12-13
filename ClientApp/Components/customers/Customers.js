@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import CustomerContainer from './CustomerContainer'
+import Container from './CustomerContainer'
 import { connect } from 'react-redux'
-import { customersFetchData,deleteCustomer } from '.././../../redux/actions/customers'
+import {
+  customersFetchData,
+  deleteCustomer
+} from '.././../../redux/actions/customers'
 
 class Customers extends Component {
   componentDidMount () {
@@ -26,8 +29,7 @@ class Customers extends Component {
     } else {
       return (
         <div>
-          {/* <HomeHeader /> */}
-          <CustomerContainer
+          <Container
             customers={this.props.customers}
             deleteCustomer={customer => {
               this.props.deleteCustomer(customer)

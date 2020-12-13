@@ -5,7 +5,7 @@ import RouteNotFound from './RouteNotFound'
 import Customers from './Components/customers/Customers'
 import ManageCustomers from './Components/customers/ManageCustomers'
 import App from './Components/common/App'
-
+import Calendar from './Components/Calendar/Calendar'
 export default [
   {
     ...App,
@@ -28,6 +28,11 @@ export default [
       {
         ...ManageCustomers,
         path: '/customer',
+        exact: true
+      },
+      {
+        ...Calendar,
+        path: '/calendar',
         exact: true
       },
       {

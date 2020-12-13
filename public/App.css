@@ -11571,3 +11571,77 @@ body {
             50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
             100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
            }
+
+           .calendar-headertext{
+              font-family: "Handel Gothic", sans-serif;
+              color: #333333;
+              position: relative;  
+              background-color: #f7f7f7;  
+           }
+           .calendar-headercalendar{
+            font-size: 1.75rem;
+            font-family: "Handel Gothic", sans-serif;
+            color: #333333;
+            text-transform: uppercase;
+            padding-left: 2.5rem;
+            padding-top: 2.8125rem;
+            padding-bottom: 0.625rem;
+            position: relative;
+            border-bottom: 1px solid #cbd6da; 
+           }
+           .calendar-day-text{
+              width: 2.300em;
+              height: 4.625em;
+              text-align:center;
+              /* margin-top: .1875em; */
+              padding: 0;
+              line-height: 1.625em;
+              border: 2px solid transparent;
+              border-radius: 2em;
+
+           }
+           .calendar-dayweek-text-row{
+            background-color: #f7f7f7;
+            font-size: 0.7rem;
+           }
+          .calendar-dayweek-text{
+            width: 14%;
+            text-align:center;
+            font-family: "Handel Gothic d-light", sans-serif;
+            padding: 0;
+            line-height: 1.625em;
+            background-color: #f7f7f7; 
+            border-bottom: 2px solid;
+            border-bottom-color: #ccc;          
+           
+           }
+           .calendar-dayweek-text-empty{
+             width: 5%;
+           }
+           .calendar-table{
+             width: 100%;
+             margin-top: 5px;
+             border-color: #ccc;
+           }
+  .btn-calendar{
+    height: 4em;
+  font-family: "Handel Gothic d-light", sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0;
+  border-top-right-radius: 0.9375rem;
+  border-bottom-left-radius: 0.9375rem;
+
+  outline: none;
+  cursor: pointer;
+  max-width: 100%; 
+           }
+.calendar-td-btleft{
+  text-align:left;
+  width: 5%;
+}
+.calendar-td-btright{
+  text-align:right;
+  width: 5%;
+}

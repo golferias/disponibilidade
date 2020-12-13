@@ -72,7 +72,11 @@ export default function CodeCampMenu () {
             Marcacoes
           </Link>
         </li>
-
+        <li className="snow-bg">
+          <Link to='/calendar' onClick={setCssVisibility}>
+            Calendario
+          </Link>
+        </li>
         <li className='social-icon snow-bg'>
           <a href='https://www.facebook.com/Margarida-Arag%C3%A3o-cabeleireirosest%C3%A9tica-100236801356384/'>
             <i className='fa fa-facebook' aria-hidden='true'></i>
