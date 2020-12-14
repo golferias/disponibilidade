@@ -1,24 +1,58 @@
-import { CALENDAR_UPDATEDATE } from '../actions/calendar'
+import {
+  CALENDAR_UPDATETEXTFOOTER,
+  CALENDAR_UPDATETEXTHEADER
+} from '../actions/calendar'
 
 export function calendar (
   state = {
-    data: ''
+    textfooter: '',
+    textheader: ''
   },
   action
 ) {
-    const months = ['Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-    
+  const months = [
+    'Janeiro',
+    'Fevereiro',
+    'Marco',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+  ]
+
   switch (action.type) {
-    case CALENDAR_UPDATEDATE: {
-      console.log('--- Triggered CALENDAR_UPDATEDATE ---')
+    case CALENDAR_UPDATETEXTFOOTER: {
       const currentDate = new Date(action.data)
-       
-let date= currentDate.getDate().toString() +' ' +months[currentDate.getMonth()] +' '+currentDate.getFullYear().toString() 
+
+      const date =
+        currentDate.getDate().toString() +
+        ' ' +
+        months[currentDate.getMonth()] +
+        ' ' +
+        currentDate.getFullYear().toString()
       return Object.assign({}, state, {
-        data: date
+        textfooter: date
       })
     }
-    default: // need this for default case
-      return state 
+    case CALENDAR_UPDATETEXTHEADER: {
+      const startweek = new Date(action.data)
+
+      const date =
+        months[startweek.getMonth()] +
+        ' ' +
+        startweek.getFullYear().toString()
+
+      return Object.assign({}, state, {
+        textheader: date
+      })
+    }
+    default:
+      // need this for default case
+      return state
   }
 }
