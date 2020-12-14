@@ -13,15 +13,21 @@ export default function CalendarContainer (props) {
         <div className='col-12'>
           <HeaderTitle title='Calendario' />
           <div className='calendar-headertext'>
-            <HeaderTextCalendar />
+            <HeaderTextCalendar textheader={props.textheader} />
           </div>
           <div>
-            <HeaderCalendar calendar={props.calendar} updateDate={newDate => {
-              props.updateDate(newDate)
-            }}/>
+            <HeaderCalendar
+              calendar={props.calendar}
+              dispatchUpdateTextFooter={newDate => {
+                props.dispatchUpdateTextFooter(newDate)
+              }}
+              dispatchUpdateTextHeader={newDate => {
+                props.dispatchUpdateTextHeader(newDate)
+              }}
+            />
           </div>
           <div className='calendar-headertext'>
-            <FooterCalendar calendar={props.calendar} />
+            <FooterCalendar textfooter={props.textfooter} />
           </div>
           <Home customers={props.customers} />
         </div>

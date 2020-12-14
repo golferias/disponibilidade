@@ -1,48 +1,56 @@
 import React, { useEffect, useState } from 'react'
 
 export const HeaderCalendar = props => {
-    const [days, setDays] = useState([])
-  const [daysName, setDaysName] = useState([])
-  const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
-  const [currentDate, setCurrentDate] = useState()
+  const [days, setDays] = useState([])
+  const [endWeek, setEndWeek] = useState()
+  const [startWeek, setStartWeek] = useState()
 
-    function fillInStates (startDate) {
+  function fillInStates (startDate) {
+    const startweek = new Date(startDate)
+    
     let finishDay = new Date(startDate)
-    finishDay.setDate(startDate.getDate() + 7)
-
+    finishDay.setDate(startDate.getDate() + 6)
+    
     let arrDays = []
-    let arrDaysName = []
 
     for (let q = startDate; q <= finishDay; q.setDate(q.getDate() + 1)) {
       arrDays.push(q.getDate().toString())
-      arrDaysName.push(weekDays[q.getDay()])
     }
+    
+    setStartWeek(startweek)
 
-    setCurrentDate(startDate)
-
+    setEndWeek(startDate)
+    
     setDays(arrDays)
 
-    setDaysName(arrDaysName)
-    props.updateDate(startDate)
-    //props.updateFooter(currentDate)
+    props.dispatchUpdateTextFooter(startweek)
+
+    props.dispatchUpdateTextHeader(startweek)
   }
 
   useEffect(() => {
-    let startDate = new Date()
-    fillInStates(startDate)
+    const currentDate = new Date()
+    let daysIndex = currentDate.getDay()
+
+    if (daysIndex == 0) {
+      daysIndex = 7
+    }
+    const startweek = new Date(currentDate)
+    startweek.setDate(startweek.getDate() - daysIndex + 1)
+
+    fillInStates(startweek)
 
     return
   }, [days.length])
 
   function UpdateDaysBack () {
-    let newDate = new Date(currentDate)
-    newDate.setDate(currentDate.getDate() - 16)
-    fillInStates(newDate)
+    let oneweekbefore = new Date(startWeek)
+    oneweekbefore.setDate(oneweekbefore.getDate() - 7)
+    fillInStates(oneweekbefore)
   }
 
   function UpdateDaysForward () {
-    fillInStates(currentDate)
-       
+    fillInStates(endWeek)
   }
 
   return (
@@ -50,13 +58,27 @@ export const HeaderCalendar = props => {
       <tbody>
         <tr className='calendar-dayweek-text-row'>
           <td className='calendar-dayweek-text-empty'></td>
-          {daysName.map((d, index) => {
-            return (
-              <td className='calendar-dayweek-text' key={index}>
-                {d}
-              </td>
-            )
-          })}
+          <td className='calendar-dayweek-text'>
+            S
+          </td>
+          <td className='calendar-dayweek-text-holiday' >
+            T
+          </td>
+          <td className='calendar-dayweek-text' >
+            Q
+          </td>
+          <td className='calendar-dayweek-text' >
+            Q
+          </td>
+          <td className='calendar-dayweek-text' >
+            S
+          </td>
+          <td className='calendar-dayweek-text-holiday' >
+            S
+          </td>
+          <td className='calendar-dayweek-text-holiday'>
+            D
+          </td>
           <td className='calendar-dayweek-text-empty'></td>
         </tr>
         <tr>
@@ -90,6 +112,3 @@ export const HeaderCalendar = props => {
     </table>
   )
 }
-
-
-

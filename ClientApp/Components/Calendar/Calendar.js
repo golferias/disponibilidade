@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import Container from './CalendarContainer'
 import { connect } from 'react-redux'
-import { updateDate } from '.././../../redux/actions/calendar'
+import {
+  dispatchUpdateTextFooter,
+  dispatchUpdateTextHeader
+} from '.././../../redux/actions/calendar'
 
 class Calendar extends Component {
-  componentDidMount () {
-    //  this.props.updateDate()
+  componentDidMount () {}
+
+  dispatchUpdateTextFooter (newDate) {
+    props.dispatchUpdateTextFooter(newDate)
   }
 
-  updateDate(newDate) {
-    props.updateDate(newDate)
+  dispatchUpdateTextHeader (newDate) {
+    props.dispatchUpdateTextHeader(newDate)
   }
 
   render () {
@@ -30,9 +35,13 @@ class Calendar extends Component {
         <div>
           <Container
             customers={this.props.customers}
-            calendar={this.props.calendar}
-            updateDate={newDate => {
-              this.props.updateDate(newDate)
+            textheader={this.props.textheader}
+            textfooter={this.props.textfooter}
+            dispatchUpdateTextFooter={newDate => {
+              this.props.dispatchUpdateTextFooter(newDate)
+            }}
+            dispatchUpdateTextHeader={newDate => {
+              this.props.dispatchUpdateTextHeader(newDate)
             }}
           />
         </div>
@@ -43,7 +52,8 @@ class Calendar extends Component {
 
 const mapStateToProps = state => {
   return {
-    calendar: state.calendar.data,
+    textheader: state.calendar.textheader,
+    textfooter: state.calendar.textfooter,
     customers: state.customers.data,
     hasErrored: state.customers.hasErrored,
     isLoading: state.customers.isLoading,
@@ -70,5 +80,8 @@ const mapStateToProps = state => {
 // }
 
 export default {
-  component: connect(mapStateToProps, {  updateDate })(Calendar)
+  component: connect(mapStateToProps, {
+    dispatchUpdateTextFooter,
+    dispatchUpdateTextHeader
+  })(Calendar)
 }

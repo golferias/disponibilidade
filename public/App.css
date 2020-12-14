@@ -11615,6 +11615,17 @@ body {
             border-bottom-color: #ccc;          
            color:black;
            }
+           .calendar-dayweek-text-holiday{
+            width: 14%;
+            text-align:center;
+            font-family: "Handel Gothic d-light", sans-serif;
+            padding: 0;
+            line-height: 1.625em;
+            background-color: #f7f7f7; 
+            border-bottom: 2px solid;
+            border-bottom-color: #ccc;  
+            color:red;
+           }
            .calendar-dayweek-text-empty{
              width: 5%;
            }

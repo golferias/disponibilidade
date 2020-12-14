@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
 export const HeaderTextCalendar = props => {
-  const [labelday, setLabelDay] = useState('')
+  //const [labelday, setLabelDay] = useState('')
 
-  useEffect(() => {
-    let currentDate = new Date()
-    let months = ['Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-    setLabelDay(months[currentDate.getMonth()] +' '+currentDate.getFullYear().toString() )
+  // useEffect(() => {
+  //   // let currentDate = new Date()
+  //   // let months = ['Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+  //   // setLabelDay(months[currentDate.getMonth()] +' '+currentDate.getFullYear().toString() )
 
-    return
-  }, [])
+  //   return
+  // }, [])
 
-  return <div>{labelday}</div>
+  return <div>{props.textheader}</div>
 }

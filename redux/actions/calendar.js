@@ -1,10 +1,16 @@
-export const CALENDAR_UPDATEDATE = 'CALENDAR_UPDATEDATE'
+export const CALENDAR_UPDATETEXTFOOTER = 'CALENDAR_UPDATETEXTFOOTER'
+export const CALENDAR_UPDATETEXTHEADER = 'CALENDAR_UPDATETEXTHEADER'
 
-export function updateDate (newDate) {
-  console.log('actions/calendar.js/CALENDAR_UPDATEDATE....')
-
+export function dispatchUpdateTextFooter (newDate) {
   return {
-    type: CALENDAR_UPDATEDATE,
+    type: CALENDAR_UPDATETEXTFOOTER,
+    data: newDate
+  }
+}
+
+export function dispatchUpdateTextHeader (newDate) {
+  return {
+    type: CALENDAR_UPDATETEXTHEADER,
     data: newDate
   }
 }
