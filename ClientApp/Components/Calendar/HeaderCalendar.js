@@ -7,20 +7,20 @@ export const HeaderCalendar = props => {
 
   function fillInStates (startDate) {
     const startweek = new Date(startDate)
-    
+
     let finishDay = new Date(startDate)
     finishDay.setDate(startDate.getDate() + 6)
-    
+
     let arrDays = []
 
     for (let q = startDate; q <= finishDay; q.setDate(q.getDate() + 1)) {
       arrDays.push(q.getDate().toString())
     }
-    
+
     setStartWeek(startweek)
 
     setEndWeek(startDate)
-    
+
     setDays(arrDays)
 
     props.dispatchUpdateTextFooter(startweek)
@@ -53,32 +53,25 @@ export const HeaderCalendar = props => {
     fillInStates(endWeek)
   }
 
+  function filterDay (dayIndexPosition) {
+    let start = new Date(startWeek)
+    start.setDate(start.getDate() + dayIndexPosition)
+
+    props.dispatchUpdateTextFooter(start)
+  }
+
   return (
     <table className='calendar-table'>
       <tbody>
         <tr className='calendar-dayweek-text-row'>
           <td className='calendar-dayweek-text-empty'></td>
-          <td className='calendar-dayweek-text'>
-            S
-          </td>
-          <td className='calendar-dayweek-text-holiday' >
-            T
-          </td>
-          <td className='calendar-dayweek-text' >
-            Q
-          </td>
-          <td className='calendar-dayweek-text' >
-            Q
-          </td>
-          <td className='calendar-dayweek-text' >
-            S
-          </td>
-          <td className='calendar-dayweek-text-holiday' >
-            S
-          </td>
-          <td className='calendar-dayweek-text-holiday'>
-            D
-          </td>
+          <td className='calendar-dayweek-text'>S</td>
+          <td className='calendar-dayweek-text-holiday'>T</td>
+          <td className='calendar-dayweek-text'>Q</td>
+          <td className='calendar-dayweek-text'>Q</td>
+          <td className='calendar-dayweek-text'>S</td>
+          <td className='calendar-dayweek-text-holiday'>S</td>
+          <td className='calendar-dayweek-text-holiday'>D</td>
           <td className='calendar-dayweek-text-empty'></td>
         </tr>
         <tr>
@@ -94,7 +87,14 @@ export const HeaderCalendar = props => {
           {days.map(d => {
             return (
               <td className='calendar-day-text' key={d}>
-                {d}
+                <button
+                  type='button'
+                  value={days.indexOf(d)}
+                  className='calendar-day-text-button'
+                  onClick={filterDay.bind(this, days.indexOf(d))}
+                >
+                  {d}
+                </button>
               </td>
             )
           })}

@@ -11626,6 +11626,10 @@ body {
             border-bottom-color: #ccc;  
             color:red;
            }
+           .calendar-day-text-button{
+            background-color: transparent;
+            border-color: transparent;
+           }
            .calendar-dayweek-text-empty{
              width: 5%;
            }

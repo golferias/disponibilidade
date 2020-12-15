@@ -3,8 +3,7 @@ import TextInput from '../common/TextInput'
 import { PropTypes } from 'prop-types'
 
 function CustomerForm (props) {
-  let DATE_OPTIONS = { year: 'numeric', month: 'short', day: 'numeric' }
-  return (
+    return (
     <form onSubmit={props.onSubmit}>
       <TextInput
         id='name'
