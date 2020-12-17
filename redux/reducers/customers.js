@@ -10,7 +10,8 @@ import {
   CUSTOMER_DELETE_FAIL,
   CUSTOMER_CREATE,
   CUSTOMER_CREATE_SUCCESS,
-  CUSTOMER_CREATE_FAIL
+  CUSTOMER_CREATE_FAIL,
+  CUSTOMER_UPDATEDATE
 } from '../actions/customers'
 
 export function customers (
@@ -147,6 +148,19 @@ export function customers (
         errorMessage: action.error.message
       })
     }
+
+    case CUSTOMER_UPDATEDATE: {
+      const currentDate = new Date(action.data)
+      let filteredcustomers = state.data.filter(data => {
+        let b = new Date(data.birth)
+        if (b.getDate() === currentDate.getDate()) return data
+      })
+      return {
+        ...state,
+        data: filteredcustomers
+      }
+    }
+
     default:
       return state
   }

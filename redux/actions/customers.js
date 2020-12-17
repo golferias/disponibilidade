@@ -14,6 +14,10 @@ export const CUSTOMER_CREATE = 'CUSTOMER_CREATE'
 export const CUSTOMER_CREATE_SUCCESS = 'CUSTOMER_CREATE_SUCCESS'
 export const CUSTOMER_CREATE_FAIL = 'CUSTOMER_CREATE_FAIL'
 
+
+export const CUSTOMER_UPDATEDATE ='CUSTOMER_UPDATEDATE'
+
+
 export function customersFetchData () {
   console.log('actions/customers.js/customersFetchData CUSTOMER_LOAD....')
 
@@ -51,6 +55,14 @@ function ParseValidations (customerRec) {
   customerRec = ParsePhone(customerRec)
   customerRec = ParseBirth(customerRec)
   return customerRec
+}
+
+export function dispatchUpdateFilterList(newDate){
+  console.log('actions/customers.js/dispatchUpdateFilterList CUSTOMER_UPDATEDATE....')
+  return {
+    type: CUSTOMER_UPDATEDATE,
+    data: newDate
+  }
 }
 
 export function AddCustomer (customerRec) {

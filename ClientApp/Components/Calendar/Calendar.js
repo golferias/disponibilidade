@@ -5,19 +5,10 @@ import {
   dispatchUpdateTextFooter,
   dispatchUpdateTextHeader
 } from '.././../../redux/actions/calendar'
+import { dispatchUpdateFilterList } from '.././../../redux/actions/customers'
 
 class Calendar extends Component {
-  componentDidMount () {}
-
-  dispatchUpdateTextFooter (newDate) {
-    props.dispatchUpdateTextFooter(newDate)
-  }
-
-  dispatchUpdateTextHeader (newDate) {
-    props.dispatchUpdateTextHeader(newDate)
-  }
-
-  render () {
+    render () {
     if (this.props.isLoading) {
       return (
         <div className='alert alert-info alert-dismissible fade show'>
@@ -39,6 +30,7 @@ class Calendar extends Component {
             textfooter={this.props.textfooter}
             dispatchUpdateTextFooter={newDate => {
               this.props.dispatchUpdateTextFooter(newDate)
+              this.props.dispatchUpdateFilterList(newDate)
             }}
             dispatchUpdateTextHeader={newDate => {
               this.props.dispatchUpdateTextHeader(newDate)
@@ -61,27 +53,10 @@ const mapStateToProps = state => {
   }
 }
 
-// function loadData (customer) {
-//   // wait for both retrieves to finish when server side renderings
-//   const prom1 = customer.dispatch(customersFetchData())
-//   return Promise.all([prom1])
-// }
-
-// export default {
-//   component: connect(mapStateToProps, customersFetchData)(Calendar),
-//   loadData
-// }
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     // dispatching plain actions
-//     //   AddCustomer: customer => dispatch(AddCustomer(customer)),
-//     //   UpdateCustomer: customer => dispatch(updateCustomer(customer))
-//   }
-// }
-
 export default {
   component: connect(mapStateToProps, {
     dispatchUpdateTextFooter,
-    dispatchUpdateTextHeader
+    dispatchUpdateTextHeader,
+    dispatchUpdateFilterList
   })(Calendar)
 }

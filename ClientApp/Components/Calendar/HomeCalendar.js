@@ -12,7 +12,7 @@ class HomeCalendar extends Component {
         {customerItemComponents.length ? (
           customerItemComponents
         ) : (
-          <p>Sem dados</p>
+          <p>Sem Marcacoes</p>
         )}
       </div>
     )
