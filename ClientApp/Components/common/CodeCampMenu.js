@@ -68,7 +68,7 @@ export default function CodeCampMenu () {
           </Link>
         </li>
         <li className="snow-bg">
-          <Link to='/speakers' onClick={setCssVisibility}>
+          <Link to='/booking' onClick={setCssVisibility}>
             Marcacoes
           </Link>
         </li>

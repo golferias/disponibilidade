@@ -14,6 +14,7 @@ import {
   CUSTOMER_UPDATEDATE
 } from '../actions/customers'
 
+import { compareValues } from '../../ClientApp/Components/common/sortArray'
 export function customers (
   state = {
     data: [],
@@ -51,7 +52,7 @@ export function customers (
     case CUSTOMER_LOAD_SUCCESS: {
       console.log('--- Triggered CUSTOMER_LOAD_SUCCESS ---')
       return Object.assign({}, state, {
-        data: action.payload.data,
+        data: [...new Set(action.payload.data)].sort(compareValues('name')),
         isLoading: false,
         hasErrored: false
       })
