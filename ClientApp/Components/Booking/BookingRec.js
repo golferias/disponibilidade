@@ -17,12 +17,24 @@ export default class BookingRec extends Component {
       this.props.customers,
       this.props.book.idcliente
     )
+    let showData = this.props.showData
+    let divData
+    if (showData)
+      divData = (
+        <div className='customer-title'>
+          {dataMarcacao.toLocaleDateString('pt-PT', optionsMarcacao)}
+        </div>
+      )
 
     return (
       <div className='events-customers-list__item row'>
         <div className='item col-12 col-sm-6 col-md-5 '>
-          <div className='customer-title'>
-            {dataMarcacao.toLocaleDateString('pt-PT', optionsMarcacao)}
+          {divData}
+          <div className='customer-details'>
+            &nbsp;&nbsp; Inicio:{' '}
+            <b>{dataStart.toLocaleTimeString('pt-PT', optionsStartEnd)}</b>{' '}
+            &nbsp;&nbsp;&nbsp;Fim:{' '}
+            <b>{dataEnd.toLocaleTimeString('pt-PT', optionsStartEnd)}</b>
           </div>
           <div className='customer-details'>
             &nbsp;&nbsp; Cliente: {customerName}
@@ -30,11 +42,7 @@ export default class BookingRec extends Component {
           <div className='customer-details'>
             &nbsp;&nbsp; Servico: {this.props.book.idservico}
           </div>
-          <div className='customer-details'>
-            &nbsp;&nbsp; Inicio:{' '}
-            <b>{dataStart.toLocaleTimeString('pt-PT', optionsStartEnd)}</b> Fim:{' '}
-            <b>{dataEnd.toLocaleTimeString('pt-PT', optionsStartEnd)}</b>
-          </div>
+
           <div>
             <button
               className='btn btn-outline-danger customerRec'

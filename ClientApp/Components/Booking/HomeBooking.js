@@ -10,6 +10,7 @@ class HomeBooking extends Component {
     const itemComponents = this.props.booking.map(Rec => {
       return (
         <BookingRec
+          showData={true}
           customers={this.props.customers}
           key={Rec.id}
           book={Rec}

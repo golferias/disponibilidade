@@ -28,7 +28,7 @@ function CustomerForm (props) {
         id='phone'
         label='Telemóvel'
         name='phone'
-        value={props.customer.phone.toString()}
+        value={props.customer.phone}
         onChange={props.onChange}
         error={props.errors.phone}
         

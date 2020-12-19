@@ -10,6 +10,7 @@ class HomeCalendar extends Component {
     const itemComponents = this.props.booking.map(Rec => {
       return (
         <BookingRec
+        showData={false}
           key={Rec.id}
           book={Rec}
           customers={this.props.customers}
