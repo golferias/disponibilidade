@@ -5,10 +5,20 @@ import {
   dispatchUpdateTextFooter,
   dispatchUpdateTextHeader
 } from '.././../../redux/actions/calendar'
-import { dispatchUpdateFilterList } from '.././../../redux/actions/customers'
+import {
+  dispatchUpdateFilterList,
+  FetchData,
+  Bdelete
+} from '.././../../redux/actions/booking'
 
 class Calendar extends Component {
-    render () {
+  // componentDidMount () {
+
+  // const prom1 = this.props.FetchData()
+  // return Promise.all([prom1])
+  // }
+
+  render () {
     if (this.props.isLoading) {
       return (
         <div className='alert alert-info alert-dismissible fade show'>
@@ -26,6 +36,7 @@ class Calendar extends Component {
         <div>
           <Container
             customers={this.props.customers}
+            booking={this.props.booking}
             textheader={this.props.textheader}
             textfooter={this.props.textfooter}
             dispatchUpdateTextFooter={newDate => {
@@ -34,6 +45,9 @@ class Calendar extends Component {
             }}
             dispatchUpdateTextHeader={newDate => {
               this.props.dispatchUpdateTextHeader(newDate)
+            }}
+            delete={book => {
+              this.props.Bdelete(book)
             }}
           />
         </div>
@@ -46,10 +60,11 @@ const mapStateToProps = state => {
   return {
     textheader: state.calendar.textheader,
     textfooter: state.calendar.textfooter,
+    booking: state.booking.datafiltered,
     customers: state.customers.data,
-    hasErrored: state.customers.hasErrored,
-    isLoading: state.customers.isLoading,
-    errorMessage: state.customers.errorMessage
+    hasErrored: state.calendar.hasErrored,
+    isLoading: state.calendar.isLoading,
+    errorMessage: state.calendar.errorMessage
   }
 }
 
@@ -57,6 +72,8 @@ export default {
   component: connect(mapStateToProps, {
     dispatchUpdateTextFooter,
     dispatchUpdateTextHeader,
-    dispatchUpdateFilterList
+    dispatchUpdateFilterList,
+    FetchData,
+    Bdelete
   })(Calendar)
 }

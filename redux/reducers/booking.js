@@ -11,12 +11,13 @@ import {
     CREATE,
     CREATE_SUCCESS,
     CREATE_FAIL,
-    UPDATEDATE
+    FILTERCALENDARLIST
   } from '../actions/booking'
   import { compareValues } from "../../ClientApp/Components/common/sortArray";
 
   export function booking (
     state = {
+      datafiltered:[],
       data: [],
       isLoading: true,
       hasErrored: false,
@@ -30,11 +31,15 @@ import {
       return { ...state, data: [...state.data, customerToCreate] }
     }
   
-    function deleteOneCustomer (state, customerToDelete) {
-      var filteredArray = state.data.filter(
-        item => item.id !== customerToDelete.id
+    function deleteOneBooking (state, bookToDelete) {
+      var filteredData = state.data.filter(
+        item => item.id !== bookToDelete.id
       )
-      return { ...state, data: [...filteredArray] }
+      var filteredDataFiltered = state.datafiltered.filter(
+        item => item.id !== bookToDelete.id
+      )
+
+      return { ...state, data: [...filteredData], datafiltered:[...filteredDataFiltered] }
     }
     function updateOneCustomer (state, customerToUpdate) {
       var newCustomerList = state.data.map(item =>
@@ -54,6 +59,7 @@ import {
       case LOAD_SUCCESS: {
         console.log('--- Triggered LOAD_SUCCESS ---')
         return Object.assign({}, state, {
+          datafiltered:[...(new Set(action.payload.data))].sort(compareValues('start')),
           data: [...(new Set(action.payload.data))].sort(compareValues('start')) ,
           isLoading: false,
           hasErrored: false
@@ -102,7 +108,7 @@ import {
         })
   
         const customerIdToDelete = action.payload.request.data
-        const newState = deleteOneCustomer(state, customerIdToDelete)
+        const newState = deleteOneBooking(state, customerIdToDelete)
         return newState
       }
       case DELETE_SUCCESS: {
@@ -152,15 +158,16 @@ import {
         })
       }
   
-      case UPDATEDATE: {
+      case FILTERCALENDARLIST: {
         const currentDate = new Date(action.data)
-        let filteredcustomers = state.data.filter(data => {
-          let b = new Date(data.birth)
+        let filtered = state.data.filter(data => {
+          let b = new Date(data.start)
           if (b.getDate() === currentDate.getDate()) return data
         })
+
         return {
           ...state,
-          data: filteredcustomers
+          datafiltered: filtered
         }
       }
   

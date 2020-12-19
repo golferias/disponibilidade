@@ -15,7 +15,7 @@ export const CREATE_SUCCESS = 'CREATE_SUCCESS'
 export const CREATE_FAIL = 'CREATE_FAIL'
 
 
-export const CUSTOMER_UPDATEDATE ='UPDATEDATE'
+export const FILTERCALENDARLIST ='FILTERCALENDARLIST'
 
 
 export function FetchData () {
@@ -58,9 +58,9 @@ function ParseValidations (customerRec) {
 }
 
 export function dispatchUpdateFilterList(newDate){
-  console.log('actions/booking.js/dispatchUpdateFilterList UPDATEDATE....')
+  console.log('actions/booking.js/dispatchUpdateFilterList FILTERCALENDARLIST....')
   return {
-    type: UPDATEDATE,
+    type: FILTERCALENDARLIST,
     data: newDate
   }
 }
@@ -102,7 +102,7 @@ export function update (Rec) {
   }
 }
 
-export function Bdelete (rec) {
+export function Bdelete (Rec) {
   console.log('actions/booking.js/delete DELETE....')
 
   Rec = ParseValidations(Rec)

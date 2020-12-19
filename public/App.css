@@ -11665,3 +11665,8 @@ body {
   border-bottom: 1px solid;
   border-bottom-color: #ccc; 
 }
+.emptyList{
+  text-align:center;
+  margin-top: 3em;
+  color:red;
+}

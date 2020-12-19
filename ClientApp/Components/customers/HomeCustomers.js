@@ -24,7 +24,9 @@ class HomeCustomers extends Component {
         {customerItemComponents.length ? (
           customerItemComponents
         ) : (
-          <p>Sem dados</p>
+          <div className='emptyList'>
+            <p>Sem clientes</p>
+          </div>
         )}
       </div>
     )

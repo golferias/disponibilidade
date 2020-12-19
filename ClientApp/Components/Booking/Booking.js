@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { FetchData, Bdelete } from '.././../../redux/actions/booking'
 
 class Booking extends Component {
-  componentDidMount () {
-    this.props.FetchData()
-  }
+  // componentDidMount () {
+  //   this.props.FetchData()
+  // }
   //   deleteCustomer (customer) {
   //     this.props.deleteCustomer(customer)
   //   }
@@ -50,13 +50,13 @@ const mapStateToProps = state => {
   }
 }
 
-function loadData (booking) {
-  // wait for both retrieves to finish when server side renderings
-  const prom1 = booking.dispatch(FetchData())
-  return Promise.all([prom1])
-}
+// function loadData (booking) {
+//   // wait for both retrieves to finish when server side renderings
+//   const prom1 = booking.dispatch(FetchData())
+//   return Promise.all([prom1])
+// }
 
 export default {
-  component: connect(mapStateToProps, { FetchData, Bdelete })(Booking),
-  loadData
+  component: connect(mapStateToProps, { FetchData, Bdelete })(Booking)
+  
 }

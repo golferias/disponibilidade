@@ -1,18 +1,33 @@
 import React, { Component } from 'react'
-import CustomerRec from '../customers/CustomerRec'
+import BookingRec from '../booking/BookingRec'
 
 class HomeCalendar extends Component {
+  delete = book => {
+    return this.props.delete(book)
+  }
+
   render () {
-    const customerItemComponents = this.props.customers.map(customerRec => {
-      return <CustomerRec key={customerRec.id} customer={customerRec} />
+    const itemComponents = this.props.booking.map(Rec => {
+      return (
+        <BookingRec
+          key={Rec.id}
+          book={Rec}
+          customers={this.props.customers}
+          delete={book => {
+            return this.props.delete(book)
+          }}
+        />
+      )
     })
 
     return (
       <div className='events-customers-list container-fluid js-list-view active'>
-        {customerItemComponents.length ? (
-          customerItemComponents
+        {itemComponents.length ? (
+          itemComponents
         ) : (
-          <p>Sem Marcacoes</p>
+          <div className='emptyList'>
+            <p>Sem marcacoes para este dia</p>
+          </div>
         )}
       </div>
     )

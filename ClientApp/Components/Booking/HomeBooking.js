@@ -7,8 +7,6 @@ class HomeBooking extends Component {
   }
 
   render () {
-    //const sortedArray = this.props.booking.sort('start')
-
     const itemComponents = this.props.booking.map(Rec => {
       return (
         <BookingRec
@@ -24,7 +22,13 @@ class HomeBooking extends Component {
 
     return (
       <div className='events-customers-list container-fluid js-list-view active'>
-        {itemComponents.length ? itemComponents : <p>Sem dados</p>}
+        {itemComponents.length ? (
+          itemComponents
+        ) : (
+          <div className='emptyList'>
+            <p>Sem marcacoes</p>
+          </div>
+        )}
       </div>
     )
   }

@@ -3,19 +3,20 @@ import { Link } from 'react-router-dom'
 import { toStringDate } from '../common/ToStringComponent'
 
 export default class BookingRec extends Component {
-  
-
   render () {
-     function getCustomerName (customerList,id) {
-
-      return customerList[0].name
+    function getCustomerName (customerList, id) {
+      const customer = customerList.filter(x => x.id == id)
+      return customer[0].name
     }
     const optionsMarcacao = { weekday: 'long', month: 'long', day: 'numeric' }
     const optionsStartEnd = { hour: 'numeric', minute: 'numeric' }
     let dataMarcacao = new Date(this.props.book.start)
     let dataStart = new Date(this.props.book.start)
     let dataEnd = new Date(this.props.book.end)
-    const customerName =getCustomerName(this.props.customers,this.props.book.idcliente)
+    const customerName = getCustomerName(
+      this.props.customers,
+      this.props.book.idcliente
+    )
 
     return (
       <div className='events-customers-list__item row'>

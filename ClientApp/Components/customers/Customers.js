@@ -6,9 +6,12 @@ import {
   deleteCustomer
 } from '.././../../redux/actions/customers'
 
+import { FetchData } from '.././../../redux/actions/booking'
+
 class Customers extends Component {
   componentDidMount () {
     this.props.customersFetchData()
+    this.props.FetchData()
   }
   deleteCustomer (customer) {
     this.props.deleteCustomer(customer)
@@ -50,15 +53,15 @@ const mapStateToProps = state => {
   }
 }
 
-function loadData (customer) {
-  // wait for both retrieves to finish when server side renderings
-  const prom1 = customer.dispatch(customersFetchData())
-  return Promise.all([prom1])
-}
+// function loadData (customer) {
+//   // wait for both retrieves to finish when server side renderings
+//   const prom1 = customer.dispatch(customersFetchData())
+//   return Promise.all([prom1])
+// }
 
 export default {
-  component: connect(mapStateToProps, { customersFetchData, deleteCustomer })(
+  component: connect(mapStateToProps, { FetchData,customersFetchData, deleteCustomer })(
     Customers
-  ),
-  loadData
+  )
+  
 }
