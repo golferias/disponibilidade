@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { toStringDate } from '../common/ToStringComponent'
+import { toStringDate } from '../ToStringComponent'
 
 export default class BookingRec extends Component {
   render () {

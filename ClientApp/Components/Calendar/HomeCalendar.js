@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BookingRec from '../booking/BookingRec'
+import BookingRec from '../common/Booking/BookingRec'
 
 class HomeCalendar extends Component {
   delete = book => {
@@ -10,7 +10,7 @@ class HomeCalendar extends Component {
     const itemComponents = this.props.booking.map(Rec => {
       return (
         <BookingRec
-        showData={false}
+          showData={false}
           key={Rec.id}
           book={Rec}
           customers={this.props.customers}

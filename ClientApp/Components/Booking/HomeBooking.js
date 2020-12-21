@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BookingRec from './BookingRec'
+import BookingRec from '../common/Booking/BookingRec'
 
 class HomeBooking extends Component {
   delete = book => {
@@ -11,9 +11,9 @@ class HomeBooking extends Component {
       return (
         <BookingRec
           showData={true}
-          customers={this.props.customers}
           key={Rec.id}
           book={Rec}
+          customers={this.props.customers}
           delete={book => {
             return this.props.delete(book)
           }}
