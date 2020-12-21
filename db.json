@@ -1766,6 +1766,22 @@
     {
       "id":1,
       "name":"Buco"
+    },
+    {
+      "id":2,
+      "name":"Massagem relaxamento"
+    },
+    {
+      "id":3,
+      "name":"Corte"
+    },
+    {
+      "id":4,
+      "name":"Alisamento"
+    },
+    {
+      "id":5,
+      "name":"Unhas"
     }
   ]
 }
