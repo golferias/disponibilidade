@@ -14,59 +14,30 @@ export const CREATE = 'CREATE'
 export const CREATE_SUCCESS = 'CREATE_SUCCESS'
 export const CREATE_FAIL = 'CREATE_FAIL'
 
-
-export const FILTERCALENDARLIST ='FILTERCALENDARLIST'
-
-
-export function BookingFetchData () {
-  console.log('actions/booking.js/FetchData LOAD....')
+export function ServicesFetchData () {
+  console.log('actions/services.js/FetchData LOAD....')
 
   return {
     type: LOAD,
     payload: {
       request: {
-        url: '/booking'
+        url: '/services'
       }
     }
   }
 }
-function ParseBirth (customerRec) {
-  if (customerRec.birth === '') {
-    return { ...customerRec, birth: null }
-  }
-  
-  return customerRec
-}
 
-function ParsePhone (customerRec) {
-  if (customerRec.phone && customerRec.phone.length > 0) {
-    return { ...customerRec, phone: parseInt(customerRec.phone) }
-  }
-  if (customerRec.phone === '') {
-    return { ...customerRec, phone: null }
-  }
-  return customerRec
-}
+
 function SetIdZero (customerRec) {
   return { ...customerRec, id: 0 }
 }
 
 function ParseValidations (customerRec) {
-  customerRec = ParsePhone(customerRec)
-  customerRec = ParseBirth(customerRec)
   return customerRec
 }
 
-export function dispatchUpdateFilterList(newDate){
-  console.log('actions/booking.js/dispatchUpdateFilterList FILTERCALENDARLIST....')
-  return {
-    type: FILTERCALENDARLIST,
-    data: newDate
-  }
-}
-
 export function Add (Rec) {
-  console.log('actions/booking.js/Add CREATE....')
+  console.log('actions/services.js/Add CREATE....')
   Rec = ParseValidations(Rec)
 
   Rec = SetIdZero(Rec)
@@ -75,7 +46,7 @@ export function Add (Rec) {
     payload: {
       request: {
         method: 'POST',
-        url: '/booking',
+        url: '/services',
         data: {
           ...Rec
         }
@@ -85,7 +56,7 @@ export function Add (Rec) {
 }
 
 export function update (Rec) {
-  console.log('actions/booking.js/updateCustomer UPDATE....')
+  console.log('actions/services.js/update UPDATE....')
 
   Rec = ParseValidations(Rec)
   return {
@@ -93,7 +64,7 @@ export function update (Rec) {
     payload: {
       request: {
         method: 'PUT',
-        url: '/booking/' + Rec.id,
+        url: '/services/' + Rec.id,
         data: {
           ...Rec
         }
@@ -103,7 +74,7 @@ export function update (Rec) {
 }
 
 export function Bdelete (Rec) {
-  console.log('actions/booking.js/delete DELETE....')
+  console.log('actions/services.js/delete DELETE....')
 
   Rec = ParseValidations(Rec)
   return {
@@ -111,7 +82,7 @@ export function Bdelete (Rec) {
     payload: {
       request: {
         method: 'Delete',
-        url: '/booking/' + Rec.id,
+        url: '/services/' + Rec.id,
         data: {
           ...Rec
         }

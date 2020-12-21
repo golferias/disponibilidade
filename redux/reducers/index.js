@@ -4,11 +4,13 @@ import {sessions} from "./sessions";
 import {customers} from "./customers";
 import {calendar} from "./calendar";
 import {booking} from "./booking";
+import {services} from "./services"
 
 export default combineReducers({
     speakers,
     sessions,
     customers,
     calendar,
-    booking
+    booking,
+    services
 });

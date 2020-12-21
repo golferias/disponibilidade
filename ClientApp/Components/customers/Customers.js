@@ -6,12 +6,14 @@ import {
   deleteCustomer
 } from '.././../../redux/actions/customers'
 
-import { FetchData } from '.././../../redux/actions/booking'
-
+import { BookingFetchData } from '.././../../redux/actions/booking'
+import {ServicesFetchData} from '.././../../redux/actions/services'
 class Customers extends Component {
   componentDidMount () {
     this.props.customersFetchData()
-    this.props.FetchData()
+    this.props.BookingFetchData()
+    this.props.ServicesFetchData()
+
   }
   deleteCustomer (customer) {
     this.props.deleteCustomer(customer)
@@ -60,7 +62,7 @@ const mapStateToProps = state => {
 // }
 
 export default {
-  component: connect(mapStateToProps, { FetchData,customersFetchData, deleteCustomer })(
+  component: connect(mapStateToProps, { ServicesFetchData,BookingFetchData,customersFetchData, deleteCustomer })(
     Customers
   )
   
