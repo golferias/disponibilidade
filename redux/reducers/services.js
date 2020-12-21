@@ -23,27 +23,22 @@ export function services (
   },
   action
 ) {
-  function createCustomer (state, customerToCreate) {
-    return { ...state, data: [...state.data, customerToCreate] }
+  function create (state, ToCreate) {
+    return { ...state, data: [...state.data, ToCreate] }
   }
 
-  function deleteOneBooking (state, bookToDelete) {
-    var filteredData = state.data.filter(item => item.id !== bookToDelete.id)
-    var filteredDataFiltered = state.datafiltered.filter(
-      item => item.id !== bookToDelete.id
-    )
-
-    return {
+  function deleteOne (state, ToDelete) {
+    var filteredData = state.data.filter(item => item.id !== ToDelete.id)
+       return {
       ...state,
-      data: [...filteredData],
-      datafiltered: [...filteredDataFiltered]
+      data: [...filteredData]     
     }
   }
-  function updateOneCustomer (state, customerToUpdate) {
-    var newCustomerList = state.data.map(item =>
-      item.id === customerToUpdate.id ? { ...item, ...customerToUpdate } : item
+  function updateOne (state, ToUpdate) {
+    var newList = state.data.map(item =>
+      item.id === ToUpdate.id ? { ...item, ...ToUpdate } : item
     )
-    return { ...state, data: [...newCustomerList] }
+    return { ...state, data: [...newList] }
   }
 
   switch (action.type) {
@@ -77,8 +72,8 @@ export function services (
         isLoading: true,
         hasErrored: false
       })
-      const customerToUpdate = action.payload.request.data
-      const newState = updateOneCustomer(state, customerToUpdate)
+      const ToUpdate = action.payload.request.data
+      const newState = updateOne(state, ToUpdate)
       return newState
     }
     case UPDATE_SUCCESS: {
@@ -104,8 +99,8 @@ export function services (
         hasErrored: false
       })
 
-      const customerIdToDelete = action.payload.request.data
-      const newState = deleteOneBooking(state, customerIdToDelete)
+      const ToDelete = action.payload.request.data
+      const newState = deleteOne(state, ToDelete)
       return newState
     }
     case DELETE_SUCCESS: {
@@ -130,8 +125,8 @@ export function services (
         isLoading: false,
         hasErrored: false
       })
-      const customerToCreate = action.payload.request.data
-      const newState = createCustomer(state, customerToCreate)
+      const ToCreate = action.payload.request.data
+      const newState = create(state, ToCreate)
       return newState
     }
     case CREATE_SUCCESS: {
@@ -142,8 +137,8 @@ export function services (
         isLoading: false,
         hasErrored: false
       })
-      const customerToCreate = action.payload.data
-      const newState = createCustomer(state, customerToCreate)
+      const ToCreate = action.payload.data
+      const newState = create(state, ToCreate)
       return newState
     }
     case CREATE_FAIL: {
