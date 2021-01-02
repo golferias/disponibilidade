@@ -43,14 +43,14 @@ export function services (
 
   switch (action.type) {
     case LOAD: {
-      console.log('--- Triggered LOAD ---')
+      console.log('--- Triggered LOAD SERVICES---')
       return Object.assign({}, state, {
         isLoading: true,
         hasErrored: false
       })
     }
     case LOAD_SUCCESS: {
-      console.log('--- Triggered LOAD_SUCCESS ---')
+      console.log('--- Triggered LOAD_SUCCESS SERVICES---')
       return Object.assign({}, state, {
         data: [...new Set(action.payload.data)].sort(compareValues('name')),
         isLoading: false,
@@ -58,7 +58,7 @@ export function services (
       })
     }
     case LOAD_FAIL: {
-      console.log('--- Triggered LOAD_FAIL ---')
+      console.log('--- Triggered LOAD_FAIL SERVICES---')
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,

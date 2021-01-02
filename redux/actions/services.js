@@ -1,18 +1,18 @@
-export const LOAD = 'LOAD'
-export const LOAD_SUCCESS = 'LOAD_SUCCESS'
-export const LOAD_FAIL = 'LOAD_FAIL'
+export const LOAD = 'SERVICES_LOAD'
+export const LOAD_SUCCESS = 'SERVICES_LOAD_SUCCESS'
+export const LOAD_FAIL = 'SERVICES_LOAD_FAIL'
 
-export const UPDATE = 'UPDATE'
-export const UPDATE_SUCCESS = 'UPDATE_SUCCESS'
-export const UPDATE_FAIL = 'UPDATE_FAIL'
+export const UPDATE = 'UPDATE_SERVICE'
+export const UPDATE_SUCCESS = 'UPDATE_SUCCESS_SERVICE'
+export const UPDATE_FAIL = 'UPDATE_FAIL_SERVICE'
 
-export const DELETE = 'DELETE'
-export const DELETE_SUCCESS = 'DELETE_SUCCESS'
-export const DELETE_FAIL = 'DELETE_FAIL'
+export const DELETE = 'DELETE_SERVICE_SERVICE'
+export const DELETE_SUCCESS = 'DELETE_SUCCESS_SERVICE'
+export const DELETE_FAIL = 'DELETE_FAIL_SERVICE'
 
-export const CREATE = 'CREATE'
-export const CREATE_SUCCESS = 'CREATE_SUCCESS'
-export const CREATE_FAIL = 'CREATE_FAIL'
+export const CREATE = 'CREATE_SERVICE'
+export const CREATE_SUCCESS = 'CREATE_SUCCESS_SERVICE'
+export const CREATE_FAIL = 'CREATE_FAIL_SERVICE'
 
 export function ServicesFetchData () {
   console.log('actions/services.js/FetchData LOAD....')
@@ -26,7 +26,6 @@ export function ServicesFetchData () {
     }
   }
 }
-
 
 function SetIdZero (customerRec) {
   return { ...customerRec, id: 0 }
@@ -55,7 +54,7 @@ export function Add (Rec) {
   }
 }
 
-export function update (Rec) {
+export function Update (Rec) {
   console.log('actions/services.js/update UPDATE....')
 
   Rec = ParseValidations(Rec)

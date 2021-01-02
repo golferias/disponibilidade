@@ -8,6 +8,7 @@ import App from './Components/common/App'
 import Calendar from './Components/Calendar/Calendar'
 import Booking from './Components/Booking/Booking'
 import Services from './Components/Services/Services'
+import ManageServices from './Components/Services/ManageServices'
 
 export default [
   {
@@ -26,6 +27,11 @@ export default [
       {
         ...Booking,
         path: '/booking',
+        exact: true
+      },
+      {
+        ...ManageServices,
+        path: '/services/:id',
         exact: true
       },
       {

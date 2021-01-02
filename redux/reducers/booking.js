@@ -50,14 +50,14 @@ import {
   
     switch (action.type) {
       case LOAD: {
-        console.log('--- Triggered LOAD ---')
+        console.log('--- Triggered LOAD BOOKING---')
         return Object.assign({}, state, {
           isLoading: true,
           hasErrored: false
         })
       }
       case LOAD_SUCCESS: {
-        console.log('--- Triggered LOAD_SUCCESS ---')
+        console.log('--- Triggered LOAD_SUCCESS BOOKING---')
         return Object.assign({}, state, {
           datafiltered:[...(new Set(action.payload.data))].sort(compareValues('start')),
           data: [...(new Set(action.payload.data))].sort(compareValues('start')) ,
@@ -66,7 +66,7 @@ import {
         })
       }
       case LOAD_FAIL: {
-        console.log('--- Triggered LOAD_FAIL ---')
+        console.log('--- Triggered LOAD_FAIL BOOKING---')
         return Object.assign({}, state, {
           isLoading: false,
           hasErrored: true,
