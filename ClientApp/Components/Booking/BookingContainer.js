@@ -20,6 +20,7 @@ export default function BookingContainer (props) {
             </div>
           </div>
           <Home
+            services={props.services}
             customers={props.customers}
             booking={props.booking}
             delete={book => {

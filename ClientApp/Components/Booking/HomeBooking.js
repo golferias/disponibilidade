@@ -14,6 +14,7 @@ class HomeBooking extends Component {
           key={Rec.id}
           book={Rec}
           customers={this.props.customers}
+          services={this.props.services}
           delete={book => {
             return this.props.delete(book)
           }}

@@ -8,15 +8,34 @@ export default class BookingRec extends Component {
       const customer = customerList.filter(x => x.id == id)
       return customer[0].name
     }
+
+    function getServiceName (serviceList, ids) {
+      const services = serviceList.filter(item => ids.includes(item.id))
+
+      let names = ''
+      services.forEach(element => {
+        names = names + element.name + ', '
+      })
+
+      return names.slice(0, -2)
+    }
+
     const optionsMarcacao = { weekday: 'long', month: 'long', day: 'numeric' }
     const optionsStartEnd = { hour: 'numeric', minute: 'numeric' }
     let dataMarcacao = new Date(this.props.book.start)
     let dataStart = new Date(this.props.book.start)
     let dataEnd = new Date(this.props.book.end)
+
     const customerName = getCustomerName(
       this.props.customers,
       this.props.book.idcliente
     )
+
+    const serviceName = getServiceName(
+      this.props.services,
+      this.props.book.services
+    )
+
     let showData = this.props.showData
     let divData
     if (showData)
@@ -37,10 +56,10 @@ export default class BookingRec extends Component {
             <b>{dataEnd.toLocaleTimeString('pt-PT', optionsStartEnd)}</b>
           </div>
           <div className='customer-details'>
-            &nbsp;&nbsp; Cliente: {customerName}
+            &nbsp;&nbsp; Cliente: <b>{customerName}</b>
           </div>
           <div className='customer-details'>
-            &nbsp;&nbsp; Servico: {this.props.book.idservico}
+            &nbsp;&nbsp; Servicos: <b>{serviceName}</b>
           </div>
 
           <div>

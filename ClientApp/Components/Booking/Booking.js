@@ -18,6 +18,7 @@ class Booking extends Component {
       return (
         <div>
           <Container
+            services={this.props.services}
             customers={this.props.customers}
             booking={this.props.booking}
             delete={book => {
@@ -34,6 +35,7 @@ const mapStateToProps = state => {
   return {
     customers: state.customers.data,
     booking: state.booking.data,
+    services:state.services.data,
     hasErrored: state.booking.hasErrored,
     isLoading: state.booking.isLoading,
     errorMessage: state.booking.errorMessage
