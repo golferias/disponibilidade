@@ -2,22 +2,12 @@ import React, { Component } from 'react'
 import Container from './BookingContainer'
 import { connect } from 'react-redux'
 import { FetchData, Bdelete } from '.././../../redux/actions/booking'
-
+import Loading from '../common/Loading'
 class Booking extends Component {
-  // componentDidMount () {
-  //   this.props.FetchData()
-  // }
-  //   deleteCustomer (customer) {
-  //     this.props.deleteCustomer(customer)
-  //   }
-
-  render () {
+   render () {
     if (this.props.isLoading) {
-      return (
-        <div className='alert alert-info alert-dismissible fade show'>
-          <h1>Loading...</h1>
-        </div>
-      )
+      return <Loading title='A carregar Marcacoes...' />
+      
     } else if (this.props.hasErrored) {
       return (
         <div className='alert alert-danger alert-dismissible fade show'>

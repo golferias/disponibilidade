@@ -24,21 +24,35 @@ export function services (
   action
 ) {
   function create (state, ToCreate) {
-    return { ...state, data: [...state.data, ToCreate] }
+    let newState = { ...state, data: [...state.data, ToCreate] }
+    return Object.assign({}, state, {
+      data: newState.data,
+      isLoading: false,
+      hasErrored: false
+    })
   }
 
   function deleteOne (state, ToDelete) {
     var filteredData = state.data.filter(item => item.id !== ToDelete.id)
-       return {
+    let newState = {
       ...state,
-      data: [...filteredData]     
+      data: [...filteredData]
     }
+    return Object.assign({}, state, {
+      data: newState.data,
+      isLoading: true,
+      hasErrored: false
+    })
   }
   function updateOne (state, ToUpdate) {
     var newList = state.data.map(item =>
       item.id === ToUpdate.id ? { ...item, ...ToUpdate } : item
     )
-    return { ...state, data: [...newList] }
+    return Object.assign({}, state, {
+      data: newList,
+      isLoading: true,
+      hasErrored: false
+    })
   }
 
   switch (action.type) {
@@ -62,19 +76,14 @@ export function services (
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,
-        errorMessage: action.error.message
+        errorMessage: action.error.data
       })
     }
     ///////////// UPDATE (PUT) /////////////////////////////////////////////////////////////////
     case UPDATE: {
       console.log('--- Triggered UPDATE ---')
-      Object.assign({}, state, {
-        isLoading: true,
-        hasErrored: false
-      })
       const ToUpdate = action.payload.request.data
-      const newState = updateOne(state, ToUpdate)
-      return newState
+      return updateOne(state, ToUpdate)
     }
     case UPDATE_SUCCESS: {
       console.log('--- Triggered UPDATE_SUCCESS ---')
@@ -88,20 +97,14 @@ export function services (
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,
-        errorMessage: action.error.message
+        errorMessage: action.error.data
       })
     }
     ///////////// DELETE  /////////////////////////////////////////////////////////////////
     case DELETE: {
       console.log('--- Triggered DELETE ---')
-      Object.assign({}, state, {
-        isLoading: true,
-        hasErrored: false
-      })
-
       const ToDelete = action.payload.request.data
-      const newState = deleteOne(state, ToDelete)
-      return newState
+      return deleteOne(state, ToDelete)
     }
     case DELETE_SUCCESS: {
       console.log('--- Triggered DELETE_SUCCESS ---')
@@ -115,38 +118,29 @@ export function services (
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,
-        errorMessage: action.error.message
+        errorMessage: action.error.data
       })
     }
     ///////////// CREATE  /////////////////////////////////////////////////////////////////
     case CREATE: {
       console.log('--- Triggered CREATE ---')
-      Object.assign({}, state, {
-        isLoading: false,
+      return Object.assign({}, state, {
+        isLoading: true,
         hasErrored: false
       })
-      const ToCreate = action.payload.request.data
-      const newState = create(state, ToCreate)
-      return newState
     }
     case CREATE_SUCCESS: {
       console.log('--- Triggered CREATE_SUCCESS ---')
 
-      Object.assign({}, state, {
-        data: action.payload.data,
-        isLoading: false,
-        hasErrored: false
-      })
       const ToCreate = action.payload.data
-      const newState = create(state, ToCreate)
-      return newState
+      return create(state, ToCreate)
     }
     case CREATE_FAIL: {
       console.log('--- Triggered CREATE_FAIL ---')
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,
-        errorMessage: action.error.message
+        errorMessage: action.error.data
       })
     }
     default:

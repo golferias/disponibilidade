@@ -31,6 +31,11 @@ export default [
       },
       {
         ...ManageServices,
+        path: '/addservice',
+        exact: true
+      },
+      {
+        ...ManageServices,
         path: '/services/:id',
         exact: true
       },

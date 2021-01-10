@@ -8,6 +8,8 @@ import {
 
 import { BookingFetchData } from '.././../../redux/actions/booking'
 import {ServicesFetchData} from '.././../../redux/actions/services'
+import Loading from '../common/Loading'
+
 class Customers extends Component {
   componentDidMount () {
     this.props.customersFetchData()
@@ -20,11 +22,7 @@ class Customers extends Component {
   }
   render () {
     if (this.props.isLoading) {
-      return (
-        <div className='alert alert-info alert-dismissible fade show'>
-          <h1>Loading...</h1>
-        </div>
-      )
+      return <Loading title='A carregar Clientes...' />
     } else if (this.props.hasErrored) {
       return (
         <div className='alert alert-danger alert-dismissible fade show'>

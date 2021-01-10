@@ -135,14 +135,21 @@ export const ManageCustomerPage = props => {
     return
   }, [props.match.params.id])
 
-  return (
-    <CustomerForm
-      customer={customer}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-      errors={errors}
-    />
-  )
+  let showHtml
+  if (props.isLoading) {
+    showHtml = <Loading title='A Gravar clientes...' />
+  } else {
+    showHtml = (
+      <CustomerForm
+        customer={customer}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        errors={errors}
+      />
+    )
+  }
+
+  return <div>{showHtml}</div>
 }
 
 const mapDispatchToProps = dispatch => {

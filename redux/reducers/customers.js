@@ -62,7 +62,7 @@ export function customers (
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,
-        errorMessage: action.error.message
+        errorMessage: action.error.data
       })
     }
     ///////////// UPDATE (PUT) /////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ export function customers (
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,
-        errorMessage: action.error.message
+        errorMessage: action.error.data
       })
     }
     ///////////// DELETE  /////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ export function customers (
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,
-        errorMessage: action.error.message
+        errorMessage: action.error.data
       })
     }
     ///////////// CREATE  /////////////////////////////////////////////////////////////////
@@ -146,7 +146,7 @@ export function customers (
       return Object.assign({}, state, {
         isLoading: false,
         hasErrored: true,
-        errorMessage: action.error.message
+        errorMessage: action.error.data
       })
     }
 

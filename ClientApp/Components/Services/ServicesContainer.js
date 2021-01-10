@@ -10,7 +10,7 @@ export default function ServicesContainer (props) {
       <div className='row'>
         <div className='col-12'>
           <HeaderTitle title='servicos' />
-          <Add title='Servicos' linkto='/services'/>
+          <Add title='Servicos' linkto='/addservice/'/>
           <Home
             services={props.services}
             delete={service => {

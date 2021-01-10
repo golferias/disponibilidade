@@ -10,7 +10,7 @@ import {
   FetchData,
   Bdelete
 } from '.././../../redux/actions/booking'
-
+import Loading from '../common/Loading'
 class Calendar extends Component {
   // componentDidMount () {
 
@@ -20,11 +20,7 @@ class Calendar extends Component {
 
   render () {
     if (this.props.isLoading) {
-      return (
-        <div className='alert alert-info alert-dismissible fade show'>
-          <h1>Loading...</h1>
-        </div>
-      )
+      return <Loading title='A carregar Calendario...' />
     } else if (this.props.hasErrored) {
       return (
         <div className='alert alert-danger alert-dismissible fade show'>

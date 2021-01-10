@@ -2,17 +2,17 @@ export const LOAD = 'SERVICES_LOAD'
 export const LOAD_SUCCESS = 'SERVICES_LOAD_SUCCESS'
 export const LOAD_FAIL = 'SERVICES_LOAD_FAIL'
 
-export const UPDATE = 'UPDATE_SERVICE'
-export const UPDATE_SUCCESS = 'UPDATE_SUCCESS_SERVICE'
-export const UPDATE_FAIL = 'UPDATE_FAIL_SERVICE'
+export const UPDATE = 'SERVICE_UPDATE'
+export const UPDATE_SUCCESS = 'SERVICE_UPDATE_SUCCESS'
+export const UPDATE_FAIL = 'SERVICE_UPDATE_FAIL'
 
-export const DELETE = 'DELETE_SERVICE_SERVICE'
-export const DELETE_SUCCESS = 'DELETE_SUCCESS_SERVICE'
-export const DELETE_FAIL = 'DELETE_FAIL_SERVICE'
+export const DELETE = 'SERVICE_DELETE'
+export const DELETE_SUCCESS = 'SERVICE_DELETE_SUCCESS'
+export const DELETE_FAIL = 'SERVICE_DELETE_FAIL'
 
-export const CREATE = 'CREATE_SERVICE'
-export const CREATE_SUCCESS = 'CREATE_SUCCESS_SERVICE'
-export const CREATE_FAIL = 'CREATE_FAIL_SERVICE'
+export const CREATE = 'SERVICE_CREATE'
+export const CREATE_SUCCESS = 'SERVICE_CREATE_SUCCESS'
+export const CREATE_FAIL = 'SERVICE_CREATE_FAIL'
 
 export function ServicesFetchData () {
   console.log('actions/services.js/FetchData LOAD....')
