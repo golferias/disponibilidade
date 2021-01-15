@@ -31,6 +31,7 @@ class Calendar extends Component {
       return (
         <div>
           <Container
+            services={this.props.services}
             customers={this.props.customers}
             booking={this.props.booking}
             textheader={this.props.textheader}
@@ -58,6 +59,7 @@ const mapStateToProps = state => {
     textfooter: state.calendar.textfooter,
     booking: state.booking.datafiltered,
     customers: state.customers.data,
+    services: state.services.data,
     hasErrored: state.calendar.hasErrored,
     isLoading: state.calendar.isLoading,
     errorMessage: state.calendar.errorMessage

@@ -13,6 +13,7 @@ class HomeCalendar extends Component {
           showData={false}
           key={Rec.id}
           book={Rec}
+          services={this.props.services}
           customers={this.props.customers}
           delete={book => {
             return this.props.delete(book)

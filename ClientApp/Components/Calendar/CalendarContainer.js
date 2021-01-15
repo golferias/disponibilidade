@@ -32,6 +32,7 @@ export default function CalendarContainer (props) {
             <FooterCalendar textfooter={props.textfooter} />
           </div>
           <Home
+            services={props.services}
             customers={props.customers}
             booking={props.booking}
             delete={book => {
