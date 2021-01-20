@@ -1737,51 +1737,128 @@
       "email": "pirata82@gmail.com",
       "phone": 939457104,
       "birth": "2000-07-08"
+    },
+    {
+      "id": 11,
+      "name": "teste",
+      "email": "",
+      "phone": null,
+      "birth": null
+    },
+    {
+      "id": 12,
+      "name": "Pedro Costa",
+      "email": "pedroemanuel.costa@gmail.com",
+      "phone": 939428394,
+      "birth": null
+    },
+    {
+      "id": 13,
+      "name": "maria quelhas",
+      "email": "",
+      "phone": null,
+      "birth": null
+    },
+    {
+      "id": 14,
+      "name": "nandinha",
+      "email": "pedroemanuel.costa@gmail.com",
+      "phone": 939428397,
+      "birth": null
+    },
+    {
+      "id": 15,
+      "name": "luisa salgado",
+      "email": "",
+      "phone": null,
+      "birth": null
+    },
+    {
+      "id": 16,
+      "name": "kelly banana",
+      "email": "",
+      "phone": null,
+      "birth": "1975-02-15"
+    },
+    {
+      "id": 17,
+      "name": "joaninha ",
+      "email": "",
+      "phone": 918574679,
+      "birth": null
+    },
+    {
+      "id": 18,
+      "name": "ines baia",
+      "email": "",
+      "phone": null,
+      "birth": null
+    },
+    {
+      "id": 19,
+      "name": "helder banana",
+      "email": "",
+      "phone": null,
+      "birth": null
+    },
+    {
+      "id": 20,
+      "name": "gina loures",
+      "email": "",
+      "phone": null,
+      "birth": null
     }
   ],
-  "booking":[
+  "booking": [
     {
-      "id":1,
-      "idcliente":1,
-      "idservico":1,
-      "start":"2020-12-14T10:00:00.000",
-      "end":"2020-12-14T10:15:00.000"
+      "id": 1,
+      "idcliente": 1,
+      "services": [
+        1,
+        2
+      ],
+      "start": "2020-12-14T10:00:00.000",
+      "end": "2020-12-14T10:15:00.000"
     },
     {
-      "id":2,
-      "idcliente":2,
-      "idservico":2,
-      "start":"2020-12-14T14:00:00.000",
-      "end":"2020-12-14T14:30:00.000"
+      "id": 2,
+      "idcliente": 2,
+      "services": [
+        2
+      ],
+      "start": "2020-12-14T14:00:00.000",
+      "end": "2020-12-14T14:30:00.000"
     },
     {
-      "id":3,
-      "idcliente":3,
-      "idservico":3,
-      "start":"2020-12-14T15:00:00.000",
-      "end":"2020-12-14T15:15:00.000"
+      "id": 3,
+      "idcliente": 3,
+      "services": [
+        3
+      ],
+      "start": "2020-12-14T15:00:00.000",
+      "end": "2020-12-14T15:15:00.000"
     }
   ],
-  "services":[
+  "services": [
     {
-      "id":1,
-      "name":"Buco"
+      "id": 2,
+      "name": "Massagem relaxamento"
     },
     {
-      "id":2,
-      "name":"Massagem relaxamento"
+      "id": 3,
+      "name": "Corte"
     },
     {
-      "id":3,
-      "name":"Corte"
+      "id": 5,
+      "name": "Unhas"
     },
     {
-      "id":4,
-      "name":"Alisamento"
+      "id": 4,
+      "name": "Buco"
     },
     {
-      "id":5,
-      "name":"Unhas"
+      "id": 1,
+      "name": "Alisamento"
     }
   ]
 }
