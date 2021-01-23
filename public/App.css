@@ -11611,7 +11611,7 @@ body {
             padding: 0;
             line-height: 1.625em;
             background-color: #f7f7f7; 
-            border-bottom: 2px solid;
+           /* border-bottom: 2px solid;*/
             border-bottom-color: #ccc;          
            color:black;
            }
@@ -11655,7 +11655,6 @@ body {
   text-align:left;
 }
 .calendar-td-btright{
-  text-align:right;
   width: 5%;
 }
 .calendar-footer{
