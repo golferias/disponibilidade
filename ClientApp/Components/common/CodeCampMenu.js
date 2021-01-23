@@ -62,11 +62,11 @@ export default function CodeCampMenu () {
           </Link>
         </li>
 
-        <li className="snow-bg">
+        {/* <li className="snow-bg">
           <Link to='/Home' onClick={setCssVisibility}>
             Produtos
           </Link>
-        </li>
+        </li> */}
         <li className="snow-bg">
           <Link to='/booking' onClick={setCssVisibility}>
             Marcacoes

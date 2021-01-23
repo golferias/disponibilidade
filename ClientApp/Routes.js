@@ -70,11 +70,11 @@ export default [
         path: '/login',
         exact: true
       },
-      {
-        ...Speakers,
-        path: '/speakers',
-        exact: true
-      },
+      // {
+      //   ...Speakers,
+      //   path: '/speakers',
+      //   exact: true
+      // },
       {
         ...RouteNotFound
       }
