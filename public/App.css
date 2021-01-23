@@ -11605,7 +11605,7 @@ body {
             font-size: 0.7rem;
            }
           .calendar-dayweek-text{
-            width: 14%;
+            width: 1%;
             text-align:center;
             font-family: "Handel Gothic d-light", sans-serif;
             padding: 0;
@@ -11616,7 +11616,7 @@ body {
            color:black;
            }
            .calendar-dayweek-text-holiday{
-            width: 14%;
+            width: 1%;
             text-align:center;
             font-family: "Handel Gothic d-light", sans-serif;
             padding: 0;
@@ -11631,7 +11631,7 @@ body {
             border-color: transparent;
            }
            .calendar-dayweek-text-empty{
-             width: 5%;
+             width: 1%;
            }
            .calendar-table{
              width: 100%;
