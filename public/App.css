@@ -11596,7 +11596,7 @@ body {
               /* margin-top: .1875em; */
               padding: 0;
               line-height: 1.625em;
-              border: 2px solid transparent;
+              border: 1px solid black;
               border-radius: 2em;
 
            }
@@ -11653,7 +11653,6 @@ body {
            }
 .calendar-td-btleft{
   text-align:left;
-  width: 5%;
 }
 .calendar-td-btright{
   text-align:right;
