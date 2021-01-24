@@ -11572,12 +11572,15 @@ body {
             100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
            }
 
-           .calendar-headertext{
+           .calendar-headertextfooter{
               font-family: "Handel Gothic", sans-serif;
               color: #333333;
               position: relative;  
               background-color: #f7f7f7;  
            }
+           .calendar-headertextheader{
+           text-align: center;  
+         }
            .calendar-headercalendar{
             font-size: 1.75rem;
             font-family: "Handel Gothic", sans-serif;
@@ -11670,3 +11673,8 @@ body {
   margin-top: 3em;
   color:red;
 }
+.multiselectlabel{
+  font-weight: 600; 
+    margin-top: 1.5rem;
+    margin-left: 0.8rem;
+}text-align: center;

@@ -9,7 +9,7 @@ export const MultiSelectDrop = props => {
 
   return (
     <div className='form-group'>
-      <label className='textinput' htmlFor={props.displayValue}>
+      <label className='multiselectlabel' htmlFor={props.displayValue}>
         {props.label}
       </label>
       <div className='field'>

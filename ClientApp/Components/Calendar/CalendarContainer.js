@@ -15,7 +15,7 @@ export default function CalendarContainer (props) {
           <HeaderTitle title='Calendario' />
           <Add title='Marcacao' linkto='/booking' />
           <div>
-            <HeaderTextCalendar textheader={props.textheader} />
+            <HeaderTextCalendar  textheader={props.textheader} />
           </div>
           <div>
             <HeaderCalendar
@@ -28,7 +28,7 @@ export default function CalendarContainer (props) {
               }}
             />
           </div>
-          <div className='calendar-headertext'>
+          <div className='calendar-headertextfooter'>
             <FooterCalendar textfooter={props.textfooter} />
           </div>
           <Home

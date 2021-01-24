@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react'
 import Form from './BookingForm'
 import { Add, Update } from '.././../../redux/actions/services'
 import Loading from '../common/Loading'
+import {
+  dispatchUpdateTextHeader,
+  dispatchUpdateTextFooter
+} from '.././../../redux/actions/calendar'
 
 export const ManageBooking = props => {
   const [errors, setErrors] = useState({})
@@ -10,8 +14,8 @@ export const ManageBooking = props => {
     id: null,
     start: '',
     idcliente: '',
-    services:[],
-    end:''
+    services: [],
+    end: ''
   })
 
   const [state, setStates] = useState({
@@ -50,8 +54,8 @@ export const ManageBooking = props => {
   function handleDataClick (event) {
     event.preventDefault()
     // if (event) {
-      const updatedState = { ...state, editingData: !state.editingData }
-      setStates(updatedState)
+    const updatedState = { ...state, editingData: !state.editingData }
+    setStates(updatedState)
     // }
   }
 
@@ -81,16 +85,31 @@ export const ManageBooking = props => {
     showHtml = <Loading title='A Gravar marcacao...' />
   } else {
     showHtml = (
-      <Form
-        onDataStateClick={handleDataClick}
-        states={state}
-        customers={props.customers}
-        services={props.services}
-        booking={row}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        errors={errors}
-      />
+      <div className='container-main'>
+        <div className='row'>
+          <div className='col-12'>
+            <Form
+              dispatchUpdateTextHeader={newDate => {
+                props.dispatchUpdateTextHeader(newDate)
+              }}
+              dispatchUpdateTextFooter={newDate => {
+                props.dispatchUpdateTextFooter(newDate)
+                // this.props.dispatchUpdateFilterList(newDate)
+              }}
+              textfooter={props.textfooter}
+              textheader={props.textheader}
+              onDataStateClick={handleDataClick}
+              states={state}
+              customers={props.customers}
+              services={props.services}
+              booking={row}
+              onChange={handleChange}
+              onSubmit={handleSubmit}
+              errors={errors}
+            />
+          </div>
+        </div>
+      </div>
     )
   }
 
@@ -107,7 +126,9 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
   return {
-    services:  state.services.data,
+    textfooter: state.calendar.textfooter,
+    textheader: state.calendar.textheader,
+    services: state.services.data,
     customers: state.customers.data,
     booking: state.booking,
     isLoading: state.booking.isLoading
@@ -115,5 +136,10 @@ function mapStateToProps (state) {
 }
 
 export default {
-  component: connect(mapStateToProps, mapDispatchToProps)(ManageBooking)
+  component: connect(mapStateToProps, {
+    dispatchUpdateTextHeader,
+    dispatchUpdateTextFooter,
+    Add,
+    Update
+  })(ManageBooking)
 }

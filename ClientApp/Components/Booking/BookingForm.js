@@ -2,6 +2,10 @@ import React from 'react'
 import DateInput from '../common/DateInput'
 import MultiSelectDrop from '../common/MultiSelectDrop'
 
+import { HeaderCalendar } from '../Calendar/HeaderCalendar'
+import { HeaderTextCalendar } from '../Calendar/HeaderTextCalendar'
+import { FooterCalendar } from '../Calendar/FooterCalendar'
+
 function getCustomer (customerList, id) {
   if (!id) {
     return []
@@ -62,13 +66,36 @@ function BookingForm (props) {
         singleSelect={false}
         displayValue={'name'}
       ></MultiSelectDrop>
-      {showHtml}
-      <button
+      <div className='form-group'>
+        <label className='multiselectlabel' htmlFor={props.displayValue}>
+          Data
+        </label>
+        <div>
+          <HeaderTextCalendar className='headertextcalendar' textheader={props.textheader} />
+        </div>
+        <div>
+          <HeaderCalendar
+            calendar={props.calendar}
+            dispatchUpdateTextFooter={newDate => {
+              props.dispatchUpdateTextFooter(newDate)
+            }}
+            dispatchUpdateTextHeader={newDate => {
+              props.dispatchUpdateTextHeader(newDate)
+            }}
+          />
+        </div>
+        <div className='calendar-headertext'>
+          <FooterCalendar textfooter={props.textfooter} />
+        </div>
+      </div>
+      {/* {showHtml} */}
+
+      {/* <button
         className='btn btn-outline-primary customerRec'
         onClick={props.onDataStateClick}
       >
         Editar Data
-      </button>
+      </button> */}
 
       <input
         type='submit'
