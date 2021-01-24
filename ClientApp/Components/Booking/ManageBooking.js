@@ -18,10 +18,6 @@ export const ManageBooking = props => {
     end: ''
   })
 
-  const [state, setStates] = useState({
-    editingData: false
-  })
-
   function handleChange ({ target }) {
     const updatedRow = { ...row, [target.name]: target.value }
     setRow(updatedRow)
@@ -49,14 +45,6 @@ export const ManageBooking = props => {
           console.log('error on action')
         })
     }
-  }
-
-  function handleDataClick (event) {
-    event.preventDefault()
-    // if (event) {
-    const updatedState = { ...state, editingData: !state.editingData }
-    setStates(updatedState)
-    // }
   }
 
   function formIsValid () {
@@ -99,7 +87,6 @@ export const ManageBooking = props => {
               textfooter={props.textfooter}
               textheader={props.textheader}
               onDataStateClick={handleDataClick}
-              states={state}
               customers={props.customers}
               services={props.services}
               booking={row}

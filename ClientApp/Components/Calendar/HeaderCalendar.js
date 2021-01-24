@@ -43,17 +43,20 @@ export const HeaderCalendar = props => {
     return
   }, [days.length])
 
-  function UpdateDaysBack () {
+  function UpdateDaysBack (event) {
+    event.preventDefault()
     let oneweekbefore = new Date(startWeek)
     oneweekbefore.setDate(oneweekbefore.getDate() - 7)
     fillInStates(oneweekbefore)
   }
 
-  function UpdateDaysForward () {
+  function UpdateDaysForward (event) {
+    event.preventDefault()
     fillInStates(endWeek)
   }
 
-  function filterDay (dayIndexPosition) {
+  function filterDay (dayIndexPosition, e) {
+    e.preventDefault()
     let start = new Date(startWeek)
     start.setDate(start.getDate() + dayIndexPosition)
 

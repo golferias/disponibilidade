@@ -1,5 +1,4 @@
 import React from 'react'
-import DateInput from '../common/DateInput'
 import MultiSelectDrop from '../common/MultiSelectDrop'
 
 import { HeaderCalendar } from '../Calendar/HeaderCalendar'
@@ -20,33 +19,6 @@ function getServices (serviceList, ids) {
 function BookingForm (props) {
   const customerSelected = getCustomer(props.customers, props.booking.idcliente)
   const servicesSelected = getServices(props.services, props.booking.services)
-  let showHtml
-  if (!props.states.editingData) {
-    showHtml = <div></div>
-  } else {
-    showHtml = (
-      <div>
-        <DateInput
-          id='start'
-          label='Inicio'
-          name='start'
-          value={props.booking.start}
-          onChange={props.onChange}
-          error={props.errors.start}
-          showDate='1'
-        />
-        <DateInput
-          id='end'
-          label='Fim'
-          name='end'
-          value={props.booking.end}
-          onChange={props.onChange}
-          error={props.errors.end}
-          showDate='0'
-        />
-      </div>
-    )
-  }
 
   return (
     <form onSubmit={props.onSubmit}>
@@ -71,7 +43,10 @@ function BookingForm (props) {
           Data
         </label>
         <div>
-          <HeaderTextCalendar className='headertextcalendar' textheader={props.textheader} />
+          <HeaderTextCalendar
+            className='headertextcalendar'
+            textheader={props.textheader}
+          />
         </div>
         <div>
           <HeaderCalendar
@@ -84,19 +59,10 @@ function BookingForm (props) {
             }}
           />
         </div>
-        <div className='calendar-headertext'>
+        <div className='calendar-headertextfooter'>
           <FooterCalendar textfooter={props.textfooter} />
         </div>
       </div>
-      {/* {showHtml} */}
-
-      {/* <button
-        className='btn btn-outline-primary customerRec'
-        onClick={props.onDataStateClick}
-      >
-        Editar Data
-      </button> */}
-
       <input
         type='submit'
         value='Salvar'
