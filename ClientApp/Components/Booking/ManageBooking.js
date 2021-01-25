@@ -86,7 +86,6 @@ export const ManageBooking = props => {
               }}
               textfooter={props.textfooter}
               textheader={props.textheader}
-              onDataStateClick={handleDataClick}
               customers={props.customers}
               services={props.services}
               booking={row}
