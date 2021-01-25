@@ -82,7 +82,6 @@ export const ManageBooking = props => {
               }}
               dispatchUpdateTextFooter={newDate => {
                 props.dispatchUpdateTextFooter(newDate)
-                // this.props.dispatchUpdateFilterList(newDate)
               }}
               textfooter={props.textfooter}
               textheader={props.textheader}

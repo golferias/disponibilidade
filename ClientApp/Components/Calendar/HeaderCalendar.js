@@ -29,7 +29,13 @@ export const HeaderCalendar = props => {
   }
 
   useEffect(() => {
-    const currentDate = new Date()
+    let currentDate = new Date()
+
+    if (props.selectedDay) {
+      currentDate = new Date(props.selectedDay)
+      props.dispatchUpdateTextFooter(currentDate)
+    }
+
     let daysIndex = currentDate.getDay()
 
     if (daysIndex == 0) {
@@ -39,6 +45,10 @@ export const HeaderCalendar = props => {
     startweek.setDate(startweek.getDate() - daysIndex + 1)
 
     fillInStates(startweek)
+
+    if (props.selectedDay) {
+      props.dispatchUpdateTextFooter(currentDate)
+    }
 
     return
   }, [days.length])

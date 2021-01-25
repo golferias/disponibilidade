@@ -1,6 +1,6 @@
 import React from 'react'
 import MultiSelectDrop from '../common/MultiSelectDrop'
-
+import  DateInput from '../common/DateInput'
 import { HeaderCalendar } from '../Calendar/HeaderCalendar'
 import { HeaderTextCalendar } from '../Calendar/HeaderTextCalendar'
 import { FooterCalendar } from '../Calendar/FooterCalendar'
@@ -50,7 +50,8 @@ function BookingForm (props) {
         </div>
         <div>
           <HeaderCalendar
-            calendar={props.calendar}
+            selectedDay={props.booking.start}
+            //calendar={props.calendar}
             dispatchUpdateTextFooter={newDate => {
               props.dispatchUpdateTextFooter(newDate)
             }}
@@ -61,6 +62,26 @@ function BookingForm (props) {
         </div>
         <div className='calendar-headertextfooter'>
           <FooterCalendar textfooter={props.textfooter} />
+        </div>
+        <div>
+          <DateInput
+            id='start'
+            label='Inicio'
+            name='start'
+            value={props.booking.start}
+            onChange={props.onChange}
+            error={props.errors.start}
+            showDate='0'
+          />
+          <DateInput
+            id='end'
+            label='Fim'
+            name='end'
+            value={props.booking.end}
+            onChange={props.onChange}
+            error={props.errors.end}
+            showDate='0'
+          />
         </div>
       </div>
       <input
