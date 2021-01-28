@@ -20,7 +20,7 @@ function DateInput (props) {
     })
   }
 
-  let showHtmlDate
+   let showHtmlDate
   if (props.showDate == 0) {
     showHtmlDate = <div></div>
   } else {
@@ -55,8 +55,6 @@ function DateInput (props) {
           id={props.id}
           type='time'
           name='bday'
-          //   max="2050-12-31"
-          //   min="2019-12-31"
           className='form-control text'
           onChange={props.onChange}
           name={props.name}

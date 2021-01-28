@@ -1,6 +1,6 @@
 import React from 'react'
 import MultiSelectDrop from '../common/MultiSelectDrop'
-import  DateInput from '../common/DateInput'
+import DateInput from '../common/DateInput'
 import { HeaderCalendar } from '../Calendar/HeaderCalendar'
 import { HeaderTextCalendar } from '../Calendar/HeaderTextCalendar'
 import { FooterCalendar } from '../Calendar/FooterCalendar'
@@ -19,6 +19,11 @@ function getServices (serviceList, ids) {
 function BookingForm (props) {
   const customerSelected = getCustomer(props.customers, props.booking.idcliente)
   const servicesSelected = getServices(props.services, props.booking.services)
+
+  function handleClick (e) {
+    e.preventDefault()
+    props.onChange(e)
+  }
 
   return (
     <form onSubmit={props.onSubmit}>
@@ -69,7 +74,7 @@ function BookingForm (props) {
             label='Inicio'
             name='start'
             value={props.booking.start}
-            onChange={props.onChange}
+            onChange={handleClick}
             error={props.errors.start}
             showDate='0'
           />

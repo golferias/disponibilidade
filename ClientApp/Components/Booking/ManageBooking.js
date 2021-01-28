@@ -18,8 +18,12 @@ export const ManageBooking = props => {
     end: ''
   })
 
-  function handleChange ({ target }) {
-    const updatedRow = { ...row, [target.name]: target.value }
+  function handleChange (e) {
+    let newDate = new Date(row.start)
+    newDate.setHours(e.target.value.substring(0, 2))
+    newDate.setMinutes(e.target.value.substring(3, 5))
+
+    const updatedRow = { ...row, [e.target.name]: newDate }
     setRow(updatedRow)
   }
 
