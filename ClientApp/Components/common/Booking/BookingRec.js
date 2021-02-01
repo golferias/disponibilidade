@@ -28,7 +28,7 @@ export default class BookingRec extends Component {
 
     const customerName = getCustomerName(
       this.props.customers,
-      this.props.book.idcliente
+      this.props.book.customerId
     )
 
     const serviceName = getServiceName(

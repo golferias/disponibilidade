@@ -13,7 +13,7 @@ export const ManageBooking = props => {
   const [row, setRow] = useState({
     id: null,
     start: '',
-    idcliente: '',
+    customerId: '',
     services: [],
     end: ''
   })

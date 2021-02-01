@@ -1812,7 +1812,7 @@
   "booking": [
     {
       "id": 1,
-      "idcliente": 1,
+      "customerId": 1,
       "services": [
         1,
         2
@@ -1822,7 +1822,7 @@
     },
     {
       "id": 2,
-      "idcliente": 2,
+      "customerId": 2,
       "services": [
         2
       ],
@@ -1831,7 +1831,7 @@
     },
     {
       "id": 3,
-      "idcliente": 3,
+      "customerId": 3,
       "services": [
         3
       ],

@@ -6054,7 +6054,7 @@ var BookingRec = function (_Component) {
       var dataStart = new Date(this.props.book.start);
       var dataEnd = new Date(this.props.book.end);
 
-      var customerName = getCustomerName(this.props.customers, this.props.book.idcliente);
+      var customerName = getCustomerName(this.props.customers, this.props.book.customerId);
 
       var serviceName = getServiceName(this.props.services, this.props.book.services);
 
@@ -15577,7 +15577,7 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
   var _useState3 = (0, _react.useState)({
     id: null,
     start: '',
-    idcliente: '',
+    customerId: '',
     services: [],
     end: ''
   }),
@@ -15755,7 +15755,7 @@ function getServices(serviceList, ids) {
 }
 
 function BookingForm(props) {
-  var customerSelected = getCustomer(props.customers, props.booking.idcliente);
+  var customerSelected = getCustomer(props.customers, props.booking.customerId);
   var servicesSelected = getServices(props.services, props.booking.services);
 
   function handleClick(e) {

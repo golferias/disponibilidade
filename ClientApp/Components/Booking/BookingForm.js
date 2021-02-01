@@ -17,7 +17,7 @@ function getServices (serviceList, ids) {
 }
 
 function BookingForm (props) {
-  const customerSelected = getCustomer(props.customers, props.booking.idcliente)
+  const customerSelected = getCustomer(props.customers, props.booking.customerId)
   const servicesSelected = getServices(props.services, props.booking.services)
 
   function handleClick (e) {
