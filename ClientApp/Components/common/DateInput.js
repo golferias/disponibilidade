@@ -6,11 +6,13 @@ function DateInput (props) {
   if (props.error.length > 0) {
     wrapperClass += ' has error'
   }
-  let data = new Date()
-  let time = data.toLocaleTimeString('pt-PT', {
-    hour: '2-digit',
-    minute: '2-digit'
-  })
+  let data
+  let time
+  // let data = new Date()
+  // let time = data.toLocaleTimeString('pt-PT', {
+  //   hour: '2-digit',
+  //   minute: '2-digit'
+  // })
 
   if (props.value) {
     data = new Date(props.value).toISOString().split('T')[0]
@@ -20,7 +22,7 @@ function DateInput (props) {
     })
   }
 
-   let showHtmlDate
+  let showHtmlDate
   if (props.showDate == 0) {
     showHtmlDate = <div></div>
   } else {

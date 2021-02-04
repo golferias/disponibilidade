@@ -27,6 +27,11 @@ export default [
       },
       {
         ...ManageBooking,
+        path: '/addbooking',
+        exact: true
+      },
+      {
+        ...ManageBooking,
         path: '/booking/:id',
         exact: true
       },

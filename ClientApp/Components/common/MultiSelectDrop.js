@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 export const MultiSelectDrop = props => {
-  // function onSelect (selectedList, selectedItem) {}
-
-  //function onRemove (selectedList, removedItem) {}
+  let wrapperClass = "form-group'"
+  if (props.error) {
+    wrapperClass += ' has error'
+  }
 
   return (
-    <div className='form-group'>
+    <div className={wrapperClass}>
       <label className='multiselectlabel' htmlFor={props.displayValue}>
         {props.label}
       </label>
@@ -18,23 +19,25 @@ export const MultiSelectDrop = props => {
             optionContainer: {
               // To change css for option container
               border: '2px solid',
-              'fontFamily': 'sans-serif'
+              fontFamily: 'sans-serif'
             },
             searchBox: {
               // To change search box element look
-              'fontFamily': 'sans-serif'
+              fontFamily: 'sans-serif'
             },
             multiselectContainer: {
               width: '95%',
-              'marginLeft': '.5rem',
-              'lineHeight': '1.25'
+              marginLeft: '.5rem',
+              lineHeight: '1.25'
             },
-            searchBox: { // To change search box element look
-                'fontFamily': 'sans-serif'
-              },
-              chips: { // To change css chips(Selected options)
-                'fontSize': '1rem'
-              }
+            searchBox: {
+              // To change search box element look
+              fontFamily: 'sans-serif'
+            },
+            chips: {
+              // To change css chips(Selected options)
+              fontSize: '1rem'
+            }
           }}
           hidePlaceholder={true}
           closeIcon={'cancel'}
@@ -48,6 +51,9 @@ export const MultiSelectDrop = props => {
           displayValue={props.displayValue} // Property name to display in the dropdown options
         />
       </div>
+      {props.error && (
+        <div className='alert alert-danger text'>{props.error}</div>
+      )}
     </div>
   )
 }
@@ -56,8 +62,6 @@ MultiSelectDrop.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   selectedValues: PropTypes.array,
-  onSelect: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
   singleSelect: PropTypes.bool.isRequired,
   displayValue: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired

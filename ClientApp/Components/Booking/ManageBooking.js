@@ -27,6 +27,18 @@ export const ManageBooking = props => {
     setRow(updatedRow)
   }
 
+  function onSelectCustomer (e) {
+    const updatedRow = { ...row, customerId: e[0].id }
+    setRow(updatedRow)
+  }
+
+  function onSelectService (e) {
+    let result = e.map(a => a.id)
+
+    const updatedRow = { ...row, services: result }
+    setRow(updatedRow)
+  }
+
   function handleSubmit (event) {
     event.preventDefault()
     if (!formIsValid()) return
@@ -53,7 +65,11 @@ export const ManageBooking = props => {
 
   function formIsValid () {
     const _errors = {}
-    if (!row.start) _errors.start = 'Nome obrigat\u00F3rio'
+    if (!row.customerId) _errors.customerId = 'Cliente obrigat\u00F3rio'
+    if (row.services.length == 0) _errors.services = 'Servico obrigat\u00F3rio'
+
+    if (!row.start) _errors.start = 'Hora de inicio obrigat\u00F3rio'
+    if (!row.end) _errors.end = 'Hora de fim obrigat\u00F3rio'
 
     setErrors(_errors)
     return Object.keys(_errors).length === 0
@@ -92,6 +108,8 @@ export const ManageBooking = props => {
               customers={props.customers}
               services={props.services}
               booking={row}
+              onSelectService={onSelectService}
+              onSelectCustomer={onSelectCustomer}
               onChange={handleChange}
               onSubmit={handleSubmit}
               errors={errors}

@@ -1,7 +1,7 @@
 import React from 'react'
 import HeaderTitle from '../common/HeaderTitle'
 import Home from './HomeBooking'
-import { Link } from 'react-router-dom'
+import Add from '../common/Add'
 
 export default function BookingContainer (props) {
   return (
@@ -9,16 +9,7 @@ export default function BookingContainer (props) {
       <div className='row'>
         <div className='col-12'>
           <HeaderTitle title='marcacoes' />
-          <div className='customers-title'>
-            <div className='filter-bar__more-filters col-12 d-flex align-items-center'>
-              <span className='square-icon square-icon--primary '>
-                <i className='fa fa-plus' aria-hidden='true' />
-              </span>
-              <Link className='filter-bar__more-filters__label' to='/booking'>
-                Adicionar Marcacao
-              </Link>
-            </div>
-          </div>
+          <Add title='Marcacao' linkto='/addbooking/' />
           <Home
             services={props.services}
             customers={props.customers}

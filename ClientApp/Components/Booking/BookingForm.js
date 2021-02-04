@@ -17,7 +17,10 @@ function getServices (serviceList, ids) {
 }
 
 function BookingForm (props) {
-  const customerSelected = getCustomer(props.customers, props.booking.customerId)
+  const customerSelected = getCustomer(
+    props.customers,
+    props.booking.customerId
+  )
   const servicesSelected = getServices(props.services, props.booking.services)
 
   function handleClick (e) {
@@ -25,17 +28,30 @@ function BookingForm (props) {
     props.onChange(e)
   }
 
+  function onSelectCustomer (e) {
+    props.onSelectCustomer(e)
+  }
+
+  function onSelectService (e) {
+    props.onSelectService(e)
+  }
+
   return (
     <form onSubmit={props.onSubmit}>
       <MultiSelectDrop
+        onSelect={onSelectCustomer}
         selectedValue={customerSelected}
         placeholder={'Selecionar Cliente '}
         label='Cliente'
         options={props.customers}
         singleSelect={true}
         displayValue={'name'}
+        error={props.errors.customerId}
       ></MultiSelectDrop>
       <MultiSelectDrop
+        error={props.errors.services}
+        onRemove={onSelectService}
+        onSelect={onSelectService}
         selectedValue={servicesSelected}
         placeholder={'Selecionar Servico'}
         label='Servicos'
