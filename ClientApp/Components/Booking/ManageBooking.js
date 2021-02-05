@@ -12,10 +12,10 @@ export const ManageBooking = props => {
   const [errors, setErrors] = useState({})
   const [row, setRow] = useState({
     id: null,
-    start: '',
+    start: new Date().toISOString(),
     customerId: '',
     services: [],
-    end: ''
+    end: new Date().toISOString()
   })
 
   function handleChange (e) {
@@ -102,11 +102,23 @@ export const ManageBooking = props => {
     const id = props.match.params.id
 
     if (id) {
-      var filteredArray = props.booking.data.filter(
+      let filteredArray = props.booking.data.filter(
         item => item.id.toString() === id.toString()
       )
 
       setRow(filteredArray[0])
+    } else {
+      const defaultDate = new Date()
+      let defaultEndDate = new Date(defaultDate.getTime() + 1 * 60 * 60 * 1000)
+
+      let row = {
+        id: null,
+        start: defaultDate.toISOString(),
+        customerId: '',
+        services: [],
+        end: defaultEndDate.toISOString()
+      }
+      setRow(row)
     }
     return
   }, [props.match.params.id])

@@ -1609,17 +1609,17 @@ var LOAD = exports.LOAD = 'BOOKING_LOAD';
 var LOAD_SUCCESS = exports.LOAD_SUCCESS = 'BOOKING_LOAD_SUCCESS';
 var LOAD_FAIL = exports.LOAD_FAIL = 'BOOKING_LOAD_FAIL';
 
-var UPDATE = exports.UPDATE = 'UPDATE_BOOKING';
-var UPDATE_SUCCESS = exports.UPDATE_SUCCESS = 'UPDATE_SUCCESS_BOOKING';
-var UPDATE_FAIL = exports.UPDATE_FAIL = 'UPDATE_FAIL_BOOKING';
+var UPDATE = exports.UPDATE = 'BOOKING_UPDATE';
+var UPDATE_SUCCESS = exports.UPDATE_SUCCESS = 'BOOKING_UPDATE_SUCCESS';
+var UPDATE_FAIL = exports.UPDATE_FAIL = 'BOOKING_UPDATE_FAIL';
 
-var DELETE = exports.DELETE = 'DELETE_BOOKING';
-var DELETE_SUCCESS = exports.DELETE_SUCCESS = 'DELETE_SUCCESS_BOOKING';
-var DELETE_FAIL = exports.DELETE_FAIL = 'DELETE_FAIL_BOOKING';
+var DELETE = exports.DELETE = 'BOOKING_DELETE';
+var DELETE_SUCCESS = exports.DELETE_SUCCESS = 'BOOKING_DELETE_SUCCESS';
+var DELETE_FAIL = exports.DELETE_FAIL = 'BOOKING_DELETE_FAIL';
 
-var CREATE = exports.CREATE = 'CREATE_BOOKING';
-var CREATE_SUCCESS = exports.CREATE_SUCCESS = 'CREATE_SUCCESS_BOOKING';
-var CREATE_FAIL = exports.CREATE_FAIL = 'CREATE_FAIL_BOOKING';
+var CREATE = exports.CREATE = 'BOOKING_CREATE';
+var CREATE_SUCCESS = exports.CREATE_SUCCESS = 'BOOKING_CREATE_SUCCESS';
+var CREATE_FAIL = exports.CREATE_FAIL = 'BOOKING_CREATE_FAIL';
 
 var FILTERCALENDARLIST = exports.FILTERCALENDARLIST = 'FILTERCALENDARLIST';
 
@@ -1635,32 +1635,32 @@ function BookingFetchData() {
     }
   };
 }
-function ParseBirth(customerRec) {
-  if (customerRec.birth === '') {
-    return _extends({}, customerRec, { birth: null });
-  }
+// function ParseBirth (customerRec) {
+//   if (customerRec.birth === '') {
+//     return { ...customerRec, birth: null }
+//   }
 
-  return customerRec;
-}
+//   return customerRec
+// }
 
-function ParsePhone(customerRec) {
-  if (customerRec.phone && customerRec.phone.length > 0) {
-    return _extends({}, customerRec, { phone: parseInt(customerRec.phone) });
-  }
-  if (customerRec.phone === '') {
-    return _extends({}, customerRec, { phone: null });
-  }
-  return customerRec;
-}
+// function ParsePhone (customerRec) {
+//   if (customerRec.phone && customerRec.phone.length > 0) {
+//     return { ...customerRec, phone: parseInt(customerRec.phone) }
+//   }
+//   if (customerRec.phone === '') {
+//     return { ...customerRec, phone: null }
+//   }
+//   return customerRec
+// }
 function SetIdZero(customerRec) {
   return _extends({}, customerRec, { id: 0 });
 }
 
-function ParseValidations(customerRec) {
-  customerRec = ParsePhone(customerRec);
-  customerRec = ParseBirth(customerRec);
-  return customerRec;
-}
+// function ParseValidations (customerRec) {
+//   customerRec = ParsePhone(customerRec)
+//   customerRec = ParseBirth(customerRec)
+//   return customerRec
+// }
 
 function dispatchUpdateFilterList(newDate) {
   console.log('actions/booking.js/dispatchUpdateFilterList FILTERCALENDARLIST....');
@@ -1672,7 +1672,7 @@ function dispatchUpdateFilterList(newDate) {
 
 function Add(Rec) {
   console.log('actions/booking.js/AddBooking CREATE....');
-  Rec = ParseValidations(Rec);
+  //  Rec = ParseValidations(Rec)
 
   Rec = SetIdZero(Rec);
   return {
@@ -1690,7 +1690,7 @@ function Add(Rec) {
 function updateBooking(Rec) {
   console.log('actions/booking.js/updateBooking UPDATE....');
 
-  Rec = ParseValidations(Rec);
+  // Rec = ParseValidations(Rec)
   return {
     type: UPDATE,
     payload: {
@@ -1706,7 +1706,7 @@ function updateBooking(Rec) {
 function Bdelete(Rec) {
   console.log('actions/booking.js/delete DELETE....');
 
-  Rec = ParseValidations(Rec);
+  // Rec = ParseValidations(Rec)
   return {
     type: DELETE,
     payload: {
@@ -9604,7 +9604,7 @@ function booking() {
       {
         console.log('--- Triggered CREATE ---');
         Object.assign({}, state, {
-          isLoading: false,
+          isLoading: true,
           hasErrored: false
         });
         var customerToCreate = action.payload.request.data;
@@ -15564,10 +15564,10 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
 
   var _useState3 = (0, _react.useState)({
     id: null,
-    start: '',
+    start: new Date().toISOString(),
     customerId: '',
     services: [],
-    end: ''
+    end: new Date().toISOString()
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       row = _useState4[0],
@@ -15660,6 +15660,18 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
       });
 
       setRow(filteredArray[0]);
+    } else {
+      var defaultDate = new Date();
+      var defaultEndDate = new Date(defaultDate.getTime() + 1 * 60 * 60 * 1000);
+
+      var _row = {
+        id: null,
+        start: defaultDate.toISOString(),
+        customerId: '',
+        services: [],
+        end: defaultEndDate.toISOString()
+      };
+      setRow(_row);
     }
     return;
   }, [props.match.params.id]);
@@ -16107,7 +16119,7 @@ DateInput.propTypes = {
   name: _propTypes2.default.string.isRequired,
   label: _propTypes2.default.string.isRequired,
   onChange: _propTypes2.default.func.isRequired,
-  value: _propTypes2.default.string,
+  //value: PropTypes.Date,
   error: _propTypes2.default.string,
   placeholder: _propTypes2.default.string
 };

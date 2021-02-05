@@ -130,7 +130,7 @@ import {
       case CREATE: {
         console.log('--- Triggered CREATE ---')
         Object.assign({}, state, {
-          isLoading: false,
+          isLoading: true,
           hasErrored: false
         })
         const customerToCreate = action.payload.request.data

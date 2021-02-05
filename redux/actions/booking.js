@@ -2,17 +2,17 @@ export const LOAD = 'BOOKING_LOAD'
 export const LOAD_SUCCESS = 'BOOKING_LOAD_SUCCESS'
 export const LOAD_FAIL = 'BOOKING_LOAD_FAIL'
 
-export const UPDATE = 'UPDATE_BOOKING'
-export const UPDATE_SUCCESS = 'UPDATE_SUCCESS_BOOKING'
-export const UPDATE_FAIL = 'UPDATE_FAIL_BOOKING'
+export const UPDATE = 'BOOKING_UPDATE'
+export const UPDATE_SUCCESS = 'BOOKING_UPDATE_SUCCESS'
+export const UPDATE_FAIL = 'BOOKING_UPDATE_FAIL'
 
-export const DELETE = 'DELETE_BOOKING'
-export const DELETE_SUCCESS = 'DELETE_SUCCESS_BOOKING'
-export const DELETE_FAIL = 'DELETE_FAIL_BOOKING'
+export const DELETE = 'BOOKING_DELETE'
+export const DELETE_SUCCESS = 'BOOKING_DELETE_SUCCESS'
+export const DELETE_FAIL = 'BOOKING_DELETE_FAIL'
 
-export const CREATE = 'CREATE_BOOKING'
-export const CREATE_SUCCESS = 'CREATE_SUCCESS_BOOKING'
-export const CREATE_FAIL = 'CREATE_FAIL_BOOKING'
+export const CREATE = 'BOOKING_CREATE'
+export const CREATE_SUCCESS = 'BOOKING_CREATE_SUCCESS'
+export const CREATE_FAIL = 'BOOKING_CREATE_FAIL'
 
 export const FILTERCALENDARLIST = 'FILTERCALENDARLIST'
 
@@ -28,32 +28,32 @@ export function BookingFetchData () {
     }
   }
 }
-function ParseBirth (customerRec) {
-  if (customerRec.birth === '') {
-    return { ...customerRec, birth: null }
-  }
+// function ParseBirth (customerRec) {
+//   if (customerRec.birth === '') {
+//     return { ...customerRec, birth: null }
+//   }
 
-  return customerRec
-}
+//   return customerRec
+// }
 
-function ParsePhone (customerRec) {
-  if (customerRec.phone && customerRec.phone.length > 0) {
-    return { ...customerRec, phone: parseInt(customerRec.phone) }
-  }
-  if (customerRec.phone === '') {
-    return { ...customerRec, phone: null }
-  }
-  return customerRec
-}
+// function ParsePhone (customerRec) {
+//   if (customerRec.phone && customerRec.phone.length > 0) {
+//     return { ...customerRec, phone: parseInt(customerRec.phone) }
+//   }
+//   if (customerRec.phone === '') {
+//     return { ...customerRec, phone: null }
+//   }
+//   return customerRec
+// }
 function SetIdZero (customerRec) {
   return { ...customerRec, id: 0 }
 }
 
-function ParseValidations (customerRec) {
-  customerRec = ParsePhone(customerRec)
-  customerRec = ParseBirth(customerRec)
-  return customerRec
-}
+// function ParseValidations (customerRec) {
+//   customerRec = ParsePhone(customerRec)
+//   customerRec = ParseBirth(customerRec)
+//   return customerRec
+// }
 
 export function dispatchUpdateFilterList (newDate) {
   console.log(
@@ -67,7 +67,7 @@ export function dispatchUpdateFilterList (newDate) {
 
 export function Add (Rec) {
   console.log('actions/booking.js/AddBooking CREATE....')
-  Rec = ParseValidations(Rec)
+  //  Rec = ParseValidations(Rec)
 
   Rec = SetIdZero(Rec)
   return {
@@ -87,7 +87,7 @@ export function Add (Rec) {
 export function updateBooking (Rec) {
   console.log('actions/booking.js/updateBooking UPDATE....')
 
-  Rec = ParseValidations(Rec)
+  // Rec = ParseValidations(Rec)
   return {
     type: UPDATE,
     payload: {
@@ -105,7 +105,7 @@ export function updateBooking (Rec) {
 export function Bdelete (Rec) {
   console.log('actions/booking.js/delete DELETE....')
 
-  Rec = ParseValidations(Rec)
+  // Rec = ParseValidations(Rec)
   return {
     type: DELETE,
     payload: {
