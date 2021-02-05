@@ -14,9 +14,7 @@ export const CREATE = 'CREATE_BOOKING'
 export const CREATE_SUCCESS = 'CREATE_SUCCESS_BOOKING'
 export const CREATE_FAIL = 'CREATE_FAIL_BOOKING'
 
-
-export const FILTERCALENDARLIST ='FILTERCALENDARLIST'
-
+export const FILTERCALENDARLIST = 'FILTERCALENDARLIST'
 
 export function BookingFetchData () {
   console.log('actions/booking.js/FetchData LOAD....')
@@ -34,7 +32,7 @@ function ParseBirth (customerRec) {
   if (customerRec.birth === '') {
     return { ...customerRec, birth: null }
   }
-  
+
   return customerRec
 }
 
@@ -57,8 +55,10 @@ function ParseValidations (customerRec) {
   return customerRec
 }
 
-export function dispatchUpdateFilterList(newDate){
-  console.log('actions/booking.js/dispatchUpdateFilterList FILTERCALENDARLIST....')
+export function dispatchUpdateFilterList (newDate) {
+  console.log(
+    'actions/booking.js/dispatchUpdateFilterList FILTERCALENDARLIST....'
+  )
   return {
     type: FILTERCALENDARLIST,
     data: newDate
@@ -66,7 +66,7 @@ export function dispatchUpdateFilterList(newDate){
 }
 
 export function Add (Rec) {
-  console.log('actions/booking.js/Add CREATE....')
+  console.log('actions/booking.js/AddBooking CREATE....')
   Rec = ParseValidations(Rec)
 
   Rec = SetIdZero(Rec)
@@ -84,8 +84,8 @@ export function Add (Rec) {
   }
 }
 
-export function update (Rec) {
-  console.log('actions/booking.js/updateCustomer UPDATE....')
+export function updateBooking (Rec) {
+  console.log('actions/booking.js/updateBooking UPDATE....')
 
   Rec = ParseValidations(Rec)
   return {

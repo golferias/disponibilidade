@@ -1600,49 +1600,78 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.ServicesFetchData = ServicesFetchData;
+exports.BookingFetchData = BookingFetchData;
+exports.dispatchUpdateFilterList = dispatchUpdateFilterList;
 exports.Add = Add;
-exports.Update = Update;
+exports.updateBooking = updateBooking;
 exports.Bdelete = Bdelete;
-var LOAD = exports.LOAD = 'SERVICES_LOAD';
-var LOAD_SUCCESS = exports.LOAD_SUCCESS = 'SERVICES_LOAD_SUCCESS';
-var LOAD_FAIL = exports.LOAD_FAIL = 'SERVICES_LOAD_FAIL';
+var LOAD = exports.LOAD = 'BOOKING_LOAD';
+var LOAD_SUCCESS = exports.LOAD_SUCCESS = 'BOOKING_LOAD_SUCCESS';
+var LOAD_FAIL = exports.LOAD_FAIL = 'BOOKING_LOAD_FAIL';
 
-var UPDATE = exports.UPDATE = 'SERVICE_UPDATE';
-var UPDATE_SUCCESS = exports.UPDATE_SUCCESS = 'SERVICE_UPDATE_SUCCESS';
-var UPDATE_FAIL = exports.UPDATE_FAIL = 'SERVICE_UPDATE_FAIL';
+var UPDATE = exports.UPDATE = 'UPDATE_BOOKING';
+var UPDATE_SUCCESS = exports.UPDATE_SUCCESS = 'UPDATE_SUCCESS_BOOKING';
+var UPDATE_FAIL = exports.UPDATE_FAIL = 'UPDATE_FAIL_BOOKING';
 
-var DELETE = exports.DELETE = 'SERVICE_DELETE';
-var DELETE_SUCCESS = exports.DELETE_SUCCESS = 'SERVICE_DELETE_SUCCESS';
-var DELETE_FAIL = exports.DELETE_FAIL = 'SERVICE_DELETE_FAIL';
+var DELETE = exports.DELETE = 'DELETE_BOOKING';
+var DELETE_SUCCESS = exports.DELETE_SUCCESS = 'DELETE_SUCCESS_BOOKING';
+var DELETE_FAIL = exports.DELETE_FAIL = 'DELETE_FAIL_BOOKING';
 
-var CREATE = exports.CREATE = 'SERVICE_CREATE';
-var CREATE_SUCCESS = exports.CREATE_SUCCESS = 'SERVICE_CREATE_SUCCESS';
-var CREATE_FAIL = exports.CREATE_FAIL = 'SERVICE_CREATE_FAIL';
+var CREATE = exports.CREATE = 'CREATE_BOOKING';
+var CREATE_SUCCESS = exports.CREATE_SUCCESS = 'CREATE_SUCCESS_BOOKING';
+var CREATE_FAIL = exports.CREATE_FAIL = 'CREATE_FAIL_BOOKING';
 
-function ServicesFetchData() {
-  console.log('actions/services.js/FetchData LOAD....');
+var FILTERCALENDARLIST = exports.FILTERCALENDARLIST = 'FILTERCALENDARLIST';
+
+function BookingFetchData() {
+  console.log('actions/booking.js/FetchData LOAD....');
 
   return {
     type: LOAD,
     payload: {
       request: {
-        url: '/services'
+        url: '/booking'
       }
     }
   };
 }
+function ParseBirth(customerRec) {
+  if (customerRec.birth === '') {
+    return _extends({}, customerRec, { birth: null });
+  }
 
+  return customerRec;
+}
+
+function ParsePhone(customerRec) {
+  if (customerRec.phone && customerRec.phone.length > 0) {
+    return _extends({}, customerRec, { phone: parseInt(customerRec.phone) });
+  }
+  if (customerRec.phone === '') {
+    return _extends({}, customerRec, { phone: null });
+  }
+  return customerRec;
+}
 function SetIdZero(customerRec) {
   return _extends({}, customerRec, { id: 0 });
 }
 
 function ParseValidations(customerRec) {
+  customerRec = ParsePhone(customerRec);
+  customerRec = ParseBirth(customerRec);
   return customerRec;
 }
 
+function dispatchUpdateFilterList(newDate) {
+  console.log('actions/booking.js/dispatchUpdateFilterList FILTERCALENDARLIST....');
+  return {
+    type: FILTERCALENDARLIST,
+    data: newDate
+  };
+}
+
 function Add(Rec) {
-  console.log('actions/services.js/Add CREATE....');
+  console.log('actions/booking.js/AddBooking CREATE....');
   Rec = ParseValidations(Rec);
 
   Rec = SetIdZero(Rec);
@@ -1651,15 +1680,15 @@ function Add(Rec) {
     payload: {
       request: {
         method: 'POST',
-        url: '/services',
+        url: '/booking',
         data: _extends({}, Rec)
       }
     }
   };
 }
 
-function Update(Rec) {
-  console.log('actions/services.js/update UPDATE....');
+function updateBooking(Rec) {
+  console.log('actions/booking.js/updateBooking UPDATE....');
 
   Rec = ParseValidations(Rec);
   return {
@@ -1667,7 +1696,7 @@ function Update(Rec) {
     payload: {
       request: {
         method: 'PUT',
-        url: '/services/' + Rec.id,
+        url: '/booking/' + Rec.id,
         data: _extends({}, Rec)
       }
     }
@@ -1675,7 +1704,7 @@ function Update(Rec) {
 }
 
 function Bdelete(Rec) {
-  console.log('actions/services.js/delete DELETE....');
+  console.log('actions/booking.js/delete DELETE....');
 
   Rec = ParseValidations(Rec);
   return {
@@ -1683,7 +1712,7 @@ function Bdelete(Rec) {
     payload: {
       request: {
         method: 'Delete',
-        url: '/services/' + Rec.id,
+        url: '/booking/' + Rec.id,
         data: _extends({}, Rec)
       }
     }
@@ -2654,78 +2683,49 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.BookingFetchData = BookingFetchData;
-exports.dispatchUpdateFilterList = dispatchUpdateFilterList;
+exports.ServicesFetchData = ServicesFetchData;
 exports.Add = Add;
-exports.update = update;
+exports.Update = Update;
 exports.Bdelete = Bdelete;
-var LOAD = exports.LOAD = 'BOOKING_LOAD';
-var LOAD_SUCCESS = exports.LOAD_SUCCESS = 'BOOKING_LOAD_SUCCESS';
-var LOAD_FAIL = exports.LOAD_FAIL = 'BOOKING_LOAD_FAIL';
+var LOAD = exports.LOAD = 'SERVICES_LOAD';
+var LOAD_SUCCESS = exports.LOAD_SUCCESS = 'SERVICES_LOAD_SUCCESS';
+var LOAD_FAIL = exports.LOAD_FAIL = 'SERVICES_LOAD_FAIL';
 
-var UPDATE = exports.UPDATE = 'UPDATE_BOOKING';
-var UPDATE_SUCCESS = exports.UPDATE_SUCCESS = 'UPDATE_SUCCESS_BOOKING';
-var UPDATE_FAIL = exports.UPDATE_FAIL = 'UPDATE_FAIL_BOOKING';
+var UPDATE = exports.UPDATE = 'SERVICE_UPDATE';
+var UPDATE_SUCCESS = exports.UPDATE_SUCCESS = 'SERVICE_UPDATE_SUCCESS';
+var UPDATE_FAIL = exports.UPDATE_FAIL = 'SERVICE_UPDATE_FAIL';
 
-var DELETE = exports.DELETE = 'DELETE_BOOKING';
-var DELETE_SUCCESS = exports.DELETE_SUCCESS = 'DELETE_SUCCESS_BOOKING';
-var DELETE_FAIL = exports.DELETE_FAIL = 'DELETE_FAIL_BOOKING';
+var DELETE = exports.DELETE = 'SERVICE_DELETE';
+var DELETE_SUCCESS = exports.DELETE_SUCCESS = 'SERVICE_DELETE_SUCCESS';
+var DELETE_FAIL = exports.DELETE_FAIL = 'SERVICE_DELETE_FAIL';
 
-var CREATE = exports.CREATE = 'CREATE_BOOKING';
-var CREATE_SUCCESS = exports.CREATE_SUCCESS = 'CREATE_SUCCESS_BOOKING';
-var CREATE_FAIL = exports.CREATE_FAIL = 'CREATE_FAIL_BOOKING';
+var CREATE = exports.CREATE = 'SERVICE_CREATE';
+var CREATE_SUCCESS = exports.CREATE_SUCCESS = 'SERVICE_CREATE_SUCCESS';
+var CREATE_FAIL = exports.CREATE_FAIL = 'SERVICE_CREATE_FAIL';
 
-var FILTERCALENDARLIST = exports.FILTERCALENDARLIST = 'FILTERCALENDARLIST';
-
-function BookingFetchData() {
-  console.log('actions/booking.js/FetchData LOAD....');
+function ServicesFetchData() {
+  console.log('actions/services.js/FetchData LOAD....');
 
   return {
     type: LOAD,
     payload: {
       request: {
-        url: '/booking'
+        url: '/services'
       }
     }
   };
 }
-function ParseBirth(customerRec) {
-  if (customerRec.birth === '') {
-    return _extends({}, customerRec, { birth: null });
-  }
 
-  return customerRec;
-}
-
-function ParsePhone(customerRec) {
-  if (customerRec.phone && customerRec.phone.length > 0) {
-    return _extends({}, customerRec, { phone: parseInt(customerRec.phone) });
-  }
-  if (customerRec.phone === '') {
-    return _extends({}, customerRec, { phone: null });
-  }
-  return customerRec;
-}
 function SetIdZero(customerRec) {
   return _extends({}, customerRec, { id: 0 });
 }
 
 function ParseValidations(customerRec) {
-  customerRec = ParsePhone(customerRec);
-  customerRec = ParseBirth(customerRec);
   return customerRec;
 }
 
-function dispatchUpdateFilterList(newDate) {
-  console.log('actions/booking.js/dispatchUpdateFilterList FILTERCALENDARLIST....');
-  return {
-    type: FILTERCALENDARLIST,
-    data: newDate
-  };
-}
-
 function Add(Rec) {
-  console.log('actions/booking.js/Add CREATE....');
+  console.log('actions/services.js/Add CREATE....');
   Rec = ParseValidations(Rec);
 
   Rec = SetIdZero(Rec);
@@ -2734,15 +2734,15 @@ function Add(Rec) {
     payload: {
       request: {
         method: 'POST',
-        url: '/booking',
+        url: '/services',
         data: _extends({}, Rec)
       }
     }
   };
 }
 
-function update(Rec) {
-  console.log('actions/booking.js/updateCustomer UPDATE....');
+function Update(Rec) {
+  console.log('actions/services.js/update UPDATE....');
 
   Rec = ParseValidations(Rec);
   return {
@@ -2750,7 +2750,7 @@ function update(Rec) {
     payload: {
       request: {
         method: 'PUT',
-        url: '/booking/' + Rec.id,
+        url: '/services/' + Rec.id,
         data: _extends({}, Rec)
       }
     }
@@ -2758,7 +2758,7 @@ function update(Rec) {
 }
 
 function Bdelete(Rec) {
-  console.log('actions/booking.js/delete DELETE....');
+  console.log('actions/services.js/delete DELETE....');
 
   Rec = ParseValidations(Rec);
   return {
@@ -2766,7 +2766,7 @@ function Bdelete(Rec) {
     payload: {
       request: {
         method: 'Delete',
-        url: '/booking/' + Rec.id,
+        url: '/services/' + Rec.id,
         data: _extends({}, Rec)
       }
     }
@@ -9474,7 +9474,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.booking = booking;
 
-var _booking = __webpack_require__(15);
+var _booking = __webpack_require__(9);
 
 var _sortArray = __webpack_require__(27);
 
@@ -9667,7 +9667,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.services = services;
 
-var _services = __webpack_require__(9);
+var _services = __webpack_require__(15);
 
 var _sortArray = __webpack_require__(27);
 
@@ -13541,9 +13541,9 @@ var _reactRedux = __webpack_require__(3);
 
 var _customers = __webpack_require__(26);
 
-var _booking = __webpack_require__(15);
+var _booking = __webpack_require__(9);
 
-var _services = __webpack_require__(9);
+var _services = __webpack_require__(15);
 
 var _Loading = __webpack_require__(8);
 
@@ -14491,7 +14491,7 @@ var _reactRedux = __webpack_require__(3);
 
 var _calendar = __webpack_require__(28);
 
-var _booking = __webpack_require__(15);
+var _booking = __webpack_require__(9);
 
 var _Loading = __webpack_require__(8);
 
@@ -14785,7 +14785,7 @@ var _BookingContainer2 = _interopRequireDefault(_BookingContainer);
 
 var _reactRedux = __webpack_require__(3);
 
-var _booking = __webpack_require__(15);
+var _booking = __webpack_require__(9);
 
 var _Loading = __webpack_require__(8);
 
@@ -15033,7 +15033,7 @@ var _ServicesContainer2 = _interopRequireDefault(_ServicesContainer);
 
 var _reactRedux = __webpack_require__(3);
 
-var _services = __webpack_require__(9);
+var _services = __webpack_require__(15);
 
 var _Loading = __webpack_require__(8);
 
@@ -15361,7 +15361,7 @@ var _ServiceForm = __webpack_require__(179);
 
 var _ServiceForm2 = _interopRequireDefault(_ServiceForm);
 
-var _services = __webpack_require__(9);
+var _services = __webpack_require__(15);
 
 var _Loading = __webpack_require__(8);
 
@@ -15544,7 +15544,7 @@ var _BookingForm = __webpack_require__(181);
 
 var _BookingForm2 = _interopRequireDefault(_BookingForm);
 
-var _services = __webpack_require__(9);
+var _booking = __webpack_require__(9);
 
 var _Loading = __webpack_require__(8);
 
@@ -15591,8 +15591,24 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
     var result = e.map(function (a) {
       return a.id;
     });
-
     var updatedRow = _extends({}, row, { services: result });
+    setRow(updatedRow);
+  }
+
+  function updateStateDates(newDate) {
+    var startDate = new Date(newDate);
+    var endDate = new Date(newDate);
+    var start = new Date(row.start);
+    var end = new Date(row.end);
+
+    startDate.setHours(start.getHours());
+    startDate.setMinutes(start.getMinutes());
+
+    endDate.setHours(end.getHours());
+    endDate.setMinutes(end.getMinutes());
+
+    var updatedRow = _extends({}, row, { start: startDate, end: endDate });
+
     setRow(updatedRow);
   }
 
@@ -15623,6 +15639,13 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
 
     if (!row.start) _errors.start = 'Hora de inicio obrigat\xF3rio';
     if (!row.end) _errors.end = 'Hora de fim obrigat\xF3rio';
+
+    //Validate start time with end time
+    var dateStart = new Date(row.start);
+    var dateEnd = new Date(row.end);
+    if (dateEnd < dateStart) {
+      _errors.end = 'Hora de fim nao pode ser menor que hora inicio';
+    }
 
     setErrors(_errors);
     return Object.keys(_errors).length === 0;
@@ -15657,9 +15680,11 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
           _react2.default.createElement(_BookingForm2.default, {
             dispatchUpdateTextHeader: function dispatchUpdateTextHeader(newDate) {
               props.dispatchUpdateTextHeader(newDate);
+              //  updateStateDates(newDate)
             },
             dispatchUpdateTextFooter: function dispatchUpdateTextFooter(newDate) {
               props.dispatchUpdateTextFooter(newDate);
+              updateStateDates(newDate);
             },
             textfooter: props.textfooter,
             textheader: props.textheader,
@@ -15688,10 +15713,16 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     // dispatching plain actions
     Add: function Add(row) {
-      return dispatch((0, _services.Add)(row));
+      return dispatch((0, _booking.Add)(row));
     },
     Update: function Update(row) {
-      return dispatch((0, _services.Update)(row));
+      return dispatch((0, _booking.updateBooking)(row));
+    },
+    dispatchUpdateTextHeader: function dispatchUpdateTextHeader(newDate) {
+      return dispatch((0, _calendar.dispatchUpdateTextHeader)(newDate));
+    },
+    dispatchUpdateTextFooter: function dispatchUpdateTextFooter(newDate) {
+      return dispatch((0, _calendar.dispatchUpdateTextFooter)(newDate));
     }
   };
 };
@@ -15708,12 +15739,7 @@ function mapStateToProps(state) {
 }
 
 exports.default = {
-  component: (0, _reactRedux.connect)(mapStateToProps, {
-    dispatchUpdateTextHeader: _calendar.dispatchUpdateTextHeader,
-    dispatchUpdateTextFooter: _calendar.dispatchUpdateTextFooter,
-    Add: _services.Add,
-    Update: _services.Update
-  })(ManageBooking)
+  component: (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ManageBooking)
 };
 
 /***/ }),

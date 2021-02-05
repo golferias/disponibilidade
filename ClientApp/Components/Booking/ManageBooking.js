@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { useEffect, useState } from 'react'
 import Form from './BookingForm'
-import { Add, Update } from '.././../../redux/actions/services'
+import { Add, updateBooking } from '.././../../redux/actions/booking'
 import Loading from '../common/Loading'
 import {
   dispatchUpdateTextHeader,
@@ -34,8 +34,24 @@ export const ManageBooking = props => {
 
   function onSelectService (e) {
     let result = e.map(a => a.id)
-
     const updatedRow = { ...row, services: result }
+    setRow(updatedRow)
+  }
+
+  function updateStateDates (newDate) {
+    let startDate = new Date(newDate)
+    let endDate = new Date(newDate)
+    const start = new Date(row.start)
+    const end = new Date(row.end)
+
+    startDate.setHours(start.getHours())
+    startDate.setMinutes(start.getMinutes())
+
+    endDate.setHours(end.getHours())
+    endDate.setMinutes(end.getMinutes())
+
+    let updatedRow = { ...row, start: startDate, end: endDate }
+
     setRow(updatedRow)
   }
 
@@ -71,6 +87,13 @@ export const ManageBooking = props => {
     if (!row.start) _errors.start = 'Hora de inicio obrigat\u00F3rio'
     if (!row.end) _errors.end = 'Hora de fim obrigat\u00F3rio'
 
+    //Validate start time with end time
+    let dateStart = new Date(row.start)
+    let dateEnd = new Date(row.end)
+    if (dateEnd < dateStart) {
+      _errors.end = 'Hora de fim nao pode ser menor que hora inicio'
+    }
+
     setErrors(_errors)
     return Object.keys(_errors).length === 0
   }
@@ -99,9 +122,11 @@ export const ManageBooking = props => {
             <Form
               dispatchUpdateTextHeader={newDate => {
                 props.dispatchUpdateTextHeader(newDate)
+                //  updateStateDates(newDate)
               }}
               dispatchUpdateTextFooter={newDate => {
                 props.dispatchUpdateTextFooter(newDate)
+                updateStateDates(newDate)
               }}
               textfooter={props.textfooter}
               textheader={props.textheader}
@@ -127,7 +152,11 @@ const mapDispatchToProps = dispatch => {
   return {
     // dispatching plain actions
     Add: row => dispatch(Add(row)),
-    Update: row => dispatch(Update(row))
+    Update: row => dispatch(updateBooking(row)),
+    dispatchUpdateTextHeader: newDate =>
+      dispatch(dispatchUpdateTextHeader(newDate)),
+    dispatchUpdateTextFooter: newDate =>
+      dispatch(dispatchUpdateTextFooter(newDate))
   }
 }
 
@@ -143,10 +172,5 @@ function mapStateToProps (state) {
 }
 
 export default {
-  component: connect(mapStateToProps, {
-    dispatchUpdateTextHeader,
-    dispatchUpdateTextFooter,
-    Add,
-    Update
-  })(ManageBooking)
+  component: connect(mapStateToProps, mapDispatchToProps)(ManageBooking)
 }
