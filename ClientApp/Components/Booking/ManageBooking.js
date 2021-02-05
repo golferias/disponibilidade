@@ -90,8 +90,8 @@ export const ManageBooking = props => {
     //Validate start time with end time
     let dateStart = new Date(row.start)
     let dateEnd = new Date(row.end)
-    if (dateEnd < dateStart) {
-      _errors.end = 'Hora de fim nao pode ser menor que hora inicio'
+    if (dateEnd <= dateStart) {
+      _errors.end = 'Hora de fim nao pode ser menor ou igual a hora de inicio'
     }
 
     setErrors(_errors)
