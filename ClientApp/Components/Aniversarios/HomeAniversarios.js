@@ -23,6 +23,8 @@ class HomeAniversarios extends Component {
           }
         }
       })
+      if (itemComponents.filter(x => x != undefined).length == 0)
+        itemComponents = []
     }
 
     return (
