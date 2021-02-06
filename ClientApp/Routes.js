@@ -10,6 +10,7 @@ import Booking from './Components/Booking/Booking'
 import Services from './Components/Services/Services'
 import ManageServices from './Components/Services/ManageServices'
 import ManageBooking from './Components/Booking/ManageBooking'
+import Aniversarios from './Components/Aniversarios/Aniversarios'
 
 export default [
   {
@@ -73,6 +74,11 @@ export default [
       {
         ...Login,
         path: '/login',
+        exact: true
+      },
+      {
+        ...Aniversarios,
+        path: '/aniversarios',
         exact: true
       },
       // {

@@ -12,7 +12,7 @@ export default class CustomerRec extends Component {
             <i>&nbsp;&nbsp; Email: </i> {this.props.customer.email}
           </div>
           <div className='customer-details'>
-            <i>&nbsp;&nbsp;Phone: </i>
+            <i>&nbsp;&nbsp;Contato: </i>
             {this.props.customer.phone}
           </div>
           <div className='customer-details'>

@@ -18,7 +18,7 @@ import { compareValues } from '../../ClientApp/Components/common/sortArray'
 export function customers (
   state = {
     data: [],
-    isLoading: true,
+    isLoading: false,
     hasErrored: false,
     errorMessage: ''
   },
@@ -122,7 +122,7 @@ export function customers (
     case CUSTOMER_CREATE: {
       console.log('--- Triggered CUSTOMER_CREATE ---')
       Object.assign({}, state, {
-        isLoading: false,
+        isLoading: true,
         hasErrored: false
       })
       const customerToCreate = action.payload.request.data
