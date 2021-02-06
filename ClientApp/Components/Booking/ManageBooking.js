@@ -17,6 +17,20 @@ export const ManageBooking = props => {
     services: [],
     end: new Date().toISOString()
   })
+  const months = [
+    'Janeiro',
+    'Fevereiro',
+    'Marco',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+  ]
 
   function handleChange (e) {
     let newDate = new Date(row.start)
@@ -92,6 +106,66 @@ export const ManageBooking = props => {
     let dateEnd = new Date(row.end)
     if (dateEnd <= dateStart) {
       _errors.end = 'Hora de fim nao pode ser menor ou igual a hora de inicio'
+    }
+
+    let bookingSameDay = []
+    props.booking.data.forEach(b => {
+      let bDate = new Date(b.start).toISOString().split('T')[0]
+      let currentDate = new Date(dateStart).toISOString().split('T')[0]
+      if (bDate == currentDate && b.id != row.id) {
+        let bookingStart = new Date(b.start)
+        //let bookingEnd = new Date(b.end)
+
+        let bEnd = new Date(b.end)
+        let bookingEnd15minutes = new Date(bEnd.getTime() - 15 * 60 * 1000)
+        let bookingStart15minutes = new Date(
+          bookingStart.getTime() + 15 * 60 * 1000
+        )
+        if (
+          dateStart < bookingStart &&
+          dateEnd > bookingStart &&
+          dateEnd < bEnd &&
+          dateEnd > bookingStart15minutes
+        ) {
+          bookingSameDay.push(b)
+        }
+        if (
+          dateStart >= bookingStart15minutes &&
+          dateEnd <= bookingEnd15minutes
+        ) {
+          bookingSameDay.push(b)
+        }
+        if (dateStart <= bookingStart && dateEnd >= bookingEnd15minutes) {
+          bookingSameDay.push(b)
+        }
+        if (dateStart >= bookingStart15minutes && dateEnd >= bEnd) {
+          bookingSameDay.push(b)
+        }
+      }
+    })
+
+    if (bookingSameDay.length > 0) {
+      const customer = props.customers.filter(
+        x => x.id == bookingSameDay[0].customerId
+      )[0]
+      const currentDate = new Date(bookingSameDay[0].start)
+      _errors.end =
+        'Existe uma marcacao das ' +
+        new Date(bookingSameDay[0].start)
+          .toISOString()
+          .split('T')[1]
+          .substring(0, 5) +
+        ' as ' +
+        new Date(bookingSameDay[0].end)
+          .toISOString()
+          .split('T')[1]
+          .substring(0, 5) +
+        ' para o cliente ' +
+        customer.name +
+        ' neste dia ' +
+        currentDate.getDate().toString() +
+        ' de ' +
+        months[currentDate.getMonth()]
     }
 
     setErrors(_errors)

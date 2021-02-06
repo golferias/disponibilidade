@@ -14638,7 +14638,7 @@ function CalendarContainer(props) {
         'div',
         { className: 'col-12' },
         _react2.default.createElement(_HeaderTitle2.default, { title: 'Calendario' }),
-        _react2.default.createElement(_Add2.default, { title: 'Marcacao', linkto: '/booking' }),
+        _react2.default.createElement(_Add2.default, { title: 'Marcacao', linkto: '/addbooking/' }),
         _react2.default.createElement(
           'div',
           null,
@@ -15573,6 +15573,8 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
       row = _useState4[0],
       setRow = _useState4[1];
 
+  var months = ['Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
   function handleChange(e) {
     var newDate = new Date(row.start);
     newDate.setHours(e.target.value.substring(0, 2));
@@ -15645,6 +15647,40 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
     var dateEnd = new Date(row.end);
     if (dateEnd <= dateStart) {
       _errors.end = 'Hora de fim nao pode ser menor ou igual a hora de inicio';
+    }
+
+    var bookingSameDay = [];
+    props.booking.data.forEach(function (b) {
+      var bDate = new Date(b.start).toISOString().split('T')[0];
+      var currentDate = new Date(dateStart).toISOString().split('T')[0];
+      if (bDate == currentDate && b.id != row.id) {
+        var bookingStart = new Date(b.start);
+        //let bookingEnd = new Date(b.end)
+
+        var bEnd = new Date(b.end);
+        var bookingEnd15minutes = new Date(bEnd.getTime() - 15 * 60 * 1000);
+        var bookingStart15minutes = new Date(bookingStart.getTime() + 15 * 60 * 1000);
+        if (dateStart < bookingStart && dateEnd > bookingStart && dateEnd < bEnd && dateEnd > bookingStart15minutes) {
+          bookingSameDay.push(b);
+        }
+        if (dateStart >= bookingStart15minutes && dateEnd <= bookingEnd15minutes) {
+          bookingSameDay.push(b);
+        }
+        if (dateStart <= bookingStart && dateEnd >= bookingEnd15minutes) {
+          bookingSameDay.push(b);
+        }
+        if (dateStart >= bookingStart15minutes && dateEnd >= bEnd) {
+          bookingSameDay.push(b);
+        }
+      }
+    });
+
+    if (bookingSameDay.length > 0) {
+      var customer = props.customers.filter(function (x) {
+        return x.id == bookingSameDay[0].customerId;
+      })[0];
+      var currentDate = new Date(bookingSameDay[0].start);
+      _errors.end = 'Existe uma marcacao das ' + new Date(bookingSameDay[0].start).toISOString().split('T')[1].substring(0, 5) + ' as ' + new Date(bookingSameDay[0].end).toISOString().split('T')[1].substring(0, 5) + ' para o cliente ' + customer.name + ' neste dia ' + currentDate.getDate().toString() + ' de ' + months[currentDate.getMonth()];
     }
 
     setErrors(_errors);
