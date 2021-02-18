@@ -1778,7 +1778,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function LoginUnsuccessful(props) {
   return _react2.default.createElement(
     'div',
-    { className: 'alert alert-danger alert-dismissible fade show' },
+    { className: 'alert alert-dismissible fade show text-center' },
     _react2.default.createElement(
       'h4',
       null,
