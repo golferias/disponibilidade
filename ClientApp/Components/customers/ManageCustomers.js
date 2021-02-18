@@ -26,7 +26,7 @@ export const ManageCustomerPage = props => {
       const prom1 = props.AddCustomer(customer)
       Promise.all([prom1])
         .then(() => {
-          props.history.push('/')
+          props.history.push('/customers')
         })
         .catch(() => {
           console.log('error on action')
@@ -35,7 +35,7 @@ export const ManageCustomerPage = props => {
       const prom1 = props.UpdateCustomer(customer)
       Promise.all([prom1])
         .then(() => {
-          props.history.push('/')
+          props.history.push('/customers')
         })
         .catch(() => {
           console.log('error on action')

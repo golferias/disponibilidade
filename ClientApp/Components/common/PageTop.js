@@ -7,9 +7,11 @@ export default function PageTop (props) {
       <header className='header'>
         <div className='container-main d-flex align-items-left justify-content-around'>
           {props.children}
-          <a href='/' rel='home' className='header-logo'>
+          {/* <a href='/' rel='home' className='header-logo'> */}
+          <div className='header-logo'>
             <img src='assets/images/SVCClogo.png' alt='SVCC' />
-          </a>
+          </div>
+          {/* </a> */}
         </div>
       </header>
     </div>

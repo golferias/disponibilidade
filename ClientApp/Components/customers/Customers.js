@@ -7,21 +7,25 @@ import {
 } from '.././../../redux/actions/customers'
 
 import { BookingFetchData } from '.././../../redux/actions/booking'
-import {ServicesFetchData} from '.././../../redux/actions/services'
+import { ServicesFetchData } from '.././../../redux/actions/services'
 import Loading from '../common/Loading'
+import LoginUnsuccessful from '../Login/LoginUnsuccessful'
 
 class Customers extends Component {
   componentDidMount () {
-    this.props.customersFetchData()
-    this.props.BookingFetchData()
-    this.props.ServicesFetchData()
-
+    if (!this.props.unauthorized) {
+      this.props.customersFetchData()
+      this.props.BookingFetchData()
+      this.props.ServicesFetchData()
+    }
   }
   deleteCustomer (customer) {
     this.props.deleteCustomer(customer)
   }
   render () {
-    if (this.props.isLoading) {
+    if (this.props.unauthorized) {
+      return <LoginUnsuccessful />
+    } else if (this.props.isLoading) {
       return <Loading title='A carregar Clientes...' />
     } else if (this.props.hasErrored) {
       return (
@@ -49,7 +53,8 @@ const mapStateToProps = state => {
     customers: state.customers.data,
     hasErrored: state.customers.hasErrored,
     isLoading: state.customers.isLoading,
-    errorMessage: state.customers.errorMessage
+    errorMessage: state.customers.errorMessage,
+    unauthorized: state.login.unauthorized
   }
 }
 
@@ -60,8 +65,10 @@ const mapStateToProps = state => {
 // }
 
 export default {
-  component: connect(mapStateToProps, { ServicesFetchData,BookingFetchData,customersFetchData, deleteCustomer })(
-    Customers
-  )
-  
+  component: connect(mapStateToProps, {
+    ServicesFetchData,
+    BookingFetchData,
+    customersFetchData,
+    deleteCustomer
+  })(Customers)
 }

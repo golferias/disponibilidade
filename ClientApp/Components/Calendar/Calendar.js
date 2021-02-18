@@ -11,6 +11,7 @@ import {
   Bdelete
 } from '.././../../redux/actions/booking'
 import Loading from '../common/Loading'
+import LoginUnsuccessful from '../Login/LoginUnsuccessful'
 class Calendar extends Component {
   // componentDidMount () {
 
@@ -19,7 +20,9 @@ class Calendar extends Component {
   // }
 
   render () {
-    if (this.props.isLoading) {
+    if (this.props.unauthorized) {
+      return <LoginUnsuccessful />
+    } else if (this.props.isLoading) {
       return <Loading title='A carregar Calendario...' />
     } else if (this.props.hasErrored) {
       return (
@@ -62,7 +65,8 @@ const mapStateToProps = state => {
     services: state.services.data,
     hasErrored: state.calendar.hasErrored,
     isLoading: state.calendar.isLoading,
-    errorMessage: state.calendar.errorMessage
+    errorMessage: state.calendar.errorMessage,
+    unauthorized: state.login.unauthorized
   }
 }
 

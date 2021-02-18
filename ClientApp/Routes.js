@@ -1,6 +1,5 @@
 import Home from './Components/home/Home'
 import Login from './Components/common/Login'
-import Speakers from './Components/speakers/Speakers'
 import RouteNotFound from './RouteNotFound'
 import Customers from './Components/customers/Customers'
 import ManageCustomers from './Components/customers/ManageCustomers'
@@ -23,7 +22,7 @@ export default [
       },
       {
         ...Customers,
-        path: '/',
+        path: '/customers',
         exact: true
       },
       {
@@ -73,7 +72,7 @@ export default [
       },
       {
         ...Login,
-        path: '/login',
+        path: '/',
         exact: true
       },
       {

@@ -6,7 +6,10 @@ function TextInput (props) {
   if (props.error.length > 0) {
     wrapperClass += ' has error'
   }
-
+  let type = 'text'
+  if (props.type) {
+    type = props.type
+  }
   return (
     <div className={wrapperClass}>
       <label className='textinput' htmlFor={props.id}>
@@ -15,7 +18,7 @@ function TextInput (props) {
       <div className='field'>
         <input
           id={props.id}
-          type='text'
+          type={type}
           onChange={props.onChange}
           name={props.name}
           value={props.value}

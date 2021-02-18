@@ -11677,4 +11677,13 @@ body {
   font-weight: 600; 
     margin-top: 1.5rem;
     margin-left: 0.8rem;
-}text-align: center;
+    text-align: center;
+}
+
+.main-menu{
+  position: relative;
+  z-index: 1;
+}
+.header-logo{
+  position:absolute
+}

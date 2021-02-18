@@ -28,31 +28,20 @@ export default function CodeCampMenu () {
     setIsVisible(!isVisible)
   }
   return (
-    <div>
+    <div className='main-menu'>
       <div onClick={handleClick} className='header__open-button-mobile'>
         <a href='' className='js-open-main-menu'>
           <i className='fa fa-bars' />
         </a>
       </div>
-
-      {/* <div className='header__user'>
-        <img
-          src='assets/images/user-icon.png'
-          className='header__user__icon'
-          alt='User Icon'
-        />
-        <span className='header__user__hello'>Hello, stranger</span>
-        <Link to='/login'>Login</Link>
-      </div> */}
-
-      <ul className='header__menu-list js-menu' style={cssProperties}>
+     <ul className='header__menu-list js-menu' style={cssProperties}>
         <li className='close-button-mobile snow-bg'>
           <a onClick={setCssVisibility} className='js-close-main-menu'>
             <i className='fa fa-remove' />
           </a>
         </li>
         <li className="snow-bg">
-          <Link to='/' onClick={setCssVisibility}>
+          <Link to='/customers' onClick={setCssVisibility}>
             Clientes
           </Link>
         </li>
