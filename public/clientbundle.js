@@ -1780,7 +1780,7 @@ function LoginUnsuccessful(props) {
     'div',
     { className: 'alert alert-danger alert-dismissible fade show' },
     _react2.default.createElement(
-      'h1',
+      'h4',
       null,
       ' ',
       _react2.default.createElement(
@@ -14300,7 +14300,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Version: 8'
+          'Version: 9'
         ),
         _react2.default.createElement(
           'p',
