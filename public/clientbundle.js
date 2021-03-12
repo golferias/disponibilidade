@@ -9045,7 +9045,7 @@ if (!production) {
   __webpack_require__(139).config();
 }
 
-var restUrl = production ? "https://magestapi.herokuapp.com" : "http://localhost:4000/rest";
+var restUrl = production ? "https://magestapi.herokuapp.com" : "https://localhost:49155/";
 
 var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
   baseURL: restUrl
@@ -9675,26 +9675,42 @@ function booking() {
     case _booking.CREATE:
       {
         console.log('--- Triggered CREATE ---');
-        Object.assign({}, state, {
+        return Object.assign({}, state, {
           isLoading: true,
           hasErrored: false
         });
-        var customerToCreate = action.payload.request.data;
-        var _newState2 = createCustomer(state, customerToCreate);
-        return _newState2;
+        // const customerToCreate = action.payload.request.data
+        // const newState = createCustomer(state, customerToCreate)
+        // return newState
       }
     case _booking.CREATE_SUCCESS:
       {
         console.log('--- Triggered CREATE_SUCCESS ---');
+        // return Object.assign({}, state, {
+        //   isLoading: false,
+        //   hasErrored: false
+        // })
 
-        Object.assign({}, state, {
-          data: action.payload.data,
+        // Object.assign({}, state, {
+        //  // data: action.payload.data,
+        //   isLoading: false,
+        //   hasErrored: false
+        // })
+        var customerToCreate = action.payload.data;
+        var _newState2 = createCustomer(state, customerToCreate);
+        return Object.assign({}, state, {
+          data: _newState2.data,
           isLoading: false,
           hasErrored: false
         });
-        var _customerToCreate = action.payload.data;
-        var _newState3 = createCustomer(state, _customerToCreate);
-        return _newState3;
+
+        // Object.assign({}, newState, {
+        //   // data: action.payload.data,
+        //    isLoading: false,
+        //    hasErrored: false
+        //  })
+
+        // return newState
       }
     case _booking.CREATE_FAIL:
       {
@@ -14300,7 +14316,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Version: 9'
+          'Version: 10'
         ),
         _react2.default.createElement(
           'p',
