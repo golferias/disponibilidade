@@ -14316,7 +14316,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Version: 10'
+          'Versao: 10'
         ),
         _react2.default.createElement(
           'p',
