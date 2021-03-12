@@ -129,25 +129,41 @@ import {
       ///////////// CREATE  /////////////////////////////////////////////////////////////////
       case CREATE: {
         console.log('--- Triggered CREATE ---')
-        Object.assign({}, state, {
+       return Object.assign({}, state, {
           isLoading: true,
           hasErrored: false
         })
-        const customerToCreate = action.payload.request.data
-        const newState = createCustomer(state, customerToCreate)
-        return newState
+        // const customerToCreate = action.payload.request.data
+        // const newState = createCustomer(state, customerToCreate)
+        // return newState
       }
       case CREATE_SUCCESS: {
         console.log('--- Triggered CREATE_SUCCESS ---')
-  
-        Object.assign({}, state, {
-          data: action.payload.data,
+          // return Object.assign({}, state, {
+        //   isLoading: false,
+        //   hasErrored: false
+        // })
+
+        // Object.assign({}, state, {
+        //  // data: action.payload.data,
+        //   isLoading: false,
+        //   hasErrored: false
+        // })
+        const customerToCreate = action.payload.data
+        let newState = createCustomer(state, customerToCreate)
+        return Object.assign({}, state, {
+          data: newState.data,
           isLoading: false,
           hasErrored: false
         })
-        const customerToCreate = action.payload.data
-        const newState = createCustomer(state, customerToCreate)
-        return newState
+
+        // Object.assign({}, newState, {
+        //   // data: action.payload.data,
+        //    isLoading: false,
+        //    hasErrored: false
+        //  })
+
+        // return newState
       }
       case CREATE_FAIL: {
         console.log('--- Triggered CREATE_FAIL ---')
