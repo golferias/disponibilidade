@@ -138,7 +138,11 @@ export const ManageBooking = props => {
         if (dateStart <= bookingStart && dateEnd >= bookingEnd15minutes) {
           bookingSameDay.push(b)
         }
-        if (dateStart >= bookingStart15minutes && dateEnd >= bEnd) {
+        if (
+          dateStart >= bookingStart15minutes &&
+          dateStart <= bEnd &&
+          dateEnd >= bEnd
+        ) {
           bookingSameDay.push(b)
         }
       }
