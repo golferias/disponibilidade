@@ -13160,7 +13160,7 @@ var Login = exports.Login = function Login(props) {
       setErrors = _useState2[1];
 
   var _useState3 = (0, _react.useState)({
-    user: '',
+    user: 'Margarida',
     pass: '',
     unauthorized: props.unauthorized
   }),
@@ -14316,7 +14316,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Versao: 13'
+          'Versao: 14'
         ),
         _react2.default.createElement(
           'p',
