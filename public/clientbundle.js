@@ -14316,7 +14316,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Versao: 12'
+          'Versao: 13'
         ),
         _react2.default.createElement(
           'p',
@@ -15543,7 +15543,9 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
 
     //Validate start time with end time
     var dateStart = new Date(row.start);
+    dateStart.setSeconds(1);
     var dateEnd = new Date(row.end);
+    dateEnd.setSeconds(0);
     if (dateEnd <= dateStart) {
       _errors.end = 'Hora de fim nao pode ser menor ou igual a hora de inicio';
     }
@@ -15554,9 +15556,11 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
       var currentDate = new Date(dateStart).toISOString().split('T')[0];
       if (bDate == currentDate && b.id != row.id) {
         var bookingStart = new Date(b.start);
+        bookingStart.setSeconds(0);
         //let bookingEnd = new Date(b.end)
 
         var bEnd = new Date(b.end);
+        bEnd.setSeconds(0);
         var bookingEnd15minutes = new Date(bEnd.getTime() - 15 * 60 * 1000);
         var bookingStart15minutes = new Date(bookingStart.getTime() + 15 * 60 * 1000);
         //marcacao das 10 as 13 e uma ja existente 11 as 12
@@ -15572,7 +15576,7 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
           bookingSameDay.push(b);
         }
         //marcacao das 10:30 as 12 e uma ja existente 10:15(10) as 11.
-        if (dateStart >= bookingStart15minutes && dateStart <= bEnd && dateEnd >= bEnd) {
+        if (dateStart >= bookingStart15minutes && dateStart < bEnd && dateEnd >= bEnd) {
           bookingSameDay.push(b);
         }
       }

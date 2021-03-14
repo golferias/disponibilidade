@@ -103,7 +103,9 @@ export const ManageBooking = props => {
 
     //Validate start time with end time
     let dateStart = new Date(row.start)
+    dateStart.setSeconds(1)
     let dateEnd = new Date(row.end)
+    dateEnd.setSeconds(0)
     if (dateEnd <= dateStart) {
       _errors.end = 'Hora de fim nao pode ser menor ou igual a hora de inicio'
     }
@@ -114,9 +116,11 @@ export const ManageBooking = props => {
       let currentDate = new Date(dateStart).toISOString().split('T')[0]
       if (bDate == currentDate && b.id != row.id) {
         let bookingStart = new Date(b.start)
+        bookingStart.setSeconds(0)
         //let bookingEnd = new Date(b.end)
 
         let bEnd = new Date(b.end)
+        bEnd.setSeconds(0)
         let bookingEnd15minutes = new Date(bEnd.getTime() - 15 * 60 * 1000)
         let bookingStart15minutes = new Date(
           bookingStart.getTime() + 15 * 60 * 1000
@@ -144,7 +148,7 @@ export const ManageBooking = props => {
         //marcacao das 10:30 as 12 e uma ja existente 10:15(10) as 11.
         if (
           dateStart >= bookingStart15minutes &&
-          dateStart <= bEnd &&
+          dateStart < bEnd &&
           dateEnd >= bEnd
         ) {
           bookingSameDay.push(b)
