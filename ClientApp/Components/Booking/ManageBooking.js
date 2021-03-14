@@ -121,6 +121,7 @@ export const ManageBooking = props => {
         let bookingStart15minutes = new Date(
           bookingStart.getTime() + 15 * 60 * 1000
         )
+        //marcacao das 10 as 13 e uma ja existente 11 as 12
         if (
           dateStart < bookingStart &&
           dateEnd > bookingStart &&
@@ -129,15 +130,18 @@ export const ManageBooking = props => {
         ) {
           bookingSameDay.push(b)
         }
+        //marcacao das 10 as 11 e uma ja existente 09:15(09) as 11:45.(12)
         if (
           dateStart >= bookingStart15minutes &&
           dateEnd <= bookingEnd15minutes
         ) {
           bookingSameDay.push(b)
         }
+        //marcacao das 10 as 12 e uma ja existente 11 as 11:45.(12)
         if (dateStart <= bookingStart && dateEnd >= bookingEnd15minutes) {
           bookingSameDay.push(b)
         }
+        //marcacao das 10:30 as 12 e uma ja existente 10:15(10) as 11.
         if (
           dateStart >= bookingStart15minutes &&
           dateStart <= bEnd &&
