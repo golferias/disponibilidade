@@ -7,7 +7,14 @@ class HomeCalendar extends Component {
   }
 
   render () {
-    const itemComponents = this.props.booking.map(Rec => {
+    let orderedBooking = this.props.booking
+    if (this.props.booking.length > 0) {
+      orderedBooking = this.props.booking.sort(function (b1, b2) {
+        return new Date(b1.date) - new Date(b2.date)
+      })
+    }
+
+    const itemComponents = orderedBooking.map(Rec => {
       return (
         <BookingRec
           showData={false}

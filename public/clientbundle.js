@@ -9045,7 +9045,7 @@ if (!production) {
   __webpack_require__(139).config();
 }
 
-var restUrl = production ? "https://magestapi.herokuapp.com" : "https://localhost:49155/";
+var restUrl = production ? "https://magestapi.herokuapp.com" : "https://localhost:49157/";
 
 var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
   baseURL: restUrl
@@ -14316,7 +14316,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Versao: 11'
+          'Versao: 12'
         ),
         _react2.default.createElement(
           'p',
@@ -14602,7 +14602,14 @@ var HomeCalendar = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var itemComponents = this.props.booking.map(function (Rec) {
+      var orderedBooking = this.props.booking;
+      if (this.props.booking.length > 0) {
+        orderedBooking = this.props.booking.sort(function (b1, b2) {
+          return new Date(b1.date) - new Date(b2.date);
+        });
+      }
+
+      var itemComponents = orderedBooking.map(function (Rec) {
         return _react2.default.createElement(_BookingRec2.default, {
           showData: false,
           key: Rec.id,
@@ -14856,7 +14863,13 @@ var HomeBooking = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var itemComponents = this.props.booking.map(function (Rec) {
+      var orderedBooking = this.props.booking;
+      if (this.props.booking.length > 0) {
+        orderedBooking = this.props.booking.sort(function (b1, b2) {
+          return new Date(b1.date) - new Date(b2.date);
+        });
+      }
+      var itemComponents = orderedBooking.map(function (Rec) {
         return _react2.default.createElement(_BookingRec2.default, {
           showData: true,
           key: Rec.id,
@@ -15546,15 +15559,19 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
         var bEnd = new Date(b.end);
         var bookingEnd15minutes = new Date(bEnd.getTime() - 15 * 60 * 1000);
         var bookingStart15minutes = new Date(bookingStart.getTime() + 15 * 60 * 1000);
+        //marcacao das 10 as 13 e uma ja existente 11 as 12
         if (dateStart < bookingStart && dateEnd > bookingStart && dateEnd < bEnd && dateEnd > bookingStart15minutes) {
           bookingSameDay.push(b);
         }
+        //marcacao das 10 as 11 e uma ja existente 09:15(09) as 11:45.(12)
         if (dateStart >= bookingStart15minutes && dateEnd <= bookingEnd15minutes) {
           bookingSameDay.push(b);
         }
+        //marcacao das 10 as 12 e uma ja existente 11 as 11:45.(12)
         if (dateStart <= bookingStart && dateEnd >= bookingEnd15minutes) {
           bookingSameDay.push(b);
         }
+        //marcacao das 10:30 as 12 e uma ja existente 10:15(10) as 11.
         if (dateStart >= bookingStart15minutes && dateStart <= bEnd && dateEnd >= bEnd) {
           bookingSameDay.push(b);
         }
