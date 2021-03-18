@@ -14316,7 +14316,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Versao: 14'
+          'Versao: 15'
         ),
         _react2.default.createElement(
           'p',
@@ -15576,7 +15576,7 @@ var ManageBooking = exports.ManageBooking = function ManageBooking(props) {
           bookingSameDay.push(b);
         }
         //marcacao das 10:30 as 12 e uma ja existente 10:15(10) as 11.
-        if (dateStart >= bookingStart15minutes && dateStart < bEnd && dateEnd >= bEnd) {
+        if (dateStart >= bookingStart15minutes && dateStart < bookingEnd15minutes && dateEnd >= bEnd) {
           bookingSameDay.push(b);
         }
       }

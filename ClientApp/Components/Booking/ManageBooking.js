@@ -148,7 +148,7 @@ export const ManageBooking = props => {
         //marcacao das 10:30 as 12 e uma ja existente 10:15(10) as 11.
         if (
           dateStart >= bookingStart15minutes &&
-          dateStart < bEnd &&
+          dateStart < bookingEnd15minutes &&
           dateEnd >= bEnd
         ) {
           bookingSameDay.push(b)
