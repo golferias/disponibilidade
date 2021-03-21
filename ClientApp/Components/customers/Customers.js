@@ -6,7 +6,7 @@ import {
   deleteCustomer
 } from '.././../../redux/actions/customers'
 
-import { BookingFetchData } from '.././../../redux/actions/booking'
+import { BookingFetchData, Bdelete } from '.././../../redux/actions/booking'
 import { ServicesFetchData } from '.././../../redux/actions/services'
 import Loading from '../common/Loading'
 import LoginUnsuccessful from '../Login/LoginUnsuccessful'
@@ -21,6 +21,7 @@ class Customers extends Component {
   }
   deleteCustomer (customer) {
     this.props.deleteCustomer(customer)
+    // this.props.Bdelete(element)
   }
   render () {
     if (this.props.unauthorized) {
@@ -39,6 +40,14 @@ class Customers extends Component {
           <Container
             customers={this.props.customers}
             deleteCustomer={customer => {
+              const bookingsForCustomer = this.props.booking.filter(
+                b => b.customerId == customer.id
+              )
+
+              bookingsForCustomer.forEach(element => {
+                this.props.Bdelete(element)
+              })
+
               this.props.deleteCustomer(customer)
             }}
           />
@@ -50,6 +59,7 @@ class Customers extends Component {
 
 const mapStateToProps = state => {
   return {
+    booking: state.booking.data,
     customers: state.customers.data,
     hasErrored: state.customers.hasErrored,
     isLoading: state.customers.isLoading,
@@ -69,6 +79,7 @@ export default {
     ServicesFetchData,
     BookingFetchData,
     customersFetchData,
-    deleteCustomer
+    deleteCustomer,
+    Bdelete
   })(Customers)
 }

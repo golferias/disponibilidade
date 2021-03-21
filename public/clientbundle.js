@@ -9045,7 +9045,7 @@ if (!production) {
   __webpack_require__(139).config();
 }
 
-var restUrl = production ? "https://magestapi.herokuapp.com" : "https://localhost:49157/";
+var restUrl = production ? "https://magestapi.herokuapp.com" : "https://localhost:49155/";
 
 var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
   baseURL: restUrl
@@ -13428,6 +13428,7 @@ var Customers = function (_Component) {
     key: 'deleteCustomer',
     value: function deleteCustomer(customer) {
       this.props.deleteCustomer(customer);
+      // this.props.Bdelete(element)
     }
   }, {
     key: 'render',
@@ -13456,6 +13457,14 @@ var Customers = function (_Component) {
           _react2.default.createElement(_CustomerContainer2.default, {
             customers: this.props.customers,
             deleteCustomer: function deleteCustomer(customer) {
+              var bookingsForCustomer = _this2.props.booking.filter(function (b) {
+                return b.customerId == customer.id;
+              });
+
+              bookingsForCustomer.forEach(function (element) {
+                _this2.props.Bdelete(element);
+              });
+
               _this2.props.deleteCustomer(customer);
             }
           })
@@ -13469,6 +13478,7 @@ var Customers = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    booking: state.booking.data,
     customers: state.customers.data,
     hasErrored: state.customers.hasErrored,
     isLoading: state.customers.isLoading,
@@ -13488,7 +13498,8 @@ exports.default = {
     ServicesFetchData: _services.ServicesFetchData,
     BookingFetchData: _booking.BookingFetchData,
     customersFetchData: _customers.customersFetchData,
-    deleteCustomer: _customers.deleteCustomer
+    deleteCustomer: _customers.deleteCustomer,
+    Bdelete: _booking.Bdelete
   })(Customers)
 };
 
@@ -14316,7 +14327,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Versao: 15'
+          'Versao: 16'
         ),
         _react2.default.createElement(
           'p',
@@ -14980,7 +14991,31 @@ var Services = function (_Component) {
           _react2.default.createElement(_ServicesContainer2.default, {
             services: this.props.services,
             'delete': function _delete(service) {
-              _this2.props.Bdelete(service);
+              var serviceInUse = false;
+              for (var i = 0, b; b = _this2.props.booking[i]; i++) {
+                if (b.services.includes(service.id)) {
+                  serviceInUse = true;
+                  break;
+                }
+              }
+
+              // this.props.booking.forEach(b => {
+              //   if (b.services.includes(service.id)) {
+              //     serviceInUse = true
+              //     break
+              //   }
+              // b.services.forEach(element => {
+              //   if (element.Id == service.id) {
+              //     serviceInUse = true
+              //   }
+              // })
+              //})
+
+              if (!serviceInUse) {
+                _this2.props.Bdelete(service);
+              } else {
+                console.log('Servico em uso numa marcacao');
+              }
             }
           })
         );
@@ -14993,6 +15028,7 @@ var Services = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    booking: state.booking.data,
     services: state.services.data,
     hasErrored: state.services.hasErrored,
     isLoading: state.services.isLoading,

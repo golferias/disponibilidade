@@ -23,7 +23,31 @@ class Services extends Component {
           <Container
             services={this.props.services}
             delete={service => {
-              this.props.Bdelete(service)
+              let serviceInUse = false
+              for (var i = 0, b; (b = this.props.booking[i]); i++) {
+                if (b.services.includes(service.id)) {
+                  serviceInUse = true
+                  break
+                }
+              }
+
+              // this.props.booking.forEach(b => {
+              //   if (b.services.includes(service.id)) {
+              //     serviceInUse = true
+              //     break
+              //   }
+              // b.services.forEach(element => {
+              //   if (element.Id == service.id) {
+              //     serviceInUse = true
+              //   }
+              // })
+              //})
+
+              if (!serviceInUse) {
+                this.props.Bdelete(service)
+              } else {
+                console.log('Servico em uso numa marcacao')
+              }
             }}
           />
         </div>
@@ -34,6 +58,7 @@ class Services extends Component {
 
 const mapStateToProps = state => {
   return {
+    booking: state.booking.data,
     services: state.services.data,
     hasErrored: state.services.hasErrored,
     isLoading: state.services.isLoading,
