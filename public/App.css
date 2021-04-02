@@ -11562,8 +11562,8 @@ body {
               right: 0;
               bottom: 0;
               pointer-events: none;
-              background-image: url('https://library.elementor.com/resources/christmas-snow-effect/s1.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s2.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s3.png');
-               animation: snow 10s linear infinite;
+              /* background-image: url('https://library.elementor.com/resources/christmas-snow-effect/s1.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s2.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s3.png');
+               animation: snow 10s linear infinite; */
            }
            
            @keyframes snow {
