@@ -71,6 +71,16 @@ export default function CodeCampMenu () {
             Parabens
           </Link>
         </li>
+        <li className="snow-bg">
+          <Link to='/analise' onClick={setCssVisibility}>
+            Analise
+          </Link>
+        </li>
+        <li className="snow-bg">
+          <Link to='/acompanhamento' onClick={setCssVisibility}>
+            Acompanhamento
+          </Link>
+        </li>
         <li className='social-icon snow-bg'>
           <a href='https://www.facebook.com/Margarida-Arag%C3%A3o-cabeleireirosest%C3%A9tica-100236801356384/'>
             <i className='fa fa-facebook' aria-hidden='true'></i>
