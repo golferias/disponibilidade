@@ -102,83 +102,83 @@ export const ManageBooking = props => {
     if (!row.end) _errors.end = 'Hora de fim obrigat\u00F3rio'
 
     //Validate start time with end time
-    let dateStart = new Date(row.start)
-    dateStart.setSeconds(1)
-    let dateEnd = new Date(row.end)
-    dateEnd.setSeconds(0)
-    if (dateEnd <= dateStart) {
-      _errors.end = 'Hora de fim nao pode ser menor ou igual a hora de inicio'
-    }
+    // let dateStart = new Date(row.start)
+    // dateStart.setSeconds(1)
+    // let dateEnd = new Date(row.end)
+    // dateEnd.setSeconds(0)
+    // if (dateEnd <= dateStart) {
+    //   _errors.end = 'Hora de fim nao pode ser menor ou igual a hora de inicio'
+    // }
 
-    let bookingSameDay = []
-    props.booking.data.forEach(b => {
-      let bDate = new Date(b.start).toISOString().split('T')[0]
-      let currentDate = new Date(dateStart).toISOString().split('T')[0]
-      if (bDate == currentDate && b.id != row.id) {
-        let bookingStart = new Date(b.start)
-        bookingStart.setSeconds(0)
-        //let bookingEnd = new Date(b.end)
+    // let bookingSameDay = []
+    // props.booking.data.forEach(b => {
+    //   let bDate = new Date(b.start).toISOString().split('T')[0]
+    //   let currentDate = new Date(dateStart).toISOString().split('T')[0]
+    //   if (bDate == currentDate && b.id != row.id) {
+    //     let bookingStart = new Date(b.start)
+    //     bookingStart.setSeconds(0)
+    //     //let bookingEnd = new Date(b.end)
 
-        let bEnd = new Date(b.end)
-        bEnd.setSeconds(0)
-        let bookingEnd15minutes = new Date(bEnd.getTime() - 15 * 60 * 1000)
-        let bookingStart15minutes = new Date(
-          bookingStart.getTime() + 15 * 60 * 1000
-        )
-        //marcacao das 10 as 13 e uma ja existente 11 as 12
-        if (
-          dateStart < bookingStart &&
-          dateEnd > bookingStart &&
-          dateEnd < bEnd &&
-          dateEnd > bookingStart15minutes
-        ) {
-          bookingSameDay.push(b)
-        }
-        //marcacao das 10 as 11 e uma ja existente 09:15(09) as 11:45.(12)
-        if (
-          dateStart >= bookingStart15minutes &&
-          dateEnd <= bookingEnd15minutes
-        ) {
-          bookingSameDay.push(b)
-        }
-        //marcacao das 10 as 12 e uma ja existente 11 as 11:45.(12)
-        if (dateStart <= bookingStart && dateEnd >= bookingEnd15minutes) {
-          bookingSameDay.push(b)
-        }
-        //marcacao das 10:30 as 12 e uma ja existente 10:15(10) as 11.
-        if (
-          dateStart >= bookingStart15minutes &&
-          dateStart < bookingEnd15minutes &&
-          dateEnd >= bEnd
-        ) {
-          bookingSameDay.push(b)
-        }
-      }
-    })
+    //     let bEnd = new Date(b.end)
+    //     bEnd.setSeconds(0)
+    //     let bookingEnd15minutes = new Date(bEnd.getTime() - 15 * 60 * 1000)
+    //     let bookingStart15minutes = new Date(
+    //       bookingStart.getTime() + 15 * 60 * 1000
+    //     )
+    //     //marcacao das 10 as 13 e uma ja existente 11 as 12
+    //     if (
+    //       dateStart < bookingStart &&
+    //       dateEnd > bookingStart &&
+    //       dateEnd < bEnd &&
+    //       dateEnd > bookingStart15minutes
+    //     ) {
+    //       bookingSameDay.push(b)
+    //     }
+    //     //marcacao das 10 as 11 e uma ja existente 09:15(09) as 11:45.(12)
+    //     if (
+    //       dateStart >= bookingStart15minutes &&
+    //       dateEnd <= bookingEnd15minutes
+    //     ) {
+    //       bookingSameDay.push(b)
+    //     }
+    //     //marcacao das 10 as 12 e uma ja existente 11 as 11:45.(12)
+    //     if (dateStart <= bookingStart && dateEnd >= bookingEnd15minutes) {
+    //       bookingSameDay.push(b)
+    //     }
+    //     //marcacao das 10:30 as 12 e uma ja existente 10:15(10) as 11.
+    //     if (
+    //       dateStart >= bookingStart15minutes &&
+    //       dateStart < bookingEnd15minutes &&
+    //       dateEnd >= bEnd
+    //     ) {
+    //       bookingSameDay.push(b)
+    //     }
+    //   }
+    // })
 
-    if (bookingSameDay.length > 0) {
-      const customer = props.customers.filter(
-        x => x.id == bookingSameDay[0].customerId
-      )[0]
-      const currentDate = new Date(bookingSameDay[0].start)
-      _errors.end =
-        'Existe uma marcacao das ' +
-        new Date(bookingSameDay[0].start)
-          .toISOString()
-          .split('T')[1]
-          .substring(0, 5) +
-        ' as ' +
-        new Date(bookingSameDay[0].end)
-          .toISOString()
-          .split('T')[1]
-          .substring(0, 5) +
-        ' para o cliente ' +
-        customer.name +
-        ' neste dia ' +
-        currentDate.getDate().toString() +
-        ' de ' +
-        months[currentDate.getMonth()]
-    }
+    // if (bookingSameDay.length > 0) {
+    //   const customer = props.customers.filter(
+    //     x => x.id == bookingSameDay[0].customerId
+    //   )[0]
+    //   const currentDate = new Date(bookingSameDay[0].start)
+    //   _errors.end =
+    //     'Existe uma marcacao das ' +
+    //     new Date(bookingSameDay[0].start)
+    //       .toISOString()
+    //       .split('T')[1]
+    //       .substring(0, 5) +
+    //     ' as ' +
+    //     new Date(bookingSameDay[0].end)
+    //       .toISOString()
+    //       .split('T')[1]
+    //       .substring(0, 5) +
+    //     ' para o cliente ' +
+    //     customer.name +
+    //     ' neste dia ' +
+    //     currentDate.getDate().toString() +
+    //     ' de ' +
+    //     months[currentDate.getMonth()]
+    // }
 
     setErrors(_errors)
     return Object.keys(_errors).length === 0
