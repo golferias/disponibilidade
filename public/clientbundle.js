@@ -14357,7 +14357,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Versao: 18'
+          'Versao: 19'
         ),
         _react2.default.createElement(
           'p',
