@@ -26,7 +26,7 @@ export function services (
   function create (state, ToCreate) {
     let newState = { ...state, data: [...state.data, ToCreate] }
     return Object.assign({}, state, {
-      data: newState.data,
+      data: [...new Set(newState.data)].sort(compareValues('name')),
       isLoading: false,
       hasErrored: false
     })

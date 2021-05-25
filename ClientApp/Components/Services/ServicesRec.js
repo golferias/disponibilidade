@@ -1,13 +1,23 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import {toStringDate} from '../common/ToStringComponent'
+import { toStringDate } from '../common/ToStringComponent'
 
 export default class ServicesRec extends Component {
   render () {
+    let divData
+    if (this.props.service.diasAcompanhamento > 0)
+      divData = (
+        <div className='customer-details'>
+          &nbsp;&nbsp; Dias para acompanhamento:{' '}
+          <b> {this.props.service.diasAcompanhamento}</b>
+        </div>
+      )
+
     return (
       <div className='events-customers-list__item row'>
         <div className='item col-12 col-sm-6 col-md-5 '>
           <div className='customer-title'>{this.props.service.name}</div>
+          {divData}
           <div>
             <button
               className='btn btn-outline-danger customerRec'

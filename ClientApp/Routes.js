@@ -11,6 +11,7 @@ import ManageServices from './Components/Services/ManageServices'
 import ManageBooking from './Components/Booking/ManageBooking'
 import Aniversarios from './Components/Aniversarios/Aniversarios'
 import Analise from './Components/Analise/Analise'
+import Acompanhamento from './Components/Acompanhamento/Acompanhamento'
 
 export default [
   {
@@ -87,7 +88,7 @@ export default [
         exact: true
       },
       {
-        ...Aniversarios,
+        ...Acompanhamento,
         path: '/acompanhamento',
         exact: true
       },

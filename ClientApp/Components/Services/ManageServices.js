@@ -43,7 +43,10 @@ export const ManageServicesPage = props => {
   function formIsValid () {
     const _errors = {}
     if (!row.name) _errors.name = 'Nome obrigat\u00F3rio'
-
+    if(!row.diasAcompanhamento)
+    {
+      row.diasAcompanhamento=0
+    }
     setErrors(_errors)
     return Object.keys(_errors).length === 0
   }
