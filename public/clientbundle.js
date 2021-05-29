@@ -14361,7 +14361,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Versao: 20'
+          'Versao: 21'
         ),
         _react2.default.createElement(
           'p',
@@ -17011,9 +17011,11 @@ var _HeaderTitle = __webpack_require__(8);
 
 var _HeaderTitle2 = _interopRequireDefault(_HeaderTitle);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _HomeAcompanhamento = __webpack_require__(195);
 
-//import Home from './HomeAcompanhamento'
+var _HomeAcompanhamento2 = _interopRequireDefault(_HomeAcompanhamento);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function AcompanhamentoContainer(props) {
   return _react2.default.createElement(
@@ -17025,11 +17027,253 @@ function AcompanhamentoContainer(props) {
       _react2.default.createElement(
         'div',
         { className: 'col-12' },
-        _react2.default.createElement(_HeaderTitle2.default, { title: 'Acompanhamento' })
+        _react2.default.createElement(_HeaderTitle2.default, { title: 'Acompanhamento' }),
+        _react2.default.createElement(_HomeAcompanhamento2.default, {
+          services: props.services,
+          customers: props.customers,
+          booking: props.booking
+        })
       )
     )
   );
 }
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _AcompanhamentoRec = __webpack_require__(196);
+
+var _AcompanhamentoRec2 = _interopRequireDefault(_AcompanhamentoRec);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HomeAcompanhamento = function (_Component) {
+  _inherits(HomeAcompanhamento, _Component);
+
+  function HomeAcompanhamento() {
+    _classCallCheck(this, HomeAcompanhamento);
+
+    return _possibleConstructorReturn(this, (HomeAcompanhamento.__proto__ || Object.getPrototypeOf(HomeAcompanhamento)).apply(this, arguments));
+  }
+
+  _createClass(HomeAcompanhamento, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var allBooking = this.props.booking;
+
+      var servicesTolookup = this.props.services.filter(function (x) {
+        return x.diasAcompanhamento > 0;
+      });
+
+      function filterByID(booking) {
+        if (booking.services.length < 2) {
+          var a = servicesTolookup.map(function (x) {
+            return x.id;
+          }).includes(booking.services[0]);
+          return a;
+        } else {
+          booking.services.forEach(function (bservice) {
+            if (servicesTolookup.map(function (x) {
+              return x.id;
+            }).includes(bservice)) {
+              return true;
+            }
+          });
+          return false;
+        }
+      }
+
+      var orderedBooking = allBooking.filter(filterByID);
+
+      if (this.props.booking.length > 0) {
+        orderedBooking = orderedBooking.sort(function (b1, b2) {
+          return new Date(b1.date) - new Date(b2.date);
+        });
+      }
+
+      var itemComponents = orderedBooking.map(function (Rec) {
+        return _react2.default.createElement(_AcompanhamentoRec2.default, {
+          showData: true,
+          key: Rec.id,
+          book: Rec,
+          customers: _this2.props.customers,
+          services: _this2.props.services
+        });
+      });
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'events-customers-list container-fluid js-list-view active' },
+        itemComponents.length ? itemComponents : _react2.default.createElement(
+          'div',
+          { className: 'emptyList' },
+          _react2.default.createElement(
+            'p',
+            null,
+            'N\xE3o existem marcacoes superiores a data escolhida 30 dias'
+          )
+        )
+      );
+    }
+  }]);
+
+  return HomeAcompanhamento;
+}(_react.Component);
+
+exports.default = HomeAcompanhamento;
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AcompanhamentoRec = function (_Component) {
+  _inherits(AcompanhamentoRec, _Component);
+
+  function AcompanhamentoRec() {
+    _classCallCheck(this, AcompanhamentoRec);
+
+    return _possibleConstructorReturn(this, (AcompanhamentoRec.__proto__ || Object.getPrototypeOf(AcompanhamentoRec)).apply(this, arguments));
+  }
+
+  _createClass(AcompanhamentoRec, [{
+    key: 'render',
+    value: function render() {
+      function getCustomerName(customerList, id) {
+        var customer = customerList.filter(function (x) {
+          return x.id == id;
+        });
+        return customer[0].name;
+      }
+
+      function getServiceName(serviceList, ids) {
+        var services = serviceList.filter(function (item) {
+          return ids.includes(item.id);
+        });
+
+        var names = '';
+        services.forEach(function (element) {
+          names = names + element.name + ', ';
+        });
+
+        return names.slice(0, -2);
+      }
+
+      var optionsMarcacao = { weekday: 'long', month: 'long', day: 'numeric' };
+      var optionsStartEnd = { hour: 'numeric', minute: 'numeric' };
+      var dataMarcacao = new Date(this.props.book.start);
+      var dataStart = new Date(this.props.book.start);
+      var dataEnd = new Date(this.props.book.end);
+
+      var customerName = getCustomerName(this.props.customers, this.props.book.customerId);
+
+      var serviceName = getServiceName(this.props.services, this.props.book.services);
+
+      var showData = this.props.showData;
+      var divData = void 0;
+      if (showData) divData = _react2.default.createElement(
+        'div',
+        { className: 'customer-title' },
+        dataMarcacao.toLocaleDateString('pt-PT', optionsMarcacao)
+      );
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'events-customers-list__item row' },
+        _react2.default.createElement(
+          'div',
+          { className: 'item col-12 col-sm-6 col-md-5 ' },
+          divData,
+          _react2.default.createElement(
+            'div',
+            { className: 'customer-details' },
+            '\xA0\xA0 Inicio:',
+            ' ',
+            _react2.default.createElement(
+              'b',
+              null,
+              dataStart.toLocaleTimeString('pt-PT', optionsStartEnd)
+            ),
+            ' ',
+            '\xA0\xA0\xA0Fim:',
+            ' ',
+            _react2.default.createElement(
+              'b',
+              null,
+              dataEnd.toLocaleTimeString('pt-PT', optionsStartEnd)
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'customer-details' },
+            '\xA0\xA0 Cliente: ',
+            _react2.default.createElement(
+              'b',
+              null,
+              customerName
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'customer-details' },
+            '\xA0\xA0 Servicos: ',
+            _react2.default.createElement(
+              'b',
+              null,
+              serviceName
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return AcompanhamentoRec;
+}(_react.Component);
+
+exports.default = AcompanhamentoRec;
 
 /***/ })
 /******/ ]);
