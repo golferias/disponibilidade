@@ -14361,7 +14361,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Versao: 21'
+          'Versao: 23'
         ),
         _react2.default.createElement(
           'p',
@@ -17201,50 +17201,56 @@ var AcompanhamentoRec = function (_Component) {
         return names.slice(0, -2);
       }
 
-      var optionsMarcacao = { weekday: 'long', month: 'long', day: 'numeric' };
-      var optionsStartEnd = { hour: 'numeric', minute: 'numeric' };
-      var dataMarcacao = new Date(this.props.book.start);
-      var dataStart = new Date(this.props.book.start);
-      var dataEnd = new Date(this.props.book.end);
+      function getAcompanhamento(services, bookServices) {
+        var acompanhamento = 0;
+        bookServices.forEach(function (element) {
+          var servico = services.filter(function (item) {
+            return item.id == element;
+          });
+          acompanhamento = acompanhamento + servico[0].diasAcompanhamento;
+        });
+
+        return acompanhamento;
+      }
+
+      var optionsMarcacao = { month: 'long', day: 'numeric'
+        // const optionsStartEnd = { hour: 'numeric', minute: 'numeric' }
+      };var dataMarcacao = new Date(this.props.book.start);
+
+      var acompanhamento = getAcompanhamento(this.props.services, this.props.book.services);
+
+      var dataProximaMarcacao = new Date(this.props.book.start);
+      dataProximaMarcacao.setDate(dataMarcacao.getDate() + acompanhamento);
+      //let dataEnd = new Date(this.props.book.end)
 
       var customerName = getCustomerName(this.props.customers, this.props.book.customerId);
 
       var serviceName = getServiceName(this.props.services, this.props.book.services);
 
-      var showData = this.props.showData;
-      var divData = void 0;
-      if (showData) divData = _react2.default.createElement(
-        'div',
-        { className: 'customer-title' },
-        dataMarcacao.toLocaleDateString('pt-PT', optionsMarcacao)
-      );
+      // let showData = this.props.showData
+      // let divData
+      // if (showData)
+      //   divData = (
+      //     <div className='customer-title'>
+      //       {dataMarcacao.toLocaleDateString('pt-PT', optionsMarcacao)}
+      //     </div>
+      //   )
+      // {divData}
 
+      {
+        /* <div className='customer-details'>
+        &nbsp;&nbsp; Inicio:{' '}
+        <b>{dataStart.toLocaleTimeString('pt-PT', optionsStartEnd)}</b>{' '}
+        &nbsp;&nbsp;&nbsp;Fim:{' '}
+        <b>{dataEnd.toLocaleTimeString('pt-PT', optionsStartEnd)}</b>
+        </div> */
+      }
       return _react2.default.createElement(
         'div',
         { className: 'events-customers-list__item row' },
         _react2.default.createElement(
           'div',
           { className: 'item col-12 col-sm-6 col-md-5 ' },
-          divData,
-          _react2.default.createElement(
-            'div',
-            { className: 'customer-details' },
-            '\xA0\xA0 Inicio:',
-            ' ',
-            _react2.default.createElement(
-              'b',
-              null,
-              dataStart.toLocaleTimeString('pt-PT', optionsStartEnd)
-            ),
-            ' ',
-            '\xA0\xA0\xA0Fim:',
-            ' ',
-            _react2.default.createElement(
-              'b',
-              null,
-              dataEnd.toLocaleTimeString('pt-PT', optionsStartEnd)
-            )
-          ),
           _react2.default.createElement(
             'div',
             { className: 'customer-details' },
@@ -17258,12 +17264,26 @@ var AcompanhamentoRec = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'customer-details' },
-            '\xA0\xA0 Servicos: ',
+            '\xA0\xA0 Ultima Marca\xE7\xE3o:',
+            ' ',
+            dataMarcacao.toLocaleDateString('pt-PT', optionsMarcacao)
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'customer-details' },
+            '\xA0\xA0 Proxima Marca\xE7\xE3o:',
+            ' ',
             _react2.default.createElement(
               'b',
               null,
-              serviceName
+              dataProximaMarcacao.toLocaleDateString('pt-PT', optionsMarcacao)
             )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'customer-details' },
+            '\xA0\xA0 Servicos: ',
+            serviceName
           )
         )
       );
