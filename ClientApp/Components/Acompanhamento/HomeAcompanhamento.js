@@ -9,13 +9,13 @@ class HomeAcompanhamento extends Component {
       x => x.diasAcompanhamento > 0
     )
 
-    function filterByID (booking) {
+    function filterByServicesWithAcompanhamento (booking) {
       if (booking.services.length < 2) {
-        let a = servicesTolookup.map(x=> x.id).includes(booking.services[0])
-        return a;
+        let a = servicesTolookup.map(x => x.id).includes(booking.services[0])
+        return a
       } else {
         booking.services.forEach(bservice => {
-          if (servicesTolookup.map(x=> x.id).includes(bservice)) {
+          if (servicesTolookup.map(x => x.id).includes(bservice)) {
             return true
           }
         })
@@ -23,11 +23,16 @@ class HomeAcompanhamento extends Component {
       }
     }
 
-    let orderedBooking = allBooking.filter(filterByID)
+    let orderedBooking = allBooking.filter(filterByServicesWithAcompanhamento)
 
     if (this.props.booking.length > 0) {
       orderedBooking = orderedBooking.sort(function (b1, b2) {
-        return new Date(b1.date) - new Date(b2.date)
+        let d1 = new Date(b1.start)
+        let d2 = new Date(b2.start)
+        if (d1 > d2) return -1
+        else if (d1 < d2) return 1
+        else return 0
+        // return new Date(b1.date) - new Date(b2.date)
       })
     }
 

@@ -9045,7 +9045,7 @@ if (!production) {
   __webpack_require__(139).config();
 }
 
-var restUrl = production ? "https://magestapi.herokuapp.com" : "https://localhost:49155/";
+var restUrl = production ? "https://magestapi.herokuapp.com" : "https://localhost:49159/";
 
 var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
   baseURL: restUrl
@@ -17087,7 +17087,7 @@ var HomeAcompanhamento = function (_Component) {
         return x.diasAcompanhamento > 0;
       });
 
-      function filterByID(booking) {
+      function filterByServicesWithAcompanhamento(booking) {
         if (booking.services.length < 2) {
           var a = servicesTolookup.map(function (x) {
             return x.id;
@@ -17105,11 +17105,14 @@ var HomeAcompanhamento = function (_Component) {
         }
       }
 
-      var orderedBooking = allBooking.filter(filterByID);
+      var orderedBooking = allBooking.filter(filterByServicesWithAcompanhamento);
 
       if (this.props.booking.length > 0) {
         orderedBooking = orderedBooking.sort(function (b1, b2) {
-          return new Date(b1.date) - new Date(b2.date);
+          var d1 = new Date(b1.start);
+          var d2 = new Date(b2.start);
+          if (d1 > d2) return -1;else if (d1 < d2) return 1;else return 0;
+          // return new Date(b1.date) - new Date(b2.date)
         });
       }
 
