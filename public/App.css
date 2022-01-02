@@ -15686,11 +15686,13 @@ body {
 }
 
 #toTopBtn {
-	/* position: fixed; */
-	bottom: 16px;
+	position: absolute;
+	bottom: 5px;
 	right: 29px;
-	z-index: 98;
-	padding: 16px;
+	padding-left: 16px;
+	padding-top: 16px;
+	padding-right: 16px;
+	padding-bottom: 16px;
 	background-color: hsla(5, 76%, 62%, 0.8);
 }
 
@@ -15711,6 +15713,7 @@ body {
 
 .cd-top {
 	/* position: fixed; */
+	cursor: pointer;
 	bottom: 20px;
 	bottom: var(--cd-back-to-top-margin);
 	right: 20px;
