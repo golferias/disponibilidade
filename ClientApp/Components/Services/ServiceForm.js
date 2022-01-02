@@ -12,14 +12,14 @@ function ServiceForm (props) {
             onChange={props.onChange}
             error={props.errors.name}
           />
-          <TextInput
+          {/* <TextInput
             id='diasAcompanhamento'
             label='Dias para acompanhamento'
             name='diasAcompanhamento'
             value={props.service.diasAcompanhamento}
             onChange={props.onChange}
             error={props.errors.diasAcompanhamento}
-          />
+          /> */}
          
           <input
             type='submit'
