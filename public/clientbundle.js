@@ -14253,7 +14253,7 @@ function CodeCampMenu() {
         { className: 'social-icon snow-bg' },
         _react2.default.createElement(
           'a',
-          { href: 'https://www.google.pt/search?q=filipe%20barbearia&sxsrf=AOaemvJ6VQfdmpjycvGkCEvDeEPp8Xl5CA:1641091683699&source=hp&ei=XhLRYeuoLc6SlwSC4oa4DA&iflsig=ALs-wAMAAAAAYdEgbiIM6OouwAp77zRLOEplMgbD2Cjh&ved=2ahUKEwipzOb2hpL1AhUZg_0HHT54ADoQvS56BAgMEEI&uact=5&oq=filipe+barbearia&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEIAEMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgIIJjICCCY6BAgjECc6EQguEIAEELEDEIMBEMcBENEDOg4ILhCABBCxAxDHARCjAjoICAAQgAQQsQM6CAguELEDEIMBOgsIABCABBCxAxCDAToICC4QgAQQsQM6BAgAEAM6CwguEIAEEMcBEK8BOgUILhCABDoHCC4QgAQQCjoKCC4QsQMQgwEQCjoFCAAQywFQAFiUFmCmF2gAcAB4AIABW4gBrAqSAQIxNpgBAKABAQ&sclient=gws-wiz&tbs=lf:1,lf_ui:14&tbm=lcl&rflfq=1&num=10&rldimm=13214365841033416832&lqi=ChBmaWxpcGUgYmFyYmVhcmlhWhIiEGZpbGlwZSBiYXJiZWFyaWGSAQtiYXJiZXJfc2hvcA&rlst=f#rlfi=hd:;si:13214365841033416832,l,ChBmaWxpcGUgYmFyYmVhcmlhWhIiEGZpbGlwZSBiYXJiZWFyaWGSAQtiYXJiZXJfc2hvcA;mv:[[41.6467251,-8.2216376],[38.603578999999996,-9.289283]];tbs:lrf:!1m4!1u3!2m2!3m1!1e1!1m4!1u2!2m2!2m1!1e1!2m1!1e2!2m1!1e3!3sIAE,lf:1,lf_ui:14' },
+          { href: 'https://www.google.pt/localservices/profile?g2lb=4655480,4684026,4676222&hl=pt-PT&gl=pt&ssta=1&scp=EjASEglV2nLDRPokDRFgNDwOwesAHCIENDgwNSoUDacnqxgVnc_4-h13_sIYJUFaEfsaEGZpbGlwZSBiYXJiZWFyaWEiEGZpbGlwZSBiYXJiZWFyaWEwAQ%3D%3D&spp=Cg0vZy8xMWc2eHdmcXBk&src=2&q=Filipe+Barbearia+Ermesinde&serexp=1&sa=X&ved=2ahUKEwj7oa6QkpT1AhWKz4UKHcnYBjwQkbkFegQIAhAk&lrlstt=1641163419172' },
           _react2.default.createElement('i', { className: 'fa fa-facebook', 'aria-hidden': 'true' })
         )
       )
