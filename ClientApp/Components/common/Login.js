@@ -6,7 +6,7 @@ import { loginCall } from '.././../../redux/actions/login'
 export const Login = props => {
   const [errors, setErrors] = useState({})
   const [login, setLogin] = useState({
-    user: 'Margarida',
+    user: 'Filipe',
     pass: '',
     unauthorized: props.unauthorized
   })
