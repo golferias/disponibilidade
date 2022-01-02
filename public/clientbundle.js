@@ -14327,6 +14327,7 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Footer() {
+
   return _react2.default.createElement(
     'footer',
     { className: 'footer' },
@@ -14337,6 +14338,12 @@ function Footer() {
       _react2.default.createElement(
         'div',
         { className: 'footer__disclaimer' },
+        _react2.default.createElement('a', { href: '#', id: 'toTopBtn', 'class': 'cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out', 'data-abc': 'true', onClick: function onClick() {
+            return window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          } }),
         _react2.default.createElement(
           'p',
           null,
@@ -14356,6 +14363,23 @@ function Footer() {
     )
   );
 }
+
+{/* <a href="#" class="o-scroll-up static" title="back to top">
+          <span class="o-scroll-up-text">Back to top</span>
+          <span class="o-scroll-up-icon" aria-hidden="true"></span>
+        </a> */}
+
+{/* <button
+              className='o-scroll-up-icon'
+              onClick={() => 
+                window.scrollTo(0,0)
+               // document.body.scrollTop = 0 // For Safari
+                
+               // document.documentElement.scrollTop = 0// For Chrome, Firefox, IE and Opera
+              }
+            >
+              TOP
+            </button> */}
 
 /***/ }),
 /* 168 */
