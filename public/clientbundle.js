@@ -9045,7 +9045,7 @@ if (!production) {
   __webpack_require__(139).config();
 }
 
-var restUrl = production ? "https://magestapi.herokuapp.com" : "https://localhost:49159/";
+var restUrl = production ? "https://filipeapi.herokuapp.com" : "https://localhost:49159/";
 
 var middleware = [_reduxThunk2.default, (0, _reduxAxiosMiddleware2.default)(_axios2.default.create({
   baseURL: restUrl
@@ -14361,7 +14361,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           null,
-          'Versao: 23'
+          'Versao: 1'
         ),
         _react2.default.createElement(
           'p',
