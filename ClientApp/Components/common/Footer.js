@@ -1,19 +1,19 @@
-import React, {  useState } from 'react'
+import React from 'react'
 
 
 export default function Footer () {
   
-  const [visible, setVisible] = useState(false)
+  //const [visible, setVisible] = useState(false)
 
-  const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollHeight;
-    if (scrolled > 820){
-      setVisible(true)
-    } 
-    else if (scrolled <= 820){
-      setVisible(false)
-    }
-  };
+  // const toggleVisible = () => {
+  //   const scrolled = document.documentElement.scrollHeight;
+  //   if (scrolled > 820){
+  //     setVisible(true)
+  //   } 
+  //   else if (scrolled <= 820){
+  //     setVisible(false)
+  //   }
+  // };
 
   const scrollToTop = () =>{
     window.scrollTo({
@@ -23,14 +23,14 @@ export default function Footer () {
   };
 
   // window.addEventListener('scroll', toggleVisible);
-  window.addEventListener('click', toggleVisible);
-
+  //window.addEventListener('click', toggleVisible);
+//style={{display: visible ? 'inline' : 'none'}}
   return (
     <footer className='footer'>
       <div className='container-main'>
         <div className='footer__menu' />
         <div className='footer__disclaimer'>
-        <a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true" onClick={scrollToTop} style={{display: visible ? 'inline' : 'none'}}>
+        <a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true" onClick={scrollToTop} >
         </a>
           <p>Versao: 1</p>
           <p>
