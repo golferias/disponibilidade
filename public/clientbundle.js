@@ -577,7 +577,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_6__Redirect__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(41);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(22);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(82);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
@@ -1940,7 +1940,7 @@ Router.childContextTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path_to_regexp__);
 
 
@@ -2706,6 +2706,138 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+exports.customersFetchData = customersFetchData;
+exports.dispatchUpdateFilterList = dispatchUpdateFilterList;
+exports.AddCustomer = AddCustomer;
+exports.updateCustomer = updateCustomer;
+exports.deleteCustomer = deleteCustomer;
+var CUSTOMER_LOAD = exports.CUSTOMER_LOAD = 'CUSTOMER_LOAD';
+var CUSTOMER_LOAD_SUCCESS = exports.CUSTOMER_LOAD_SUCCESS = 'CUSTOMER_LOAD_SUCCESS';
+var CUSTOMER_LOAD_FAIL = exports.CUSTOMER_LOAD_FAIL = 'CUSTOMER_LOAD_FAIL';
+
+var CUSTOMER_UPDATE = exports.CUSTOMER_UPDATE = 'CUSTOMER_UPDATE';
+var CUSTOMER_UPDATE_SUCCESS = exports.CUSTOMER_UPDATE_SUCCESS = 'CUSTOMER_UPDATE_SUCCESS';
+var CUSTOMER_UPDATE_FAIL = exports.CUSTOMER_UPDATE_FAIL = 'CUSTOMER_UPDATE_FAIL';
+
+var CUSTOMER_DELETE = exports.CUSTOMER_DELETE = 'CUSTOMER_DELETE';
+var CUSTOMER_DELETE_SUCCESS = exports.CUSTOMER_DELETE_SUCCESS = 'CUSTOMER_DELETE_SUCCESS';
+var CUSTOMER_DELETE_FAIL = exports.CUSTOMER_DELETE_FAIL = 'CUSTOMER_DELETE_FAIL';
+
+var CUSTOMER_CREATE = exports.CUSTOMER_CREATE = 'CUSTOMER_CREATE';
+var CUSTOMER_CREATE_SUCCESS = exports.CUSTOMER_CREATE_SUCCESS = 'CUSTOMER_CREATE_SUCCESS';
+var CUSTOMER_CREATE_FAIL = exports.CUSTOMER_CREATE_FAIL = 'CUSTOMER_CREATE_FAIL';
+
+var CUSTOMER_UPDATEDATE = exports.CUSTOMER_UPDATEDATE = 'CUSTOMER_UPDATEDATE';
+
+function customersFetchData() {
+  console.log('actions/customers.js/customersFetchData CUSTOMER_LOAD....');
+
+  return {
+    type: CUSTOMER_LOAD,
+    payload: {
+      request: {
+        url: '/customers'
+      }
+    }
+  };
+}
+function ParseBirth(customerRec) {
+  if (customerRec.birth === '') {
+    return _extends({}, customerRec, { birth: null });
+  }
+
+  return customerRec;
+}
+
+function ParsePhone(customerRec) {
+  if (customerRec.phone && customerRec.phone.length > 0) {
+    return _extends({}, customerRec, { phone: parseInt(customerRec.phone) });
+  }
+  if (customerRec.phone === '') {
+    return _extends({}, customerRec, { phone: null });
+  }
+  return customerRec;
+}
+function SetIdZero(customerRec) {
+  return _extends({}, customerRec, { id: 0 });
+}
+
+function ParseValidations(customerRec) {
+  customerRec = ParsePhone(customerRec);
+  customerRec = ParseBirth(customerRec);
+  return customerRec;
+}
+
+function dispatchUpdateFilterList(newDate) {
+  console.log('actions/customers.js/dispatchUpdateFilterList CUSTOMER_UPDATEDATE....');
+  return {
+    type: CUSTOMER_UPDATEDATE,
+    data: newDate
+  };
+}
+
+function AddCustomer(customerRec) {
+  console.log('actions/customers.js/AddCustomer CUSTOMER_CREATE....');
+  customerRec = ParseValidations(customerRec);
+
+  customerRec = SetIdZero(customerRec);
+  return {
+    type: CUSTOMER_CREATE,
+    payload: {
+      request: {
+        method: 'POST',
+        url: '/customers',
+        data: _extends({}, customerRec)
+      }
+    }
+  };
+}
+
+function updateCustomer(customerRec) {
+  console.log('actions/customers.js/updateCustomer CUSTOMER_UPDATE....');
+
+  customerRec = ParseValidations(customerRec);
+  return {
+    type: CUSTOMER_UPDATE,
+    payload: {
+      request: {
+        method: 'PUT',
+        url: '/customers/' + customerRec.id,
+        data: _extends({}, customerRec)
+      }
+    }
+  };
+}
+
+function deleteCustomer(customerRec) {
+  console.log('actions/customers.js/deleteCustomer CUSTOMER_DELETE....');
+
+  customerRec = ParseValidations(customerRec);
+  return {
+    type: CUSTOMER_DELETE,
+    payload: {
+      request: {
+        method: 'Delete',
+        url: '/customers/' + customerRec.id,
+        data: _extends({}, customerRec)
+      }
+    }
+  };
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 exports.ServicesFetchData = ServicesFetchData;
 exports.Add = Add;
 exports.Update = Update;
@@ -2797,7 +2929,7 @@ function Bdelete(Rec) {
 }
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2815,11 +2947,11 @@ function toStringDate(birth) {
 }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path_to_regexp__);
 
 
@@ -2860,7 +2992,7 @@ var generatePath = function generatePath() {
 /* harmony default export */ __webpack_exports__["a"] = (generatePath);
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isarray = __webpack_require__(74)
@@ -3292,7 +3424,7 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3446,7 +3578,7 @@ Route.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Route);
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3457,7 +3589,7 @@ Route.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Router__["a" /* default */]);
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3488,7 +3620,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3509,7 +3641,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 }
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3517,7 +3649,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 exports.__esModule = true;
 
-var _pathToRegexp = __webpack_require__(19);
+var _pathToRegexp = __webpack_require__(20);
 
 var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 
@@ -3595,7 +3727,7 @@ var matchPath = function matchPath(pathname) {
 exports.default = matchPath;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3642,138 +3774,6 @@ function updateSession(sessionRec) {
             }
         }
     };
-}
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.customersFetchData = customersFetchData;
-exports.dispatchUpdateFilterList = dispatchUpdateFilterList;
-exports.AddCustomer = AddCustomer;
-exports.updateCustomer = updateCustomer;
-exports.deleteCustomer = deleteCustomer;
-var CUSTOMER_LOAD = exports.CUSTOMER_LOAD = 'CUSTOMER_LOAD';
-var CUSTOMER_LOAD_SUCCESS = exports.CUSTOMER_LOAD_SUCCESS = 'CUSTOMER_LOAD_SUCCESS';
-var CUSTOMER_LOAD_FAIL = exports.CUSTOMER_LOAD_FAIL = 'CUSTOMER_LOAD_FAIL';
-
-var CUSTOMER_UPDATE = exports.CUSTOMER_UPDATE = 'CUSTOMER_UPDATE';
-var CUSTOMER_UPDATE_SUCCESS = exports.CUSTOMER_UPDATE_SUCCESS = 'CUSTOMER_UPDATE_SUCCESS';
-var CUSTOMER_UPDATE_FAIL = exports.CUSTOMER_UPDATE_FAIL = 'CUSTOMER_UPDATE_FAIL';
-
-var CUSTOMER_DELETE = exports.CUSTOMER_DELETE = 'CUSTOMER_DELETE';
-var CUSTOMER_DELETE_SUCCESS = exports.CUSTOMER_DELETE_SUCCESS = 'CUSTOMER_DELETE_SUCCESS';
-var CUSTOMER_DELETE_FAIL = exports.CUSTOMER_DELETE_FAIL = 'CUSTOMER_DELETE_FAIL';
-
-var CUSTOMER_CREATE = exports.CUSTOMER_CREATE = 'CUSTOMER_CREATE';
-var CUSTOMER_CREATE_SUCCESS = exports.CUSTOMER_CREATE_SUCCESS = 'CUSTOMER_CREATE_SUCCESS';
-var CUSTOMER_CREATE_FAIL = exports.CUSTOMER_CREATE_FAIL = 'CUSTOMER_CREATE_FAIL';
-
-var CUSTOMER_UPDATEDATE = exports.CUSTOMER_UPDATEDATE = 'CUSTOMER_UPDATEDATE';
-
-function customersFetchData() {
-  console.log('actions/customers.js/customersFetchData CUSTOMER_LOAD....');
-
-  return {
-    type: CUSTOMER_LOAD,
-    payload: {
-      request: {
-        url: '/customers'
-      }
-    }
-  };
-}
-function ParseBirth(customerRec) {
-  if (customerRec.birth === '') {
-    return _extends({}, customerRec, { birth: null });
-  }
-
-  return customerRec;
-}
-
-function ParsePhone(customerRec) {
-  if (customerRec.phone && customerRec.phone.length > 0) {
-    return _extends({}, customerRec, { phone: parseInt(customerRec.phone) });
-  }
-  if (customerRec.phone === '') {
-    return _extends({}, customerRec, { phone: null });
-  }
-  return customerRec;
-}
-function SetIdZero(customerRec) {
-  return _extends({}, customerRec, { id: 0 });
-}
-
-function ParseValidations(customerRec) {
-  customerRec = ParsePhone(customerRec);
-  customerRec = ParseBirth(customerRec);
-  return customerRec;
-}
-
-function dispatchUpdateFilterList(newDate) {
-  console.log('actions/customers.js/dispatchUpdateFilterList CUSTOMER_UPDATEDATE....');
-  return {
-    type: CUSTOMER_UPDATEDATE,
-    data: newDate
-  };
-}
-
-function AddCustomer(customerRec) {
-  console.log('actions/customers.js/AddCustomer CUSTOMER_CREATE....');
-  customerRec = ParseValidations(customerRec);
-
-  customerRec = SetIdZero(customerRec);
-  return {
-    type: CUSTOMER_CREATE,
-    payload: {
-      request: {
-        method: 'POST',
-        url: '/customers',
-        data: _extends({}, customerRec)
-      }
-    }
-  };
-}
-
-function updateCustomer(customerRec) {
-  console.log('actions/customers.js/updateCustomer CUSTOMER_UPDATE....');
-
-  customerRec = ParseValidations(customerRec);
-  return {
-    type: CUSTOMER_UPDATE,
-    payload: {
-      request: {
-        method: 'PUT',
-        url: '/customers/' + customerRec.id,
-        data: _extends({}, customerRec)
-      }
-    }
-  };
-}
-
-function deleteCustomer(customerRec) {
-  console.log('actions/customers.js/deleteCustomer CUSTOMER_DELETE....');
-
-  customerRec = ParseValidations(customerRec);
-  return {
-    type: CUSTOMER_DELETE,
-    payload: {
-      request: {
-        method: 'Delete',
-        url: '/customers/' + customerRec.id,
-        data: _extends({}, customerRec)
-      }
-    }
-  };
 }
 
 /***/ }),
@@ -4540,7 +4540,7 @@ Prompt.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__generatePath__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__generatePath__ = __webpack_require__(19);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4924,7 +4924,7 @@ Switch.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(21);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -5084,7 +5084,7 @@ Link.contextTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Route__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Route__ = __webpack_require__(21);
 // Written in this round about way for babel-transform-imports
 
 
@@ -5133,7 +5133,7 @@ var storeShape = __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.shape({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_inheritsLoose__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_assertThisInitialized__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_esm_extends__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_invariant__ = __webpack_require__(3);
@@ -5544,7 +5544,7 @@ function wrapMapToPropsFunc(mapToProps, methodName) {
 "use strict";
 /* unused harmony export default */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isPlainObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(23);
 
 
 function verifyPlainObject(value, displayName, methodName) {
@@ -6139,7 +6139,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(6);
 
-var _ToStringComponent = __webpack_require__(17);
+var _ToStringComponent = __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7025,7 +7025,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_1__Prompt__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Redirect__ = __webpack_require__(36);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_2__Redirect__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(21);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_3__Route__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(13);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_4__Router__["a"]; });
@@ -7033,7 +7033,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_5__StaticRouter__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Switch__ = __webpack_require__(38);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_6__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__generatePath__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__generatePath__ = __webpack_require__(19);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "generatePath", function() { return __WEBPACK_IMPORTED_MODULE_7__generatePath__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__matchPath__ = __webpack_require__(14);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_8__matchPath__["a"]; });
@@ -7418,7 +7418,7 @@ module.exports = hoistNonReactStatics;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(22);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -7484,7 +7484,7 @@ BrowserRouter.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(22);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -7683,7 +7683,7 @@ NavLink.defaultProps = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_generatePath__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_generatePath__ = __webpack_require__(19);
 // Written in this round about way for babel-transform-imports
 
 
@@ -7723,7 +7723,7 @@ NavLink.defaultProps = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_PropTypes__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_warning__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_warning__ = __webpack_require__(23);
 
 
 
@@ -8046,7 +8046,7 @@ function () {
 "use strict";
 /* unused harmony export createConnect */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_extends__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_connectAdvanced__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_shallowEqual__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mapDispatchToProps__ = __webpack_require__(94);
@@ -8425,7 +8425,7 @@ function whenMergePropsIsOmitted(mergeProps) {
 /* unused harmony export impureFinalPropsSelectorFactory */
 /* unused harmony export pureFinalPropsSelectorFactory */
 /* harmony export (immutable) */ __webpack_exports__["a"] = finalPropsSelectorFactory;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__verifySubselectors__ = __webpack_require__(103);
 
 
@@ -8521,7 +8521,7 @@ function finalPropsSelectorFactory(dispatch, _ref2) {
 
 "use strict";
 /* unused harmony export default */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(23);
 
 
 function verify(selector, methodName, displayName) {
@@ -8545,7 +8545,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_matchPath__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_matchPath__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_matchPath___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_router_matchPath__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_Router__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_Router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router_Router__);
@@ -8767,7 +8767,7 @@ var _invariant = __webpack_require__(3);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _matchPath = __webpack_require__(24);
+var _matchPath = __webpack_require__(25);
 
 var _matchPath2 = _interopRequireDefault(_matchPath);
 
@@ -8869,7 +8869,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _matchPath = __webpack_require__(24);
+var _matchPath = __webpack_require__(25);
 
 var _matchPath2 = _interopRequireDefault(_matchPath);
 
@@ -9209,7 +9209,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.sessions = sessions;
 
-var _sessions = __webpack_require__(25);
+var _sessions = __webpack_require__(26);
 
 var _SessionButton = __webpack_require__(50);
 
@@ -9312,7 +9312,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.customers = customers;
 
-var _customers = __webpack_require__(26);
+var _customers = __webpack_require__(16);
 
 var _sortArray = __webpack_require__(27);
 
@@ -9757,7 +9757,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.services = services;
 
-var _services = __webpack_require__(16);
+var _services = __webpack_require__(17);
 
 var _sortArray = __webpack_require__(27);
 
@@ -12116,16 +12116,22 @@ exports.default = [_extends({}, _App2.default, {
   }), _extends({}, _Login2.default, {
     path: '/',
     exact: true
-  }), _extends({}, _Aniversarios2.default, {
-    path: '/aniversarios',
-    exact: true
-  }), _extends({}, _Analise2.default, {
-    path: '/analise',
-    exact: true
-  }), _extends({}, _Acompanhamento2.default, {
-    path: '/acompanhamento',
-    exact: true
   }),
+  // {
+  //   ...Aniversarios,
+  //   path: '/aniversarios',
+  //   exact: true
+  // },
+  // {
+  //   ...Analise,
+  //   path: '/analise',
+  //   exact: true
+  // },
+  // {
+  //   ...Acompanhamento,
+  //   path: '/acompanhamento',
+  //   exact: true
+  // },
   // {
   //   ...Speakers,
   //   path: '/speakers',
@@ -12165,11 +12171,11 @@ var _HomeContainer2 = _interopRequireDefault(_HomeContainer);
 
 var _reactRedux = __webpack_require__(2);
 
-var _sessions = __webpack_require__(25);
+var _sessions = __webpack_require__(26);
 
 var _speakers = __webpack_require__(49);
 
-var _sessions2 = __webpack_require__(25);
+var _sessions2 = __webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13189,7 +13195,8 @@ var Login = exports.Login = function Login(props) {
     if (!formIsValid()) return;
     var prom1 = props.loginCall(login);
     Promise.all([prom1]).then(function () {
-      props.history.push('/customers');
+      //props.history.push('/customers')
+      props.history.push('/calendar');
     }).catch(function () {
       console.log('error on login');
     });
@@ -13400,11 +13407,9 @@ var _CustomerContainer2 = _interopRequireDefault(_CustomerContainer);
 
 var _reactRedux = __webpack_require__(2);
 
-var _customers = __webpack_require__(26);
+var _customers = __webpack_require__(16);
 
 var _booking = __webpack_require__(11);
-
-var _services = __webpack_require__(16);
 
 var _Loading = __webpack_require__(7);
 
@@ -13421,6 +13426,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+//import { ServicesFetchData } from '.././../../redux/actions/services'
+
 
 var Customers = function (_Component) {
   _inherits(Customers, _Component);
@@ -13432,16 +13439,15 @@ var Customers = function (_Component) {
   }
 
   _createClass(Customers, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      if (!this.props.unauthorized) {
-        this.props.customersFetchData();
-        this.props.BookingFetchData();
-        this.props.ServicesFetchData();
-      }
-    }
-  }, {
     key: 'deleteCustomer',
+
+    // componentDidMount () {
+    //   if (!this.props.unauthorized) {
+    //     this.props.customersFetchData()
+    //     this.props.BookingFetchData()
+    //     this.props.ServicesFetchData()
+    //   }
+    // }
     value: function deleteCustomer(customer) {
       this.props.deleteCustomer(customer);
       // this.props.Bdelete(element)
@@ -13511,9 +13517,9 @@ var mapStateToProps = function mapStateToProps(state) {
 
 exports.default = {
   component: (0, _reactRedux.connect)(mapStateToProps, {
-    ServicesFetchData: _services.ServicesFetchData,
-    BookingFetchData: _booking.BookingFetchData,
-    customersFetchData: _customers.customersFetchData,
+    // ServicesFetchData,
+    // BookingFetchData,
+    // customersFetchData,
     deleteCustomer: _customers.deleteCustomer,
     Bdelete: _booking.Bdelete
   })(Customers)
@@ -13690,7 +13696,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(6);
 
-var _ToStringComponent = __webpack_require__(17);
+var _ToStringComponent = __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13820,9 +13826,9 @@ var _CustomerForm2 = _interopRequireDefault(_CustomerForm);
 
 var _reactRedux = __webpack_require__(2);
 
-var _customers = __webpack_require__(26);
+var _customers = __webpack_require__(16);
 
-var _ToStringComponent = __webpack_require__(17);
+var _ToStringComponent = __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14386,6 +14392,10 @@ var _LoginUnsuccessful = __webpack_require__(9);
 
 var _LoginUnsuccessful2 = _interopRequireDefault(_LoginUnsuccessful);
 
+var _customers = __webpack_require__(16);
+
+var _services = __webpack_require__(17);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14404,14 +14414,32 @@ var Calendar = function (_Component) {
   }
 
   _createClass(Calendar, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (!this.props.unauthorized) {
+        this.props.customersFetchData();
+        this.props.ServicesFetchData();
+        this.props.BookingFetchData();
+        // Promise.all([prom2,prom3])
+        // .then(() => {
+        //     this.props.dispatchUpdateFilterList(new Date())
+        //   })
+        //   .catch(() => {
+        //     console.log('error on action')
+        //   })
+
+
+        // Promise.all([prom1])
+        // .then(() => {
+        //     this.props.dispatchUpdateFilterList(new Date())
+        //   })
+        //   .catch(() => {
+        //     console.log('error on action')
+        //   })
+      }
+    }
+  }, {
     key: 'render',
-
-    // componentDidMount () {
-
-    // const prom1 = this.props.FetchData()
-    // return Promise.all([prom1])
-    // }
-
     value: function render() {
       var _this2 = this;
 
@@ -14467,7 +14495,7 @@ var mapStateToProps = function mapStateToProps(state) {
     customers: state.customers.data,
     services: state.services.data,
     hasErrored: state.calendar.hasErrored,
-    isLoading: state.calendar.isLoading,
+    isLoading: state.booking.isLoading,
     errorMessage: state.calendar.errorMessage,
     unauthorized: state.login.unauthorized
   };
@@ -14479,7 +14507,10 @@ exports.default = {
     dispatchUpdateTextHeader: _calendar.dispatchUpdateTextHeader,
     dispatchUpdateFilterList: _booking.dispatchUpdateFilterList,
     FetchData: _booking.FetchData,
-    Bdelete: _booking.Bdelete
+    Bdelete: _booking.Bdelete,
+    ServicesFetchData: _services.ServicesFetchData,
+    BookingFetchData: _booking.BookingFetchData,
+    customersFetchData: _customers.customersFetchData
   })(Calendar)
 };
 
@@ -14944,7 +14975,7 @@ var _ServicesContainer2 = _interopRequireDefault(_ServicesContainer);
 
 var _reactRedux = __webpack_require__(2);
 
-var _services = __webpack_require__(16);
+var _services = __webpack_require__(17);
 
 var _Loading = __webpack_require__(7);
 
@@ -15204,7 +15235,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(6);
 
-var _ToStringComponent = __webpack_require__(17);
+var _ToStringComponent = __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15318,7 +15349,7 @@ var _ServiceForm = __webpack_require__(179);
 
 var _ServiceForm2 = _interopRequireDefault(_ServiceForm);
 
-var _services = __webpack_require__(16);
+var _services = __webpack_require__(17);
 
 var _Loading = __webpack_require__(7);
 
@@ -15465,14 +15496,6 @@ function ServiceForm(props) {
       value: props.service.name,
       onChange: props.onChange,
       error: props.errors.name
-    }),
-    _react2.default.createElement(_TextInput2.default, {
-      id: 'diasAcompanhamento',
-      label: 'Dias para acompanhamento',
-      name: 'diasAcompanhamento',
-      value: props.service.diasAcompanhamento,
-      onChange: props.onChange,
-      error: props.errors.diasAcompanhamento
     }),
     _react2.default.createElement('input', {
       type: 'submit',
