@@ -14244,33 +14244,6 @@ function CodeCampMenu() {
       ),
       _react2.default.createElement(
         'li',
-        { className: 'snow-bg' },
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/aniversarios', onClick: setCssVisibility },
-          'Parabens'
-        )
-      ),
-      _react2.default.createElement(
-        'li',
-        { className: 'snow-bg' },
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/analise', onClick: setCssVisibility },
-          'Analise'
-        )
-      ),
-      _react2.default.createElement(
-        'li',
-        { className: 'snow-bg' },
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/acompanhamento', onClick: setCssVisibility },
-          'Acompanhamento'
-        )
-      ),
-      _react2.default.createElement(
-        'li',
         { className: 'social-icon snow-bg' },
         _react2.default.createElement(
           'a',
