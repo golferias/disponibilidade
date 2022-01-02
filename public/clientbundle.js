@@ -14318,6 +14318,9 @@ PageTop.propTypes = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 exports.default = Footer;
 
 var _react = __webpack_require__(0);
@@ -14327,6 +14330,29 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Footer() {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      visible = _useState2[0],
+      setVisible = _useState2[1];
+
+  var toggleVisible = function toggleVisible() {
+    var scrolled = document.documentElement.scrollHeight;
+    if (scrolled > 820) {
+      setVisible(true);
+    } else if (scrolled <= 820) {
+      setVisible(false);
+    }
+  };
+
+  var scrollToTop = function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // window.addEventListener('scroll', toggleVisible);
+  window.addEventListener('click', toggleVisible);
 
   return _react2.default.createElement(
     'footer',
@@ -14338,12 +14364,7 @@ function Footer() {
       _react2.default.createElement(
         'div',
         { className: 'footer__disclaimer' },
-        _react2.default.createElement('a', { href: '#', id: 'toTopBtn', 'class': 'cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out', 'data-abc': 'true', onClick: function onClick() {
-            return window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
-          } }),
+        _react2.default.createElement('a', { href: '#', id: 'toTopBtn', 'class': 'cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out', 'data-abc': 'true', onClick: scrollToTop, style: { display: visible ? 'inline' : 'none' } }),
         _react2.default.createElement(
           'p',
           null,
