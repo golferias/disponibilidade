@@ -8,16 +8,39 @@ import {
 import {
   dispatchUpdateFilterList,
   FetchData,
-  Bdelete
+  Bdelete,
+  BookingFetchData
 } from '.././../../redux/actions/booking'
 import Loading from '../common/Loading'
 import LoginUnsuccessful from '../Login/LoginUnsuccessful'
-class Calendar extends Component {
-  // componentDidMount () {
+import {  customersFetchData} from '.././../../redux/actions/customers'
+import { ServicesFetchData } from '.././../../redux/actions/services'
 
-  // const prom1 = this.props.FetchData()
-  // return Promise.all([prom1])
-  // }
+class Calendar extends Component {
+  componentDidMount () {
+    if (!this.props.unauthorized) {
+       this.props.customersFetchData()
+       this.props.ServicesFetchData()
+      this.props.BookingFetchData()
+      // Promise.all([prom2,prom3])
+      // .then(() => {
+      //     this.props.dispatchUpdateFilterList(new Date())
+      //   })
+      //   .catch(() => {
+      //     console.log('error on action')
+      //   })
+
+
+     
+      // Promise.all([prom1])
+      // .then(() => {
+      //     this.props.dispatchUpdateFilterList(new Date())
+      //   })
+      //   .catch(() => {
+      //     console.log('error on action')
+      //   })
+    }
+  }
 
   render () {
     if (this.props.unauthorized) {
@@ -64,7 +87,7 @@ const mapStateToProps = state => {
     customers: state.customers.data,
     services: state.services.data,
     hasErrored: state.calendar.hasErrored,
-    isLoading: state.calendar.isLoading,
+    isLoading: state.booking.isLoading,
     errorMessage: state.calendar.errorMessage,
     unauthorized: state.login.unauthorized
   }
@@ -76,6 +99,9 @@ export default {
     dispatchUpdateTextHeader,
     dispatchUpdateFilterList,
     FetchData,
-    Bdelete
+    Bdelete,
+    ServicesFetchData,
+    BookingFetchData,
+    customersFetchData
   })(Calendar)
 }

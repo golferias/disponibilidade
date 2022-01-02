@@ -2,23 +2,23 @@ import React, { Component } from 'react'
 import Container from './CustomerContainer'
 import { connect } from 'react-redux'
 import {
-  customersFetchData,
+  //customersFetchData,
   deleteCustomer
 } from '.././../../redux/actions/customers'
 
-import { BookingFetchData, Bdelete } from '.././../../redux/actions/booking'
-import { ServicesFetchData } from '.././../../redux/actions/services'
+import { Bdelete } from '.././../../redux/actions/booking'
+//import { ServicesFetchData } from '.././../../redux/actions/services'
 import Loading from '../common/Loading'
 import LoginUnsuccessful from '../Login/LoginUnsuccessful'
 
 class Customers extends Component {
-  componentDidMount () {
-    if (!this.props.unauthorized) {
-      this.props.customersFetchData()
-      this.props.BookingFetchData()
-      this.props.ServicesFetchData()
-    }
-  }
+  // componentDidMount () {
+  //   if (!this.props.unauthorized) {
+  //     this.props.customersFetchData()
+  //     this.props.BookingFetchData()
+  //     this.props.ServicesFetchData()
+  //   }
+  // }
   deleteCustomer (customer) {
     this.props.deleteCustomer(customer)
     // this.props.Bdelete(element)
@@ -76,9 +76,9 @@ const mapStateToProps = state => {
 
 export default {
   component: connect(mapStateToProps, {
-    ServicesFetchData,
-    BookingFetchData,
-    customersFetchData,
+   // ServicesFetchData,
+   // BookingFetchData,
+   // customersFetchData,
     deleteCustomer,
     Bdelete
   })(Customers)

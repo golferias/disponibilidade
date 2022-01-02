@@ -77,21 +77,21 @@ export default [
         path: '/',
         exact: true
       },
-      {
-        ...Aniversarios,
-        path: '/aniversarios',
-        exact: true
-      },
-      {
-        ...Analise,
-        path: '/analise',
-        exact: true
-      },
-      {
-        ...Acompanhamento,
-        path: '/acompanhamento',
-        exact: true
-      },
+      // {
+      //   ...Aniversarios,
+      //   path: '/aniversarios',
+      //   exact: true
+      // },
+      // {
+      //   ...Analise,
+      //   path: '/analise',
+      //   exact: true
+      // },
+      // {
+      //   ...Acompanhamento,
+      //   path: '/acompanhamento',
+      //   exact: true
+      // },
       // {
       //   ...Speakers,
       //   path: '/speakers',

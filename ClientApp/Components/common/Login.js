@@ -17,7 +17,8 @@ export const Login = props => {
     const prom1 = props.loginCall(login)
     Promise.all([prom1])
       .then(() => {
-        props.history.push('/customers')
+        //props.history.push('/customers')
+        props.history.push('/calendar')
       })
       .catch(() => {
         console.log('error on login')
