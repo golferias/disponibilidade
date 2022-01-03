@@ -9327,21 +9327,34 @@ function customers() {
   };
   var action = arguments[1];
 
-  function createCustomer(state, customerToCreate) {
-    return _extends({}, state, { data: [].concat(_toConsumableArray(state.data), [customerToCreate]) });
+  function create(state, ToCreate) {
+    if (ToCreate == undefined) {
+      return state;
+    }
+    var newState = _extends({}, state, { data: [].concat(_toConsumableArray(state.data), [ToCreate]) });
+    return Object.assign({}, state, {
+      data: [].concat(_toConsumableArray(new Set(newState.data))).sort((0, _sortArray.compareValues)('name')),
+      isLoading: false,
+      hasErrored: false
+    });
+    // return { ...state, data: [...state.data, customerToCreate] }
   }
 
-  function deleteOneCustomer(state, customerToDelete) {
+  function deleteOne(state, customerToDelete) {
     var filteredArray = state.data.filter(function (item) {
       return item.id !== customerToDelete.id;
     });
     return _extends({}, state, { data: [].concat(_toConsumableArray(filteredArray)) });
   }
-  function updateOneCustomer(state, customerToUpdate) {
-    var newCustomerList = state.data.map(function (item) {
-      return item.id === customerToUpdate.id ? _extends({}, item, customerToUpdate) : item;
+  function updateOne(state, ToUpdate) {
+    var newList = state.data.map(function (item) {
+      return item.id === ToUpdate.id ? _extends({}, item, ToUpdate) : item;
     });
-    return _extends({}, state, { data: [].concat(_toConsumableArray(newCustomerList)) });
+    return Object.assign({}, state, {
+      data: newList,
+      isLoading: true,
+      hasErrored: false
+    });
   }
 
   switch (action.type) {
@@ -9375,13 +9388,8 @@ function customers() {
     case _customers.CUSTOMER_UPDATE:
       {
         console.log('--- Triggered CUSTOMER_UPDATE ---');
-        Object.assign({}, state, {
-          isLoading: true,
-          hasErrored: false
-        });
-        var customerToUpdate = action.payload.request.data;
-        var newState = updateOneCustomer(state, customerToUpdate);
-        return newState;
+        var ToUpdate = action.payload.request.data;
+        return updateOne(state, ToUpdate);
       }
     case _customers.CUSTOMER_UPDATE_SUCCESS:
       {
@@ -9404,14 +9412,8 @@ function customers() {
     case _customers.CUSTOMER_DELETE:
       {
         console.log('--- Triggered CUSTOMER_DELETE ---');
-        Object.assign({}, state, {
-          isLoading: true,
-          hasErrored: false
-        });
-
-        var customerIdToDelete = action.payload.request.data;
-        var _newState = deleteOneCustomer(state, customerIdToDelete);
-        return _newState;
+        var ToDelete = action.payload.request.data;
+        return deleteOne(state, ToDelete);
       }
     case _customers.CUSTOMER_DELETE_SUCCESS:
       {
@@ -9438,22 +9440,13 @@ function customers() {
           isLoading: true,
           hasErrored: false
         });
-        var customerToCreate = action.payload.request.data;
-        var _newState2 = createCustomer(state, customerToCreate);
-        return _newState2;
       }
     case _customers.CUSTOMER_CREATE_SUCCESS:
       {
         console.log('--- Triggered CUSTOMER_CREATE_SUCCESS ---');
 
-        Object.assign({}, state, {
-          data: action.payload.data,
-          isLoading: false,
-          hasErrored: false
-        });
-        var _customerToCreate = action.payload.data;
-        var _newState3 = createCustomer(state, _customerToCreate);
-        return _newState3;
+        var ToCreate = action.payload.data;
+        return create(state, ToCreate);
       }
     case _customers.CUSTOMER_CREATE_FAIL:
       {
