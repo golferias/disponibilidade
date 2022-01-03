@@ -24,21 +24,35 @@ export function customers (
   },
   action
 ) {
-  function createCustomer (state, customerToCreate) {
-    return { ...state, data: [...state.data, customerToCreate] }
+  function create (state, ToCreate) {
+    if(ToCreate == undefined)
+    {
+      return state;
+    }
+    let newState = { ...state, data: [...state.data, ToCreate] }
+    return Object.assign({}, state, {
+      data: [...new Set(newState.data)].sort(compareValues('name')),
+      isLoading: false,
+      hasErrored: false
+    })
+    // return { ...state, data: [...state.data, customerToCreate] }
   }
 
-  function deleteOneCustomer (state, customerToDelete) {
+  function deleteOne (state, customerToDelete) {
     var filteredArray = state.data.filter(
       item => item.id !== customerToDelete.id
     )
     return { ...state, data: [...filteredArray] }
   }
-  function updateOneCustomer (state, customerToUpdate) {
-    var newCustomerList = state.data.map(item =>
-      item.id === customerToUpdate.id ? { ...item, ...customerToUpdate } : item
+  function updateOne (state, ToUpdate) {
+    var newList = state.data.map(item =>
+      item.id === ToUpdate.id ? { ...item, ...ToUpdate } : item
     )
-    return { ...state, data: [...newCustomerList] }
+    return Object.assign({}, state, {
+      data: newList,
+      isLoading: true,
+      hasErrored: false
+    })
   }
 
   switch (action.type) {
@@ -68,13 +82,8 @@ export function customers (
     ///////////// UPDATE (PUT) /////////////////////////////////////////////////////////////////
     case CUSTOMER_UPDATE: {
       console.log('--- Triggered CUSTOMER_UPDATE ---')
-      Object.assign({}, state, {
-        isLoading: true,
-        hasErrored: false
-      })
-      const customerToUpdate = action.payload.request.data
-      const newState = updateOneCustomer(state, customerToUpdate)
-      return newState
+      const ToUpdate = action.payload.request.data
+      return updateOne(state, ToUpdate)
     }
     case CUSTOMER_UPDATE_SUCCESS: {
       console.log('--- Triggered CUSTOMER_UPDATE_SUCCESS ---')
@@ -94,14 +103,8 @@ export function customers (
     ///////////// DELETE  /////////////////////////////////////////////////////////////////
     case CUSTOMER_DELETE: {
       console.log('--- Triggered CUSTOMER_DELETE ---')
-      Object.assign({}, state, {
-        isLoading: true,
-        hasErrored: false
-      })
-
-      const customerIdToDelete = action.payload.request.data
-      const newState = deleteOneCustomer(state, customerIdToDelete)
-      return newState
+      const ToDelete = action.payload.request.data
+      return deleteOne(state, ToDelete)
     }
     case CUSTOMER_DELETE_SUCCESS: {
       console.log('--- Triggered CUSTOMER_DELETE_SUCCESS ---')
@@ -125,21 +128,12 @@ export function customers (
         isLoading: true,
         hasErrored: false
       })
-      const customerToCreate = action.payload.request.data
-      const newState = createCustomer(state, customerToCreate)
-      return newState
     }
     case CUSTOMER_CREATE_SUCCESS: {
       console.log('--- Triggered CUSTOMER_CREATE_SUCCESS ---')
 
-      Object.assign({}, state, {
-        data: action.payload.data,
-        isLoading: false,
-        hasErrored: false
-      })
-      const customerToCreate = action.payload.data
-      const newState = createCustomer(state, customerToCreate)
-      return newState
+      const ToCreate = action.payload.data
+      return create(state, ToCreate)
     }
     case CUSTOMER_CREATE_FAIL: {
       console.log('--- Triggered CUSTOMER_CREATE_FAIL ---')
