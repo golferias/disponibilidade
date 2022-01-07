@@ -12106,7 +12106,7 @@ exports.default = [_extends({}, _App2.default, {
   }), _extends({}, _Calendar2.default, {
     path: '/calendar',
     exact: true
-  }), _extends({}, _Login2.default, {
+  }), _extends({}, _Calendar2.default, {
     path: '/',
     exact: true
   }),
@@ -14450,36 +14450,20 @@ var Calendar = function (_Component) {
   _createClass(Calendar, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      if (!this.props.unauthorized) {
-        this.props.customersFetchData();
-        this.props.ServicesFetchData();
-        this.props.BookingFetchData();
-        // Promise.all([prom2,prom3])
-        // .then(() => {
-        //     this.props.dispatchUpdateFilterList(new Date())
-        //   })
-        //   .catch(() => {
-        //     console.log('error on action')
-        //   })
-
-
-        // Promise.all([prom1])
-        // .then(() => {
-        //     this.props.dispatchUpdateFilterList(new Date())
-        //   })
-        //   .catch(() => {
-        //     console.log('error on action')
-        //   })
-      }
+      if (!this.props.unauthorized) {}
+      this.props.customersFetchData();
+      this.props.ServicesFetchData();
+      this.props.BookingFetchData();
     }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      if (this.props.unauthorized) {
-        return _react2.default.createElement(_LoginUnsuccessful2.default, null);
-      } else if (this.props.isLoading) {
+      // if (this.props.unauthorized) {
+      //   return <LoginUnsuccessful />
+      // } else
+      if (this.props.isLoading) {
         return _react2.default.createElement(_Loading2.default, { title: 'A carregar Calendario...' });
       } else if (this.props.hasErrored) {
         return _react2.default.createElement(

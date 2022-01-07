@@ -13,39 +13,23 @@ import {
 } from '.././../../redux/actions/booking'
 import Loading from '../common/Loading'
 import LoginUnsuccessful from '../Login/LoginUnsuccessful'
-import {  customersFetchData} from '.././../../redux/actions/customers'
+import { customersFetchData } from '.././../../redux/actions/customers'
 import { ServicesFetchData } from '.././../../redux/actions/services'
 
 class Calendar extends Component {
   componentDidMount () {
     if (!this.props.unauthorized) {
-       this.props.customersFetchData()
-       this.props.ServicesFetchData()
-      this.props.BookingFetchData()
-      // Promise.all([prom2,prom3])
-      // .then(() => {
-      //     this.props.dispatchUpdateFilterList(new Date())
-      //   })
-      //   .catch(() => {
-      //     console.log('error on action')
-      //   })
-
-
-     
-      // Promise.all([prom1])
-      // .then(() => {
-      //     this.props.dispatchUpdateFilterList(new Date())
-      //   })
-      //   .catch(() => {
-      //     console.log('error on action')
-      //   })
     }
+    this.props.customersFetchData()
+    this.props.ServicesFetchData()
+    this.props.BookingFetchData()
   }
 
   render () {
-    if (this.props.unauthorized) {
-      return <LoginUnsuccessful />
-    } else if (this.props.isLoading) {
+    // if (this.props.unauthorized) {
+    //   return <LoginUnsuccessful />
+    // } else
+    if (this.props.isLoading) {
       return <Loading title='A carregar Calendario...' />
     } else if (this.props.hasErrored) {
       return (

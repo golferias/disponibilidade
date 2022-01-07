@@ -7,7 +7,7 @@ import App from './Components/common/App'
 import Calendar from './Components/Calendar/Calendar'
 import Booking from './Components/Booking/Booking'
 import Services from './Components/Services/Services'
-import ManageServices from './Components/Services/ManageServices'    
+import ManageServices from './Components/Services/ManageServices'
 import ManageBooking from './Components/Booking/ManageBooking'
 import Aniversarios from './Components/Aniversarios/Aniversarios'
 import Analise from './Components/Analise/Analise'
@@ -73,7 +73,7 @@ export default [
         exact: true
       },
       {
-        ...Login,
+        ...Calendar,
         path: '/',
         exact: true
       },
