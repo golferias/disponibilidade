@@ -32,7 +32,7 @@ export default function Footer () {
         <div className='footer__disclaimer'>
         <a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true" onClick={scrollToTop} >
         </a>
-          <p>Versao: 1</p>
+          <p>Versao: 2</p>
           <p>
             Desenvolvido por <strong>Pedro Costa</strong>
           </p>
