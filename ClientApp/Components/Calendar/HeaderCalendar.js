@@ -113,7 +113,7 @@ export const HeaderCalendar = props => {
         <tr className='calendar-dayweek-text-row'>
           <td className='calendar-dayweek-text-empty'></td>
           <td className='calendar-dayweek-text-holiday'>Seg</td>
-          <td className='calendar-dayweek-text'>Ter</td>
+          <td className='calendar-dayweek-text-firstday'>Ter</td>
           <td className='calendar-dayweek-text'>Qua</td>
           <td className='calendar-dayweek-text'>Qui</td>
           <td className='calendar-dayweek-text'>Sex</td>
