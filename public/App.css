@@ -15625,7 +15625,7 @@ body {
 	 border-bottom-color: #ccc;
 	color: red;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 300px) {
 	.calendar-dayweek-text-holiday {
 		text-align: center;
 	}
