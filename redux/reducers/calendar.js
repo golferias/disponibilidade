@@ -42,10 +42,10 @@ export function calendar (
     case CALENDAR_UPDATETEXTHEADER: {
       const startweek = new Date(action.data)
 
-      const date =
-        months[startweek.getMonth()] +
-        ' ' +
-        startweek.getFullYear().toString()
+      const date = months[startweek.getMonth()]
+      // +
+      // ' ' +
+      // startweek.getFullYear().toString()
 
       return Object.assign({}, state, {
         textheader: date

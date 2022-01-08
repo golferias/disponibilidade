@@ -76,17 +76,6 @@ export const HeaderCalendar = props => {
   return (
     <table className='calendar-table'>
       <tbody>
-        <tr className='calendar-dayweek-text-row'>
-          <td className='calendar-dayweek-text-empty'></td>
-          <td className='calendar-dayweek-text'>S</td>
-          <td className='calendar-dayweek-text-holiday'>T</td>
-          <td className='calendar-dayweek-text'>Q</td>
-          <td className='calendar-dayweek-text'>Q</td>
-          <td className='calendar-dayweek-text'>S</td>
-          <td className='calendar-dayweek-text-holiday'>S</td>
-          <td className='calendar-dayweek-text-holiday'>D</td>
-          <td className='calendar-dayweek-text-empty'></td>
-        </tr>
         <tr>
           <td className='calendar-td-btleft'>
             <button
@@ -100,14 +89,14 @@ export const HeaderCalendar = props => {
           {days.map(d => {
             return (
               <td className='calendar-day-text' key={d}>
-                <button
-                  type='button'
-                  value={days.indexOf(d)}
+                <div
+                  // type='button'
+                  // value={days.indexOf(d)}
                   className='calendar-day-text-button'
-                  onClick={filterDay.bind(this, days.indexOf(d))}
+                  // onClick={filterDay.bind(this, days.indexOf(d))}
                 >
                   {d}
-                </button>
+                </div>
               </td>
             )
           })}
@@ -120,6 +109,17 @@ export const HeaderCalendar = props => {
               &gt;
             </button>
           </td>
+        </tr>
+        <tr className='calendar-dayweek-text-row'>
+          <td className='calendar-dayweek-text-empty'></td>
+          <td className='calendar-dayweek-text-holiday'>Seg</td>
+          <td className='calendar-dayweek-text'>Ter</td>
+          <td className='calendar-dayweek-text'>Qua</td>
+          <td className='calendar-dayweek-text'>Qui</td>
+          <td className='calendar-dayweek-text'>Sex</td>
+          <td className='calendar-dayweek-text-holiday'>Sab</td>
+          <td className='calendar-dayweek-text-holiday'>Dom</td>
+          <td className='calendar-dayweek-text-empty'></td>
         </tr>
       </tbody>
     </table>
