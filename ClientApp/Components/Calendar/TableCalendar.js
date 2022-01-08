@@ -27,7 +27,7 @@ export default class TableCalendar extends Component {
         return <td className='tablecalendar-dayweek-text-empty'>{finalHour}</td>
 
       default:
-        return <td className='tablecalendar-dayweek-text-empty'></td>
+        return <td className='tablecalendar-dayweek-text-empty_lastcolumn'></td>
     }
   }
 

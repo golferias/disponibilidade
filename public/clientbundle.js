@@ -14741,7 +14741,7 @@ var HomeTableCalendar = function (_Component) {
     value: function render() {
       var orderedBooking = this.props.booking;
 
-      var itemComponents = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      var itemComponents = [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0];
 
       // itemComponents = orderedBooking.map(Rec => {
       //   return (
@@ -14846,7 +14846,7 @@ var TableCalendar = function (_Component) {
           );
 
         default:
-          return _react2.default.createElement('td', { className: 'tablecalendar-dayweek-text-empty' });
+          return _react2.default.createElement('td', { className: 'tablecalendar-dayweek-text-empty_lastcolumn' });
       }
     }
   }, {

@@ -15589,36 +15589,40 @@ body {
 	width: 2.3em;
 	height: 4.625em;
 	text-align: center;
-	/* margin-top: .1875em; */
 	padding: 0;
 	line-height: 1.625em;
 	border: 2px solid transparent;
 	border-radius: 2em;
 }
 .calendar-dayweek-text-row {
-	background-color: #f7f7f7;
+	background-color: white;
 	font-size: 0.7rem;
 }
-.calendar-dayweek-text {
+.calendar-dayweek-text, .calendar-dayweek-text-firstday {
 	width: 12%;
 	text-align: center;
 	font-family: "Handel Gothic d-light", sans-serif;
 	padding: 0;
 	line-height: 1.625em;
-	background-color: #f7f7f7;
-	/* border-bottom: 2px solid;
-	border-bottom-color: #ccc; */
+	background-color: white;
+	border-bottom: 2px solid;
+	border-bottom-color: #ccc;
 	color: black;
 }
+
+.calendar-dayweek-text-firstday{
+	width: 15%;
+}
+
 .calendar-dayweek-text-holiday {
 	width: 11%; 
 	text-align: center;
 	font-family: "Handel Gothic d-light", sans-serif;
 	padding: 0;
 	line-height: 1.625em;
-	background-color: #f7f7f7;
-	/* border-bottom: 2px solid; */
-	/* border-bottom-color: #ccc; */
+	background-color: white;
+	border-bottom: 2px solid; 
+	 border-bottom-color: #ccc;
 	color: red;
 }
 .calendar-day-text-button {
@@ -15626,7 +15630,9 @@ body {
 	border-color: transparent;
 }
 .calendar-dayweek-text-empty {
-	width: 5%;
+	width: 9%;
+	border-bottom: 2px solid; 
+	border-bottom-color: #ccc;
 }
 .calendar-table {
 	width: 100%;
@@ -15739,20 +15745,14 @@ body {
 	font-size: 0.7rem;
 }
 
-.tablecalendar-dayweek-text-empty {
+.tablecalendar-dayweek-text-empty,
+.tablecalendar-dayweek-text-empty_lastcolumn {
 	width: 5%;
-	background-color: #f7f7f7;
+	background-color: white;
 	text-align: center;
 }
-
-.calendar-dayweek-text-firstday{
-	width: 15%;
-	text-align: center;
-	font-family: "Handel Gothic d-light", sans-serif;
-	padding: 0;
-	line-height: 1.625em;
-	background-color: #f7f7f7;
-	color: black;
+.tablecalendar-dayweek-text-empty_lastcolumn{
+	background-color: white;
 }
 
 .tablecalendar-day-text_holiday, 
@@ -15766,7 +15766,7 @@ body {
 	border: 2px solid white;
 	border-top: 0px;
 	border-radius: 0em;
-	background-color: #a6d5ec;
+	background-color: #f0f3f4;
 }
 
 .tablecalendar-day-text_booked
