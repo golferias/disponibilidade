@@ -15616,7 +15616,7 @@ body {
 
 .calendar-dayweek-text-holiday {
 	width: 11%; 
-	text-align: center;
+	text-align: right;
 	font-family: "Handel Gothic d-light", sans-serif;
 	padding: 0;
 	line-height: 1.625em;
@@ -15624,6 +15624,11 @@ body {
 	border-bottom: 2px solid; 
 	 border-bottom-color: #ccc;
 	color: red;
+}
+@media screen and (max-width: 400px) {
+	.calendar-dayweek-text-holiday {
+		text-align: center;
+	}
 }
 .calendar-day-text-button {
 	background-color: transparent;
