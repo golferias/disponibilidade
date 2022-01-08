@@ -14352,7 +14352,7 @@ function Footer() {
           'a',
           {
             href: 'tel:+351914486146',
-            'class': 'cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out'
+            'class': 'text-replace js-cd-top cd-top--is-visible cd-top--fade-out'
           },
           _react2.default.createElement(
             'i',
