@@ -14830,46 +14830,20 @@ var TableCalendar = function (_Component) {
               { className: 'tablecalendar-dayweek-text-empty' },
               '09:00'
             ),
-            _react2.default.createElement(
-              'td',
-              { className: 'tablecalendar-day-text' },
-              '1'
-            ),
-            _react2.default.createElement(
-              'td',
-              { className: 'tablecalendar-day-text' },
-              this.props.items[0]
-            ),
+            _react2.default.createElement('td', { className: 'tablecalendar-day-text' }),
+            _react2.default.createElement('td', { className: 'tablecalendar-day-text' }),
             ' ',
-            _react2.default.createElement(
-              'td',
-              { className: 'tablecalendar-day-text' },
-              this.props.items[1]
-            ),
-            _react2.default.createElement(
-              'td',
-              { className: 'tablecalendar-day-text' },
-              this.props.items[2]
-            ),
+            _react2.default.createElement('td', { className: 'tablecalendar-day-text' }),
             ' ',
-            _react2.default.createElement(
-              'td',
-              { className: 'tablecalendar-day-text' },
-              this.props.items[3]
-            ),
+            _react2.default.createElement('td', { className: 'tablecalendar-day-text' }),
             ' ',
-            _react2.default.createElement(
-              'td',
-              { className: 'tablecalendar-day-text' },
-              this.props.items[4]
-            ),
+            _react2.default.createElement('td', { className: 'tablecalendar-day-text' }),
             ' ',
-            _react2.default.createElement(
-              'td',
-              { className: 'tablecalendar-day-text' },
-              '2'
-            ),
-            ' '
+            _react2.default.createElement('td', { className: 'tablecalendar-day-text' }),
+            ' ',
+            _react2.default.createElement('td', { className: 'tablecalendar-day-text' }),
+            ' ',
+            _react2.default.createElement('td', { className: 'tablecalendar-dayweek-text-empty' })
           ),
           _react2.default.createElement(
             'tr',
