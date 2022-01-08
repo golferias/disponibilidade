@@ -15630,7 +15630,7 @@ body {
 	border-color: transparent;
 }
 .calendar-dayweek-text-empty {
-	width: 9%;
+	/* width: 9%; */
 	border-bottom: 2px solid; 
 	border-bottom-color: #ccc;
 }
