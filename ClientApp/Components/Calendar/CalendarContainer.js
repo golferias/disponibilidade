@@ -1,6 +1,7 @@
 import React from 'react'
 import HeaderTitle from '../common/HeaderTitle'
 import Home from './HomeCalendar'
+import HomeTableCalendar from './HomeTableCalendar'
 
 import { HeaderCalendar } from './HeaderCalendar'
 import { HeaderTextCalendar } from './HeaderTextCalendar'
@@ -31,14 +32,15 @@ export default function CalendarContainer (props) {
           {/* <div className='calendar-headertextfooter'>
               <FooterCalendar textfooter={props.textfooter} />
             </div> */}
-          <Home
+          {/* <Home
             services={props.services}
             customers={props.customers}
             booking={props.booking}
             delete={book => {
               return props.delete(book)
             }}
-          />
+          /> */}
+          <HomeTableCalendar booking={props.booking} />
         </div>
       </div>
     </div>

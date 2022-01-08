@@ -15606,8 +15606,8 @@ body {
 	padding: 0;
 	line-height: 1.625em;
 	background-color: #f7f7f7;
-	border-bottom: 2px solid;
-	border-bottom-color: #ccc;
+	/* border-bottom: 2px solid;
+	border-bottom-color: #ccc; */
 	color: black;
 }
 .calendar-dayweek-text-holiday {
@@ -15617,8 +15617,8 @@ body {
 	padding: 0;
 	line-height: 1.625em;
 	background-color: #f7f7f7;
-	border-bottom: 2px solid;
-	border-bottom-color: #ccc;
+	/* border-bottom: 2px solid; */
+	/* border-bottom-color: #ccc; */
 	color: red;
 }
 .calendar-day-text-button {
@@ -15733,4 +15733,28 @@ body {
 		var(--cd-color-3-l),
 		0.8
 	);
+}
+
+.tablecalendar-dayweek-text-row {
+	font-size: 0.7rem;
+}
+
+.tablecalendar-day-text {
+	width: 2.3em;
+	height: 4.625em;
+	text-align: center;
+	/* margin-top: .1875em; */
+	padding: 0;
+	line-height: 1.625em;
+	border: 2px solid white;
+	border-top: 0px;
+	border-radius: 0em;
+	background-color: #bcdff1;
+}
+
+.tablecalendar-dayweek-text-empty {
+	width: 5%;
+	background-color: #f7f7f7;
+	
+	text-align: left;
 }
