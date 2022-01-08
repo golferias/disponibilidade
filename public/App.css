@@ -15769,7 +15769,7 @@ body {
 	background-color: #198bbb;
 }
 
-.tablecalendar-day-text_booked
+.tablecalendar-day-text_booked,.tablecalendar-day-text_holiday
 {
 	background-color: #f0f3f4;
 }
