@@ -28,10 +28,17 @@ export default function Footer () {
       <div className='container-main'>
         {/* <div className='footer__menu' /> */}
         <div className='footer__disclaimer'>
-          {/* <a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true" onClick={scrollToTop} >
-            </a>
-          <p>Versao: 2</p> */}
-          <p>
+          <a
+            href='tel:+351914486146'
+            class='cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out'
+          >
+            <i className='fa fa-phone-square fa-2x ' aria-hidden='true'>
+              {' '}
+            </i>
+            <p> 914 486 146</p>
+          </a>
+          <p></p>
+          <p className='footerdevelopedby'>
             Desenvolvido por <strong>Pedro Costa</strong>
           </p>
         </div>
