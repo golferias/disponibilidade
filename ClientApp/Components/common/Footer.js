@@ -30,7 +30,7 @@ export default function Footer () {
         <div className='footer__disclaimer'>
           <a
             href='tel:+351914486146'
-            class='cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out'
+            class='text-replace js-cd-top cd-top--is-visible cd-top--fade-out'
           >
             <i className='fa fa-phone-square fa-2x ' aria-hidden='true'>
               {' '}
