@@ -9,7 +9,7 @@ export default function PageTop (props) {
           {props.children}
           {/* <a href='/' rel='home' className='header-logo'> */}
           <div className='header-logo'>
-            <img src='assets/images/SVCClogo.png' alt='SVCC' />
+            {/* <img src='assets/images/SVCClogo.png' alt='SVCC' /> */}
           </div>
           {/* </a> */}
         </div>

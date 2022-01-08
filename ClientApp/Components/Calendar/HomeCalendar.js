@@ -14,20 +14,24 @@ class HomeCalendar extends Component {
       })
     }
 
-    const itemComponents = orderedBooking.map(Rec => {
-      return (
-        <BookingRec
-          showData={false}
-          key={Rec.id}
-          book={Rec}
-          services={this.props.services}
-          customers={this.props.customers}
-          delete={book => {
-            return this.props.delete(book)
-          }}
-        />
-      )
-    })
+    let itemComponents = []
+
+    if (this.props.customers.length > 0) {
+      itemComponents = orderedBooking.map(Rec => {
+        return (
+          <BookingRec
+            showData={false}
+            key={Rec.id}
+            book={Rec}
+            services={this.props.services}
+            customers={this.props.customers}
+            delete={book => {
+              return this.props.delete(book)
+            }}
+          />
+        )
+      })
+    }
 
     return (
       <div className='events-customers-list container-fluid js-list-view active'>
