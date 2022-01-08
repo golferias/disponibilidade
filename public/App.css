@@ -15599,7 +15599,7 @@ body {
 	font-size: 0.7rem;
 }
 .calendar-dayweek-text, .calendar-dayweek-text-firstday {
-	width: 12%;
+	width: 11%;
 	text-align: center;
 	font-family: "Handel Gothic d-light", sans-serif;
 	padding: 0;
@@ -15611,7 +15611,7 @@ body {
 }
 
 .calendar-dayweek-text-firstday{
-	width: 15%;
+	width: 11%;
 }
 
 .calendar-dayweek-text-holiday {
@@ -15627,7 +15627,7 @@ body {
 }
 @media screen and (max-width: 400px) {
 	.calendar-dayweek-text-holiday {
-		text-align: right;
+		text-align: center;
 	}
 }
 .calendar-day-text-button {
@@ -15635,7 +15635,7 @@ body {
 	border-color: transparent;
 }
 .calendar-dayweek-text-empty {
-	/* width: 9%; */
+	width: 11%;
 	border-bottom: 2px solid; 
 	border-bottom-color: #ccc;
 }
@@ -15752,7 +15752,7 @@ body {
 
 .tablecalendar-dayweek-text-empty,
 .tablecalendar-dayweek-text-empty_lastcolumn {
-	width: 5%;
+	width: 11%;
 	background-color: white;
 	text-align: center;
 }
@@ -15763,7 +15763,7 @@ body {
 .tablecalendar-day-text_holiday, 
 .tablecalendar-day-text_booked, 
 .tablecalendar-day-text{
-	width: 2.3em;
+	width: 11%;
 	height: 2.625em;
 	text-align: center;
 	padding: 0;
