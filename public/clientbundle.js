@@ -14759,7 +14759,7 @@ var HomeTableCalendar = function (_Component) {
     value: function render() {
       var orderedBooking = this.props.booking;
 
-      var itemComponents = [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0];
+      var itemComponents = [0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1];
 
       // itemComponents = orderedBooking.map(Rec => {
       //   return (
@@ -14841,7 +14841,7 @@ var TableCalendar = function (_Component) {
         if (rec == 1) {
           return _react2.default.createElement('td', { className: 'tablecalendar-day-text_booked' });
         } else {
-          return _react2.default.createElement('td', { className: 'tablecalendar-day-text' });
+          return _react2.default.createElement('td', { className: 'tablecalendar-day-text_free' });
         }
       });
     }
@@ -14850,7 +14850,7 @@ var TableCalendar = function (_Component) {
     value: function renderHour(hour, halfHour) {
       var indexHour = parseInt(hour);
       switch (true) {
-        case indexHour > -1:
+        case indexHour > 0:
           var finalHour = hour;
           if (!halfHour) {
             finalHour = finalHour.concat(':00');
@@ -14859,12 +14859,13 @@ var TableCalendar = function (_Component) {
           }
           return _react2.default.createElement(
             'td',
-            { className: 'tablecalendar-dayweek-text-empty' },
+            { className: 'tablecalendar-hourscolumn' },
             finalHour
           );
-
+        case indexHour == 0:
+          return _react2.default.createElement('td', { className: 'tablecalendar-day-text_booked' });
         default:
-          return _react2.default.createElement('td', { className: 'tablecalendar-dayweek-text-empty_lastcolumn' });
+          return _react2.default.createElement('td', { className: 'tablecalendar-lastcolumn' });
       }
     }
   }, {
@@ -14950,6 +14951,109 @@ var TableCalendar = function (_Component) {
             this.renderHour('12', true),
             this.renderHoliday(),
             this.renderMorningTable(7),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('', false),
+            this.renderHoliday(),
+            this.renderHour('0', false),
+            this.renderHoliday(),
+            this.renderHoliday(),
+            this.renderHoliday(),
+            this.renderHoliday(),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('15', false),
+            this.renderHoliday(),
+            this.renderMorningTable(8),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('15', true),
+            this.renderHoliday(),
+            this.renderMorningTable(9),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('16', false),
+            this.renderHoliday(),
+            this.renderMorningTable(10),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('16', true),
+            this.renderHoliday(),
+            this.renderMorningTable(11),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('17', false),
+            this.renderHoliday(),
+            this.renderMorningTable(12),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('17', true),
+            this.renderHoliday(),
+            this.renderMorningTable(13),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('18', false),
+            this.renderHoliday(),
+            this.renderMorningTable(14),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('18', true),
+            this.renderHoliday(),
+            this.renderMorningTable(15),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('19', false),
+            this.renderHoliday(),
+            this.renderMorningTable(16),
+            this.renderHoliday(),
+            this.renderHour('-1', false)
+          ),
+          _react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour('19', true),
+            this.renderHoliday(),
+            this.renderMorningTable(17),
             this.renderHoliday(),
             this.renderHour('-1', false)
           )

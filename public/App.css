@@ -15625,11 +15625,7 @@ body {
 	 border-bottom-color: #ccc;
 	color: red;
 }
-@media screen and (max-width: 400px) {
-	.calendar-dayweek-text-holiday {
-		text-align: center;
-	}
-}
+
 .calendar-day-text-button {
 	background-color: transparent;
 	border-color: transparent;
@@ -15750,8 +15746,8 @@ body {
 	font-size: 0.7rem;
 }
 
-.tablecalendar-dayweek-text-empty,
-.tablecalendar-dayweek-text-empty_lastcolumn {
+.tablecalendar-hourscolumn,
+.tablecalendar-lastcolumn {
 	width: 11%;
 	background-color: white;
 	text-align: center;
@@ -15762,7 +15758,7 @@ body {
 
 .tablecalendar-day-text_holiday, 
 .tablecalendar-day-text_booked, 
-.tablecalendar-day-text{
+.tablecalendar-day-text_free{
 	width: 11%;
 	height: 2.625em;
 	text-align: center;
@@ -15770,7 +15766,10 @@ body {
 	line-height: 1.625em;
 	border: 2px solid white;
 	border-top: 0px;
-	border-radius: 0em;
+	border-radius: 0em;	
+}
+
+.tablecalendar-day-text_free{
 	background-color: #198bbb;
 }
 
