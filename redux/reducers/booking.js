@@ -11,7 +11,9 @@ import {
   CREATE,
   CREATE_SUCCESS,
   CREATE_FAIL,
-  FILTERCALENDARLIST
+  FILTERCALENDARLIST,
+  FILTERCALENDARLIST_SUCCESS,
+  FILTERCALENDARLIST_FAIL
 } from '../actions/booking'
 import { compareValues } from '../../ClientApp/Components/common/sortArray'
 
@@ -19,7 +21,7 @@ export function booking (
   state = {
     datafiltered: [],
     data: [],
-    isLoading: true,
+    isLoading: false,
     hasErrored: false,
     errorMessage: ''
   },
@@ -57,12 +59,14 @@ export function booking (
       })
     }
     case LOAD_SUCCESS: {
-      console.log('--- Triggered LOAD_SUCCESS BOOKING---')
+      console.log('--- Triggered LOAD_SUCCESS Availability---')
       return Object.assign({}, state, {
-        datafiltered: [...new Set(action.payload.data)].sort(
-          compareValues('start')
-        ),
-        data: [...new Set(action.payload.data)].sort(compareValues('start')),
+        // datafiltered: [...new Set(action.payload.data)].sort(
+        //   compareValues('start')
+        // ),
+        // data: [...new Set(action.payload.data)].sort(compareValues('start')),
+        datafiltered: action.payload.data,
+        data: action.payload.data,
         isLoading: false,
         hasErrored: false
       })
@@ -177,21 +181,46 @@ export function booking (
     }
 
     case FILTERCALENDARLIST: {
-      const currentDate = new Date(action.data)
-      let filtered = state.data.filter(data => {
-        let b = new Date(data.start)
-        if (
-          b.getDate() == currentDate.getDate() &&
-          b.getMonth() == currentDate.getMonth() &&
-          b.getFullYear() == currentDate.getFullYear()
-        )
-          return data
+      console.log('Reload Availability')
+
+      // return Object.assign({}, state, {
+      //   isLoading: true,
+      //   hasErrored: false
+      // })
+
+      // const currentDate = new Date(action.data)
+      // let filtered = state.data.filter(data => {
+      //   let b = new Date(data.start)
+      //   if (
+      //     b.getDate() == currentDate.getDate() &&
+      //     b.getMonth() == currentDate.getMonth() &&
+      //     b.getFullYear() == currentDate.getFullYear()
+      //   )
+      //     return data
+      // })
+      return state
+    }
+    case FILTERCALENDARLIST_SUCCESS: {
+      console.log('--- Reload Availability SUCCESS ---')
+
+      return Object.assign({}, state, {
+        data: action.payload.data,
+        isLoading: false,
+        hasErrored: false
       })
 
-      return {
-        ...state,
-        datafiltered: filtered
-      }
+      // return {
+      //   ...state,
+      //   datafiltered: action.data
+      // }
+    }
+    case FILTERCALENDARLIST_FAIL: {
+      console.log('--- Reload Availability FAIL ---')
+      return Object.assign({}, state, {
+        isLoading: false,
+        hasErrored: true,
+        errorMessage: action.error.message
+      })
     }
 
     default:

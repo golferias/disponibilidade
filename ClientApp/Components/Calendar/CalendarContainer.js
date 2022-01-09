@@ -1,19 +1,19 @@
 import React from 'react'
 import HeaderTitle from '../common/HeaderTitle'
-import Home from './HomeCalendar'
+// import Home from './HomeCalendar'
 import HomeTableCalendar from './HomeTableCalendar'
 
 import { HeaderCalendar } from './HeaderCalendar'
 import { HeaderTextCalendar } from './HeaderTextCalendar'
-import { FooterCalendar } from './FooterCalendar'
-import Add from '../common/Add'
+// import { FooterCalendar } from './FooterCalendar'
+// import Add from '../common/Add'
 
 export default function CalendarContainer (props) {
   return (
     <div className='container-main'>
       <div className='row'>
         <div className='col-12'>
-          <HeaderTitle title='Calendario' />
+          <HeaderTitle title='Disponibilidade' />
           {/* <Add title='Marcacao' linkto='/addbooking/' /> */}
           <div>
             <HeaderTextCalendar textheader={props.textheader} />
@@ -21,6 +21,9 @@ export default function CalendarContainer (props) {
           <div>
             <HeaderCalendar
               calendar={props.calendar}
+              dispatchUpdateFilterList={newDate =>{
+                props.dispatchUpdateFilterList(newDate)
+              }}
               dispatchUpdateTextFooter={newDate => {
                 props.dispatchUpdateTextFooter(newDate)
               }}

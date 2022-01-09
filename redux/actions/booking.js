@@ -15,26 +15,36 @@ export const CREATE_SUCCESS = 'BOOKING_CREATE_SUCCESS'
 export const CREATE_FAIL = 'BOOKING_CREATE_FAIL'
 
 export const FILTERCALENDARLIST = 'FILTERCALENDARLIST'
+export const FILTERCALENDARLIST_SUCCESS = 'FILTERCALENDARLIST_SUCCESS'
+export const FILTERCALENDARLIST_FAIL = 'FILTERCALENDARLIST_FAIL'
 
-export function BookingFetchData () {
-  console.log('actions/booking.js/FetchData LOAD....')
+export function BookingFetchData (searchAvaliabilityDate) {
+  console.log('actions/booking.js/FetchData LOAD Availability....')
+
+  let availabilityDto = ParseDateToDto(searchAvaliabilityDate)
 
   return {
     type: LOAD,
     payload: {
       request: {
-        url: '/booking'
+        method: 'POST',
+        url: '/availability',
+        data: {
+          ...availabilityDto
+        }
       }
     }
   }
 }
-// function ParseBirth (customerRec) {
-//   if (customerRec.birth === '') {
-//     return { ...customerRec, birth: null }
-//   }
+function ParseDateToDto (searchAvaliabilityDate) {
+  const availabilityDto = {
+    day: searchAvaliabilityDate.getDate().toString(),
+    month: (searchAvaliabilityDate.getMonth() + 1).toString(),
+    year: searchAvaliabilityDate.getFullYear().toString()
+  }
 
-//   return customerRec
-// }
+  return availabilityDto
+}
 
 // function ParsePhone (customerRec) {
 //   if (customerRec.phone && customerRec.phone.length > 0) {
@@ -56,33 +66,44 @@ function SetIdZero (customerRec) {
 // }
 
 export function dispatchUpdateFilterList (newDate) {
-  console.log(
-    'actions/booking.js/dispatchUpdateFilterList FILTERCALENDARLIST....'
-  )
+  let availabilityDto = ParseDateToDto(newDate)
+  // return {
+  //   type: FILTERCALENDARLIST,
+  //   data: newDate
+  // }
+
   return {
     type: FILTERCALENDARLIST,
-    data: newDate
-  }
-}
-
-export function Add (Rec) {
-  console.log('actions/booking.js/AddBooking CREATE....')
-  //  Rec = ParseValidations(Rec)
-
-  Rec = SetIdZero(Rec)
-  return {
-    type: CREATE,
     payload: {
       request: {
         method: 'POST',
-        url: '/booking',
+        url: '/availability',
         data: {
-          ...Rec
+          ...availabilityDto
         }
       }
     }
   }
 }
+
+// export function Add (Rec) {
+//   console.log('actions/booking.js/AddBooking CREATE....')
+//   //  Rec = ParseValidations(Rec)
+
+//   Rec = SetIdZero(Rec)
+//   return {
+//     type: CREATE,
+//     payload: {
+//       request: {
+//         method: 'POST',
+//         url: '/booking',
+//         data: {
+//           ...Rec
+//         }
+//       }
+//     }
+//   }
+// }
 
 export function updateBooking (Rec) {
   console.log('actions/booking.js/updateBooking UPDATE....')

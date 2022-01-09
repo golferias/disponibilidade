@@ -23,7 +23,7 @@ export const HeaderCalendar = props => {
 
     setDays(arrDays)
 
-    props.dispatchUpdateTextFooter(startweek)
+    //props.dispatchUpdateTextFooter(startweek)
 
     props.dispatchUpdateTextHeader(startweek)
   }
@@ -58,20 +58,33 @@ export const HeaderCalendar = props => {
     let oneweekbefore = new Date(startWeek)
     oneweekbefore.setDate(oneweekbefore.getDate() - 7)
     fillInStates(oneweekbefore)
+
+    const startweek = new Date(oneweekbefore)
+    //props.dispatchUpdateTextFooter(startweek)
+
+    // props.dispatchUpdateTextHeader(startweek)
+
+    props.dispatchUpdateFilterList(startweek)
   }
 
   function UpdateDaysForward (event) {
     event.preventDefault()
     fillInStates(endWeek)
+    const startweek = new Date(endWeek)
+    //props.dispatchUpdateTextFooter(startweek)
+
+    // props.dispatchUpdateTextHeader(startweek)
+
+    props.dispatchUpdateFilterList(startweek)
   }
 
-  function filterDay (dayIndexPosition, e) {
-    e.preventDefault()
-    let start = new Date(startWeek)
-    start.setDate(start.getDate() + dayIndexPosition)
+  // function filterDay (dayIndexPosition, e) {
+  //   e.preventDefault()
+  //   let start = new Date(startWeek)
+  //   start.setDate(start.getDate() + dayIndexPosition)
 
-    props.dispatchUpdateTextFooter(start)
-  }
+  //   props.dispatchUpdateTextFooter(start)
+  // }
 
   return (
     <table className='calendar-table'>
