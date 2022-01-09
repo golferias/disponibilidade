@@ -15755,7 +15755,7 @@ body {
 .tablecalendar-dayweek-text-empty_lastcolumn{
 	background-color: white;
 }
-
+.tablecalendar-day-text_lunchtime,
 .tablecalendar-day-text_holiday, 
 .tablecalendar-day-text_booked, 
 .tablecalendar-day-text_free{
@@ -15777,6 +15777,14 @@ body {
 {
 	background-color: #f0f3f4;
 }
+.tablecalendar-day-text_lunchtime {
+	background-color: rgba(0, 0, 0, 0.2);
+	border: 2px solid rgba(0, 0, 0, 0.2);
+	border-bottom: 2px solid white;
+	border-left: none;
+	border-right: none;
+}
+
 .footerdevelopedby{
 	font-size: 10px;
 }

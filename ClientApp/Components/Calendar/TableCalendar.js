@@ -26,7 +26,7 @@ export default class TableCalendar extends Component {
         }
         return <td className='tablecalendar-hourscolumn'>{finalHour}</td>
       case indexHour == 0:
-        return <td className='tablecalendar-day-text_booked'></td>
+        return <td className='tablecalendar-day-text_lunchtime'></td>
       default:
         return <td className='tablecalendar-lastcolumn'></td>
     }
@@ -98,13 +98,13 @@ export default class TableCalendar extends Component {
           </tr>
           <tr className='tablecalendar-dayweek-text-row'>
             {this.renderHour('', false)}
-            {this.renderHoliday()}
             {this.renderHour('0', false)}
-            {this.renderHoliday()}
-            {this.renderHoliday()}
-            {this.renderHoliday()}
-            {this.renderHoliday()}
-            {this.renderHoliday()}
+            {this.renderHour('0', false)}
+            {this.renderHour('0', false)}
+            {this.renderHour('0', false)}
+            {this.renderHour('0', false)}
+            {this.renderHour('0', false)}
+            {this.renderHour('0', false)}
             {this.renderHour('-1', false)}
           </tr>
           <tr className='tablecalendar-dayweek-text-row'>

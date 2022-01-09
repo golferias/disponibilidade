@@ -14863,7 +14863,7 @@ var TableCalendar = function (_Component) {
             finalHour
           );
         case indexHour == 0:
-          return _react2.default.createElement('td', { className: 'tablecalendar-day-text_booked' });
+          return _react2.default.createElement('td', { className: 'tablecalendar-day-text_lunchtime' });
         default:
           return _react2.default.createElement('td', { className: 'tablecalendar-lastcolumn' });
       }
@@ -14958,13 +14958,13 @@ var TableCalendar = function (_Component) {
             'tr',
             { className: 'tablecalendar-dayweek-text-row' },
             this.renderHour('', false),
-            this.renderHoliday(),
             this.renderHour('0', false),
-            this.renderHoliday(),
-            this.renderHoliday(),
-            this.renderHoliday(),
-            this.renderHoliday(),
-            this.renderHoliday(),
+            this.renderHour('0', false),
+            this.renderHour('0', false),
+            this.renderHour('0', false),
+            this.renderHour('0', false),
+            this.renderHour('0', false),
+            this.renderHour('0', false),
             this.renderHour('-1', false)
           ),
           _react2.default.createElement(
