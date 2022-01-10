@@ -36,11 +36,143 @@ export default class TableCalendar extends Component {
     return <td className='tablecalendar-day-text_holiday'></td>
   }
 
+  renderBooked () {
+    return <td className='tablecalendar-day-text_booked'></td>
+  }
+  renderFree () {
+    return <td className='tablecalendar-day-text_free'></td>
+  }
+  renderLunchTime () {
+    return <td className='tablecalendar-day-text_lunchtime'></td>
+  }
+
+  calculateHour (startWorkingTime) {
+    if (startWorkingTime.length == 1) {
+      return '0' + startWorkingTime
+    }
+
+    return startWorkingTime
+  }
+
+  AddHalfHour (hour, addHalfHourToTheCurrentHour) {
+    let d = new Date()
+    d.setHours(parseInt(hour))
+    if (addHalfHourToTheCurrentHour) {
+      d.setHours(d.getHours() + 1)
+    }
+    return d.getHours().toString()
+  }
+
+  AddHour (hour) {
+    let d = new Date()
+    d.setHours(parseInt(hour) + 1)
+    return d.getHours().toString()
+  }
+
+  renderCell (rowIndex) {
+    let html = [0]
+    html[0] = ''
+    let _daysInAweek = 7
+    for (let index = 0; index < _daysInAweek; index++) {
+      const element = this.props.items[rowIndex * _daysInAweek + index]
+      if (element == 0) {
+        html[0] = html.concat(this.renderFree())
+      }
+      if (element == 1) {
+        html[0] = html.concat(this.renderBooked())
+      }
+      if (element == 2) {
+        html[0] = html.concat(this.renderLunchTime())
+      }
+      if (element == 3) {
+        html[0] = html.concat(this.renderHoliday())
+      }
+    }
+    return html
+  }
+
+  renderTable () {
+    let html = [0]
+    let weekday = 0
+    let _totalRows = 22
+    let _startWorkingTime = '09'
+    let _showHalfHours = true
+
+    html[0] = ''
+
+    let aux_showHalHours = false
+    let aux_startWorkingTime = _startWorkingTime
+
+    for (let index = 0; index < _totalRows; index++) {
+      html[0] = html.concat(
+        <tr className='tablecalendar-dayweek-text-row'>
+          {this.renderHour(
+            this.calculateHour(aux_startWorkingTime.toString()),
+            aux_showHalHours
+          )}
+          {this.renderCell(index)}
+          {/* {this.renderHoliday()} */}
+          {/* {this.renderMorningTable(index)}
+          {this.renderHoliday()} */}
+          {this.renderHour('-1', false)}
+        </tr>
+      )
+
+      // for (let col = 0; col < _daysInAweek; col++) {
+      //   html[0] = html.concat(
+      //     <tr className='tablecalendar-dayweek-text-row'>
+
+      //       {this.renderHoliday()}
+      //       {this.renderMorningTable(index)}
+      //       {this.renderHoliday()}
+      //       {this.renderHour('-1', false)}
+      //     </tr>
+      //   )
+      // }
+
+      if (_showHalfHours) {
+        aux_startWorkingTime = this.AddHalfHour(
+          aux_startWorkingTime,
+          aux_showHalHours
+        )
+        aux_showHalHours = !aux_showHalHours
+      } else {
+        aux_startWorkingTime = this.AddHour(aux_startWorkingTime)
+      }
+
+      weekday++
+      if ((weekday = 6)) weekday = 0
+    }
+
+    // html[0] = (
+    //   <tr className='tablecalendar-dayweek-text-row'>
+    //     {this.renderHour(startWorkingTime, false)}
+    //     {this.renderHoliday()}
+    //     {this.renderMorningTable(0)}
+    //     {this.renderHoliday()}
+    //     {this.renderHour('-1', false)}
+    //   </tr>
+    // )
+
+    // html[0] = html.concat(
+    //   <tr className='tablecalendar-dayweek-text-row'>
+    //     {this.renderHour('09', true)}
+    //     {this.renderHoliday()}
+    //     {this.renderMorningTable(1)}
+    //     {this.renderHoliday()}
+    //     {this.renderHour('-1', false)}
+    //   </tr>
+    // )
+
+    return html
+  }
+
   render () {
     return (
       <table className='calendar-table'>
         <tbody>
-          <tr className='tablecalendar-dayweek-text-row'>
+          {this.renderTable()}
+          {/* <tr className='tablecalendar-dayweek-text-row'>
             {this.renderHour('09', false)}
             {this.renderHoliday()}
             {this.renderMorningTable(0)}
@@ -176,7 +308,7 @@ export default class TableCalendar extends Component {
             {this.renderMorningTable(17)}
             {this.renderHoliday()}
             {this.renderHour('-1', false)}
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     )
