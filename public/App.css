@@ -15545,7 +15545,7 @@ body {
 }
 .calendar-headertextheader {
 	text-align: center;
-	background-color: lightgrey;
+	background-color: #25aae2;
 }
 .calendar-headercalendar {
 	font-size: 1.75rem;
@@ -15794,9 +15794,6 @@ body {
 		/* padding-top: 16.5rem; */
 		padding-top: 15rem;
 	}
-	.calendar-headertextheader {
-		background-color: black;
-	}
 }
 
 /* Iphone 11 */
@@ -15810,9 +15807,6 @@ body {
 @media screen and (max-width: 360px)  {
 	.jumbo-common  {
 		 padding-top: 14rem; 
-	}
-	.calendar-headertextheader {
-		background-color: #25aae2;
 	}
 }
 /* Iphone 5 */
