@@ -15794,21 +15794,31 @@ body {
 		/* padding-top: 16.5rem; */
 		padding-top: 15rem;
 	}
+	.calendar-headertextheader {
+		background-color: black;
+	}
 }
-@media screen and (max-width: 400px)  {
+@media screen and (max-width: 390px)  {
 	.jumbo-common  {
 		 padding-top: 14rem; 
 	}
+	.calendar-headertextheader {
+		background-color: red;
+	}
+
 }
 @media screen and (max-width: 375px)  {
 	.jumbo-common  {
 		/* padding-top: 14rem; */
 		padding-top: 12rem;
 	}
+	.calendar-headertextheader {
+		background-color: orange;
+	}
 }
 @media screen and (max-width: 315px)  {
 	.jumbo-common  {
-		padding-top: 13rem;
+		padding-top: 10rem;
 	}
 }
 
