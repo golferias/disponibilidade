@@ -15798,24 +15798,25 @@ body {
 		background-color: black;
 	}
 }
-@media screen and (max-width: 390px)  {
-	.jumbo-common  {
-		 padding-top: 14rem; 
-	}
-	.calendar-headertextheader {
-		background-color: red;
-	}
 
-}
 @media screen and (max-width: 375px)  {
 	.jumbo-common  {
 		/* padding-top: 14rem; */
 		padding-top: 12rem;
 	}
 	.calendar-headertextheader {
-		background-color: orange;
+		background-color: green;
 	}
 }
+@media screen and (max-width: 360px)  {
+	.jumbo-common  {
+		 padding-top: 11rem; 
+	}
+	.calendar-headertextheader {
+		background-color: red;
+	}
+}
+
 @media screen and (max-width: 315px)  {
 	.jumbo-common  {
 		padding-top: 10rem;
