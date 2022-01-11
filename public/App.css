@@ -15793,6 +15793,11 @@ body {
 		padding-top: 14rem;
 	}
 }
+@media screen and (max-width: 315px)  {
+	.jumbo-common  {
+		padding-top: 13rem;
+	}
+}
 
 
 .jumbo-common__title::before {
