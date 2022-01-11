@@ -15802,29 +15802,29 @@ body {
 /* Iphone 11 */
 @media screen and (max-width: 375px)  {
 	.jumbo-common  {
-		padding-top: 14rem;
+		padding-top: 14.5rem;
 		
 	}
 	.calendar-headertextheader {
-		background-color: blue;
+		background-color: red;
 	}
 }
 /* Samsung */
 @media screen and (max-width: 360px)  {
 	.jumbo-common  {
-		 padding-top: 11rem; 
+		 padding-top: 14.5rem; 
 	}
 	.calendar-headertextheader {
-		background-color: orange;
+		background-color: red;
 	}
 }
 /* Iphone 5 */
 @media screen and (max-width: 320px)  { 
 	.jumbo-common  {
-		 padding-top: 21rem; 
+		 padding-top: 12rem; 
 	}
 	.calendar-headertextheader {
-		background-color: orange;
+		background-color: red;
 	}
 }
 
