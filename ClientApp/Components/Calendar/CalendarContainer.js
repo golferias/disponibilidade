@@ -13,7 +13,7 @@ export default function CalendarContainer (props) {
     <div className='container-main'>
       <div className='row'>
         <div className='col-12'>
-          <HeaderTitle title='Disponibilidade' />
+          <HeaderTitle />
           {/* <Add title='Marcacao' linkto='/addbooking/' /> */}
           <div>
             <HeaderTextCalendar textheader={props.textheader} />

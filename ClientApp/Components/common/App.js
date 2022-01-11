@@ -8,9 +8,7 @@ import Footer from './Footer'
 const App = ({ route }) => {
   return (
     <div>
-      <PageTop>
-        {/* <CodeCampMenu /> */}
-      </PageTop>
+      <PageTop>{/* <CodeCampMenu /> */}</PageTop>
       {renderRoutes(route.routes)}
       <Footer />
     </div>
