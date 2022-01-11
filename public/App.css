@@ -15805,26 +15805,20 @@ body {
 		padding-top: 14.5rem;
 		
 	}
-	.calendar-headertextheader {
-		background-color: red;
-	}
 }
 /* Samsung */
 @media screen and (max-width: 360px)  {
 	.jumbo-common  {
-		 padding-top: 14.5rem; 
+		 padding-top: 14rem; 
 	}
 	.calendar-headertextheader {
-		background-color: red;
+		background-color: #25aae2;
 	}
 }
 /* Iphone 5 */
 @media screen and (max-width: 320px)  { 
 	.jumbo-common  {
 		 padding-top: 12rem; 
-	}
-	.calendar-headertextheader {
-		background-color: red;
 	}
 }
 
