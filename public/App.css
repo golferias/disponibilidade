@@ -15545,7 +15545,7 @@ body {
 }
 .calendar-headertextheader {
 	text-align: center;
-	background-color: greenyellow;
+	background-color: royalblue;
 }
 .calendar-headercalendar {
 	font-size: 1.75rem;
@@ -15784,7 +15784,7 @@ body {
 		padding-top: 23rem;
 	}
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
 	.jumbo-common  {
 		padding-top: 18rem;
 	}
