@@ -6206,13 +6206,27 @@ var HeaderCalendar = exports.HeaderCalendar = function HeaderCalendar(props) {
     props.dispatchUpdateFilterList(startweek);
   }
 
-  // function filterDay (dayIndexPosition, e) {
-  //   e.preventDefault()
-  //   let start = new Date(startWeek)
-  //   start.setDate(start.getDate() + dayIndexPosition)
-
-  //   props.dispatchUpdateTextFooter(start)
-  // }
+  function renderDayNumberLabel(day) {
+    var currentDay = new Date().getDate();
+    var cssName = 'calendar-day-text-button';
+    var cssNameCircle = '';
+    if (currentDay == day) {
+      cssNameCircle = 'calendar-day-text-button-currentday';
+    }
+    return _react2.default.createElement(
+      'td',
+      { className: 'calendar-day-text', key: day },
+      _react2.default.createElement(
+        'div',
+        { className: cssNameCircle },
+        _react2.default.createElement(
+          'div',
+          { className: cssName },
+          day
+        )
+      )
+    );
+  }
 
   return _react2.default.createElement(
     'table',
@@ -6237,20 +6251,7 @@ var HeaderCalendar = exports.HeaderCalendar = function HeaderCalendar(props) {
           )
         ),
         days.map(function (d) {
-          return _react2.default.createElement(
-            'td',
-            { className: 'calendar-day-text', key: d },
-            _react2.default.createElement(
-              'div',
-              {
-                // type='button'
-                // value={days.indexOf(d)}
-                className: 'calendar-day-text-button'
-                // onClick={filterDay.bind(this, days.indexOf(d))}
-              },
-              d
-            )
-          );
+          return renderDayNumberLabel(d);
         }),
         _react2.default.createElement(
           'td',
@@ -14547,115 +14548,6 @@ var HomeTableCalendar = function (_Component) {
     key: 'render',
     value: function render() {
       var itemComponents = this.props.booking;
-
-      // itemComponents = [
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   1,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   1,
-      //   1,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   1,
-      //   1,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   0,
-      //   1,
-      //   0,
-      //   0,
-      //   1,
-      //   1,
-      //   0,
-      //   0,
-      //   1,
-      //   1,
-      //   1,
-      //   1,
-      //   1
-      // ]
-
-      // itemComponents = orderedBooking.map(Rec => {
-      //   return (
-      //     <TableCalendar
-      //       showData={false}
-      //       key={Rec.id}
-      //       book={Rec}
-      //       services={this.props.services}
-      //       customers={this.props.customers}
-      //       delete={book => {
-      //         return this.props.delete(book)
-      //       }}
-      //     />
-      //   )
-      // })
-
       return _react2.default.createElement(
         'div',
         null,
@@ -14712,41 +14604,18 @@ var TableCalendar = function (_Component) {
   }
 
   _createClass(TableCalendar, [{
-    key: 'renderMorningTable',
-    value: function renderMorningTable(indexHour) {
-      if (indexHour > 0) {
-        indexHour = indexHour * 5;
-      }
-      return this.props.items.slice(indexHour, indexHour + 5).map(function (rec) {
-        if (rec == 1) {
-          return _react2.default.createElement('td', { className: 'tablecalendar-day-text_booked' });
-        } else {
-          return _react2.default.createElement('td', { className: 'tablecalendar-day-text_free' });
-        }
-      });
+    key: 'renderLastColumn',
+    value: function renderLastColumn() {
+      return _react2.default.createElement('td', { className: 'tablecalendar-lastcolumn' });
     }
   }, {
-    key: 'renderHour',
-    value: function renderHour(hour, halfHour) {
-      var indexHour = parseInt(hour);
-      switch (true) {
-        case indexHour > 0:
-          var finalHour = hour;
-          if (!halfHour) {
-            finalHour = finalHour.concat(':00');
-          } else {
-            finalHour = finalHour.concat(':30');
-          }
-          return _react2.default.createElement(
-            'td',
-            { className: 'tablecalendar-hourscolumn' },
-            finalHour
-          );
-        case indexHour == 0:
-          return _react2.default.createElement('td', { className: 'tablecalendar-day-text_lunchtime' });
-        default:
-          return _react2.default.createElement('td', { className: 'tablecalendar-lastcolumn' });
-      }
+    key: 'renderColumnHour',
+    value: function renderColumnHour(finalHour) {
+      return _react2.default.createElement(
+        'td',
+        { className: 'tablecalendar-hourscolumn' },
+        finalHour
+      );
     }
   }, {
     key: 'renderHoliday',
@@ -14795,6 +14664,22 @@ var TableCalendar = function (_Component) {
       return d.getHours().toString();
     }
   }, {
+    key: 'renderHour',
+    value: function renderHour(hour, halfHour) {
+      var indexHour = parseInt(hour);
+      switch (true) {
+        case indexHour > 0:
+          var finalHour = hour;
+          if (!halfHour) {
+            finalHour = finalHour.concat(':00');
+          } else {
+            finalHour = finalHour.concat(':30');
+          }
+          return this.renderColumnHour(finalHour);
+        default:
+      }
+    }
+  }, {
     key: 'renderCell',
     value: function renderCell(rowIndex) {
       var html = [0];
@@ -14825,6 +14710,7 @@ var TableCalendar = function (_Component) {
       var _totalRows = 22;
       var _startWorkingTime = '09';
       var _showHalfHours = true;
+      var _lunchTimeIndex = [8, 9, 10, 11];
 
       html[0] = '';
 
@@ -14832,25 +14718,24 @@ var TableCalendar = function (_Component) {
       var aux_startWorkingTime = _startWorkingTime;
 
       for (var index = 0; index < _totalRows; index++) {
-        html[0] = html.concat(_react2.default.createElement(
-          'tr',
-          { className: 'tablecalendar-dayweek-text-row' },
-          this.renderHour(this.calculateHour(aux_startWorkingTime.toString()), aux_showHalHours),
-          this.renderCell(index),
-          this.renderHour('-1', false)
-        ));
-
-        // for (let col = 0; col < _daysInAweek; col++) {
-        //   html[0] = html.concat(
-        //     <tr className='tablecalendar-dayweek-text-row'>
-
-        //       {this.renderHoliday()}
-        //       {this.renderMorningTable(index)}
-        //       {this.renderHoliday()}
-        //       {this.renderHour('-1', false)}
-        //     </tr>
-        //   )
-        // }
+        if (!_lunchTimeIndex.includes(index)) {
+          html[0] = html.concat(_react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderHour(this.calculateHour(aux_startWorkingTime.toString()), aux_showHalHours),
+            this.renderCell(index),
+            this.renderLastColumn()
+          ));
+        }
+        if (_lunchTimeIndex.includes(index) && index == _lunchTimeIndex[0]) {
+          html[0] = html.concat(_react2.default.createElement(
+            'tr',
+            { className: 'tablecalendar-dayweek-text-row' },
+            this.renderColumnHour(''),
+            this.renderCell(index),
+            this.renderLastColumn()
+          ));
+        }
 
         if (_showHalfHours) {
           aux_startWorkingTime = this.AddHalfHour(aux_startWorkingTime, aux_showHalHours);
@@ -14862,27 +14747,6 @@ var TableCalendar = function (_Component) {
         weekday++;
         if (weekday = 6) weekday = 0;
       }
-
-      // html[0] = (
-      //   <tr className='tablecalendar-dayweek-text-row'>
-      //     {this.renderHour(startWorkingTime, false)}
-      //     {this.renderHoliday()}
-      //     {this.renderMorningTable(0)}
-      //     {this.renderHoliday()}
-      //     {this.renderHour('-1', false)}
-      //   </tr>
-      // )
-
-      // html[0] = html.concat(
-      //   <tr className='tablecalendar-dayweek-text-row'>
-      //     {this.renderHour('09', true)}
-      //     {this.renderHoliday()}
-      //     {this.renderMorningTable(1)}
-      //     {this.renderHoliday()}
-      //     {this.renderHour('-1', false)}
-      //   </tr>
-      // )
-
       return html;
     }
   }, {

@@ -21,7 +21,7 @@ export default function CalendarContainer (props) {
           <div>
             <HeaderCalendar
               calendar={props.calendar}
-              dispatchUpdateFilterList={newDate =>{
+              dispatchUpdateFilterList={newDate => {
                 props.dispatchUpdateFilterList(newDate)
               }}
               dispatchUpdateTextFooter={newDate => {

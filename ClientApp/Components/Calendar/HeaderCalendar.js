@@ -78,13 +78,21 @@ export const HeaderCalendar = props => {
     props.dispatchUpdateFilterList(startweek)
   }
 
-  // function filterDay (dayIndexPosition, e) {
-  //   e.preventDefault()
-  //   let start = new Date(startWeek)
-  //   start.setDate(start.getDate() + dayIndexPosition)
-
-  //   props.dispatchUpdateTextFooter(start)
-  // }
+  function renderDayNumberLabel (day) {
+    let currentDay = new Date().getDate()
+    let cssName = 'calendar-day-text-button'
+    let cssNameCircle = ''
+    if (currentDay == day) {
+      cssNameCircle = 'calendar-day-text-button-currentday'
+    }
+    return (
+      <td className='calendar-day-text' key={day}>
+        <div className={cssNameCircle}>
+          <div className={cssName}>{day}</div>
+        </div>
+      </td>
+    )
+  }
 
   return (
     <table className='calendar-table'>
@@ -99,20 +107,8 @@ export const HeaderCalendar = props => {
               &lt;
             </button>
           </td>
-          {days.map(d => {
-            return (
-              <td className='calendar-day-text' key={d}>
-                <div
-                  // type='button'
-                  // value={days.indexOf(d)}
-                  className='calendar-day-text-button'
-                  // onClick={filterDay.bind(this, days.indexOf(d))}
-                >
-                  {d}
-                </div>
-              </td>
-            )
-          })}
+
+          {days.map(d => renderDayNumberLabel(d))}
           <td className='calendar-td-btright'>
             <button
               className='btn-calendar btn-primary'
