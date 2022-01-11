@@ -15785,6 +15785,11 @@ body {
 }
 @media screen and (max-width: 500px) {
 	.jumbo-common  {
+		padding-top: 17.1rem;
+	}
+}
+@media screen and (max-width: 415px) {
+	.jumbo-common  {
 		padding-top: 16.5rem;
 	}
 }
