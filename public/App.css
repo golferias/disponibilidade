@@ -15771,13 +15771,29 @@ body {
 
 .jumbo-common {
 	/* background-image: url("sassAssets/images/events-jumbo-bg.jpg"); */
-	background-image: url("sassAssets/images/filipe.jpg");
+	background-image: url("sassAssets/images/filipe.png");
 	background-size: cover;
 	background-position: top;
 	background-repeat: no-repeat;
-	padding-top: 2.8125rem;
+	padding-top: 30rem;
 	padding-bottom: 2.8125rem;
 }
+@media screen and (max-width: 850px) {
+	.jumbo-common  {
+		padding-top: 23rem;
+	}
+}
+@media screen and (max-width: 500px) {
+	.jumbo-common  {
+		padding-top: 16.5rem;
+	}
+}
+@media screen and (max-width: 375px)  {
+	.jumbo-common  {
+		padding-top: 15rem;
+	}
+}
+
 
 .jumbo-common__title::before {
 	content: " ";
@@ -15792,7 +15808,7 @@ body {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 }
-@media (max-width: 575px) {
+@media screen and (max-width: 575px) {
 	.jumbo-common__title::before {
 		left: -9.3rem;
 		top: 2.625rem;
