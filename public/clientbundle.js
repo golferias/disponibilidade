@@ -667,22 +667,14 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function HeaderTitle(props) {
+function HeaderTitle() {
   return _react2.default.createElement(
     'div',
     { className: 'jumbo-common  speakers snow-bg' },
     _react2.default.createElement(
       'div',
       { className: 'container-main' },
-      _react2.default.createElement(
-        'div',
-        { className: 'events__header d-flex align-items-center flex-column flex-md-row justify-content-between' },
-        _react2.default.createElement(
-          'h1',
-          { className: 'jumbo-common__title' },
-          props.title
-        )
-      )
+      _react2.default.createElement('div', { className: 'events__header d-flex align-items-center flex-column flex-md-row justify-content-between' })
     )
   );
 }
@@ -14159,16 +14151,7 @@ function PageTop(props) {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(
-      'header',
-      { className: 'header' },
-      _react2.default.createElement(
-        'div',
-        { className: 'container-main d-flex align-items-left justify-content-around' },
-        props.children,
-        _react2.default.createElement('div', { className: 'header-logo' })
-      )
-    )
+    _react2.default.createElement('header', { className: 'header' })
   );
 }
 
@@ -14477,7 +14460,7 @@ function CalendarContainer(props) {
       _react2.default.createElement(
         'div',
         { className: 'col-12' },
-        _react2.default.createElement(_HeaderTitle2.default, { title: 'Disponibilidade' }),
+        _react2.default.createElement(_HeaderTitle2.default, null),
         _react2.default.createElement(
           'div',
           null,
