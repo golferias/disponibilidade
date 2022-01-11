@@ -6199,10 +6199,10 @@ var HeaderCalendar = exports.HeaderCalendar = function HeaderCalendar(props) {
   }
 
   function renderDayNumberLabel(day) {
-    var currentDay = new Date().getDate();
+    var currentDay = new Date();
     var cssName = 'calendar-day-text-button';
     var cssNameCircle = '';
-    if (currentDay == day) {
+    if (currentDay.getDate() == day && startWeek.getMonth() == currentDay.getMonth()) {
       cssNameCircle = 'calendar-day-text-button-currentday';
     }
     return _react2.default.createElement(
