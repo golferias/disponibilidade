@@ -15799,6 +15799,7 @@ body {
 	}
 }
 
+/* Iphone 11 */
 @media screen and (max-width: 375px)  {
 	.jumbo-common  {
 		padding-top: 14rem;
@@ -15808,6 +15809,7 @@ body {
 		background-color: blue;
 	}
 }
+/* Samsung */
 @media screen and (max-width: 360px)  {
 	.jumbo-common  {
 		 padding-top: 11rem; 
@@ -15816,12 +15818,13 @@ body {
 		background-color: orange;
 	}
 }
-@media screen and (max-width: 320px)  {
+/* Iphone 5 */
+@media screen and (max-width: 320px)  { 
 	.jumbo-common  {
-		 padding-top: 11rem; 
+		 padding-top: 21rem; 
 	}
 	.calendar-headertextheader {
-		background-color: yellow;
+		background-color: orange;
 	}
 }
 
