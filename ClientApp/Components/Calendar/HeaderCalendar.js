@@ -79,10 +79,13 @@ export const HeaderCalendar = props => {
   }
 
   function renderDayNumberLabel (day) {
-    let currentDay = new Date().getDate()
+    let currentDay = new Date()
     let cssName = 'calendar-day-text-button'
     let cssNameCircle = ''
-    if (currentDay == day) {
+    if (
+      currentDay.getDate() == day &&
+      startWeek.getMonth() == currentDay.getMonth()
+    ) {
       cssNameCircle = 'calendar-day-text-button-currentday'
     }
     return (
