@@ -18,6 +18,9 @@ export const FILTERCALENDARLIST = 'FILTERCALENDARLIST'
 export const FILTERCALENDARLIST_SUCCESS = 'FILTERCALENDARLIST_SUCCESS'
 export const FILTERCALENDARLIST_FAIL = 'FILTERCALENDARLIST_FAIL'
 
+export const CALENDAR_UPDATECALENDARBYSIGNALR =
+  'CALENDAR_UPDATECALENDARBYSIGNALR'
+
 export function BookingFetchData (searchAvaliabilityDate) {
   console.log('actions/booking.js/FetchData LOAD Availability....')
 
@@ -46,31 +49,12 @@ function ParseDateToDto (searchAvaliabilityDate) {
   return availabilityDto
 }
 
-// function ParsePhone (customerRec) {
-//   if (customerRec.phone && customerRec.phone.length > 0) {
-//     return { ...customerRec, phone: parseInt(customerRec.phone) }
-//   }
-//   if (customerRec.phone === '') {
-//     return { ...customerRec, phone: null }
-//   }
-//   return customerRec
-// }
 function SetIdZero (customerRec) {
   return { ...customerRec, id: 0 }
 }
 
-// function ParseValidations (customerRec) {
-//   customerRec = ParsePhone(customerRec)
-//   customerRec = ParseBirth(customerRec)
-//   return customerRec
-// }
-
 export function dispatchUpdateFilterList (newDate) {
   let availabilityDto = ParseDateToDto(newDate)
-  // return {
-  //   type: FILTERCALENDARLIST,
-  //   data: newDate
-  // }
 
   return {
     type: FILTERCALENDARLIST,
@@ -85,25 +69,6 @@ export function dispatchUpdateFilterList (newDate) {
     }
   }
 }
-
-// export function Add (Rec) {
-//   console.log('actions/booking.js/AddBooking CREATE....')
-//   //  Rec = ParseValidations(Rec)
-
-//   Rec = SetIdZero(Rec)
-//   return {
-//     type: CREATE,
-//     payload: {
-//       request: {
-//         method: 'POST',
-//         url: '/booking',
-//         data: {
-//           ...Rec
-//         }
-//       }
-//     }
-//   }
-// }
 
 export function updateBooking (Rec) {
   console.log('actions/booking.js/updateBooking UPDATE....')
@@ -138,5 +103,12 @@ export function Bdelete (Rec) {
         }
       }
     }
+  }
+}
+
+export function dispatchUpdateBySignalR (calendar) {
+  return {
+    type: CALENDAR_UPDATECALENDARBYSIGNALR,
+    data: calendar
   }
 }

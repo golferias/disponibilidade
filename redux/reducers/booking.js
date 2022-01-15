@@ -13,7 +13,8 @@ import {
   CREATE_FAIL,
   FILTERCALENDARLIST,
   FILTERCALENDARLIST_SUCCESS,
-  FILTERCALENDARLIST_FAIL
+  FILTERCALENDARLIST_FAIL,
+  CALENDAR_UPDATECALENDARBYSIGNALR
 } from '../actions/booking'
 import { compareValues } from '../../ClientApp/Components/common/sortArray'
 
@@ -208,12 +209,8 @@ export function booking (
         isLoading: false,
         hasErrored: false
       })
-
-      // return {
-      //   ...state,
-      //   datafiltered: action.data
-      // }
     }
+
     case FILTERCALENDARLIST_FAIL: {
       console.log('--- Reload Availability FAIL ---')
       return Object.assign({}, state, {
@@ -222,7 +219,13 @@ export function booking (
         errorMessage: action.error.message
       })
     }
-
+    case CALENDAR_UPDATECALENDARBYSIGNALR: {
+      return Object.assign({}, state, {
+        data: action.data,
+        isLoading: false,
+        hasErrored: false
+      })
+    }
     default:
       return state
   }

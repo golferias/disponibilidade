@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import Container from './CalendarContainer'
 import { connect } from 'react-redux'
 import {
@@ -7,21 +7,25 @@ import {
 } from '.././../../redux/actions/calendar'
 import {
   dispatchUpdateFilterList,
+  dispatchUpdateBySignalR,
   FetchData,
   // Bdelete,
   BookingFetchData
 } from '.././../../redux/actions/booking'
 import Loading from '../common/Loading'
-import LoginUnsuccessful from '../Login/LoginUnsuccessful'
-import { customersFetchData } from '.././../../redux/actions/customers'
-import { ServicesFetchData } from '.././../../redux/actions/services'
+import $ from 'jquery'
 
 class Calendar extends Component {
-  componentDidMount () {
-    if (!this.props.unauthorized) {
+  constructor (props) {
+    super(props)
+    this.state = {
+      connection: null,
+      isConnected: false,
+      currentStartDate: ''
     }
-    // this.props.customersFetchData()
-    // this.props.ServicesFetchData()
+  }
+
+  componentDidMount () {
     const currentDate = new Date()
     let daysIndex = currentDate.getDay()
 
@@ -30,14 +34,47 @@ class Calendar extends Component {
     }
     const startNextWeek = new Date(currentDate)
     startNextWeek.setDate(startNextWeek.getDate() - daysIndex + 1 + 7)
+    this.state.currentStartDate = new Date(startNextWeek)
 
     this.props.BookingFetchData(startNextWeek)
+
+    const newConnection = new signalR.HubConnectionBuilder()
+      .withUrl(process.env.SIGNALR_URL)
+      .configureLogging(signalR.LogLevel.Error)
+      .build()
+
+    this.state.connection = newConnection
+
+    newConnection
+      .start()
+      .then(result => {
+        console.log('Connected to API by signalR: ' + process.env.SIGNALR_URL)
+
+        //var currentUserSeeStartWeek = this.state.currentStartDate
+
+        newConnection.on('ReceiveMessage', availabilitySignalRDto => {
+          var currentUserSeeStartWeek = this.state.currentStartDate
+          var grabDateFromSignalR = new Date(availabilitySignalRDto.start)
+
+          if (
+            currentUserSeeStartWeek.getDate() ==
+              grabDateFromSignalR.getDate() &&
+            currentUserSeeStartWeek.getMonth() ==
+              grabDateFromSignalR.getMonth() &&
+            currentUserSeeStartWeek.getFullYear() ==
+              grabDateFromSignalR.getFullYear()
+          ) {
+            this.props.dispatchUpdateBySignalR(availabilitySignalRDto.calendar)
+          }
+        })
+      })
+      .catch(e => {
+        this.props.isConnected = false
+        console.log('connection fail: ', e)
+      })
   }
 
   render () {
-    // if (this.props.unauthorized) {
-    //   return <LoginUnsuccessful />
-    // } else
     if (this.props.isLoading) {
       return <Loading title='A carregar dados...' />
     } else if (this.props.hasErrored) {
@@ -50,25 +87,18 @@ class Calendar extends Component {
       return (
         <div>
           <Container
-            // services={this.props.services}
-            // customers={this.props.customers}
             booking={this.props.booking}
             textheader={this.props.textheader}
-            // textfooter={this.props.textfooter}
             dispatchUpdateTextFooter={newDate => {
               this.props.dispatchUpdateTextFooter(newDate)
-
-              //this.props.BookingFetchData(newDate)
             }}
             dispatchUpdateFilterList={newDate => {
               this.props.dispatchUpdateFilterList(newDate)
+              this.state.currentStartDate = newDate
             }}
             dispatchUpdateTextHeader={newDate => {
               this.props.dispatchUpdateTextHeader(newDate)
             }}
-            // delete={book => {
-            //   this.props.Bdelete(book)
-            // }}
           />
         </div>
       )
@@ -95,6 +125,7 @@ export default {
     dispatchUpdateTextFooter,
     dispatchUpdateTextHeader,
     dispatchUpdateFilterList,
+    dispatchUpdateBySignalR,
     FetchData,
     // Bdelete,
     // ServicesFetchData,
