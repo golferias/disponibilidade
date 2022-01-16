@@ -23,6 +23,7 @@ export function booking (
     datafiltered: [],
     data: [],
     isLoading: false,
+    isLoadingCalendar: false,
     hasErrored: false,
     errorMessage: ''
   },
@@ -199,14 +200,19 @@ export function booking (
       //   )
       //     return data
       // })
-      return state
+      return Object.assign({}, state, {
+        isLoadingCalendar: true,
+        hasErrored: false
+      })
+
+      // return state
     }
     case FILTERCALENDARLIST_SUCCESS: {
       console.log('--- Reload Availability SUCCESS ---')
 
       return Object.assign({}, state, {
         data: action.payload.data,
-        isLoading: false,
+        isLoadingCalendar: false,
         hasErrored: false
       })
     }
@@ -214,7 +220,7 @@ export function booking (
     case FILTERCALENDARLIST_FAIL: {
       console.log('--- Reload Availability FAIL ---')
       return Object.assign({}, state, {
-        isLoading: false,
+        isLoadingCalendar: false,
         hasErrored: true,
         errorMessage: action.error.message
       })

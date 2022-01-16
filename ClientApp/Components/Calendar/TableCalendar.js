@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment, useState } from 'react'
+import LoadingCalendar from '../common/LoadingCalendar'
 
 export default class TableCalendar extends Component {
   renderLastColumn () {
@@ -134,9 +135,16 @@ export default class TableCalendar extends Component {
 
   render () {
     return (
-      <table className='calendar-table'>
-        <tbody>{this.renderTable()}</tbody>
-      </table>
+      <Fragment>
+        <div>
+          <LoadingCalendar isLoading={this.props.isLoadingCalendar} />
+        </div>
+        <div className='calendar-topposition'>
+          <table className='calendar-table'>
+            <tbody>{this.renderTable()}</tbody>
+          </table>
+        </div>
+      </Fragment>
     )
   }
 }

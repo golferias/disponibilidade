@@ -70,7 +70,7 @@ class Calendar extends Component {
       })
       .catch(e => {
         this.props.isConnected = false
-        console.log('connection fail: ', e)
+        console.log('connection to signalr fail: ', e)
       })
   }
 
@@ -87,6 +87,7 @@ class Calendar extends Component {
       return (
         <div>
           <Container
+            isLoadingCalendar={this.props.isLoadingCalendar}
             booking={this.props.booking}
             textheader={this.props.textheader}
             dispatchUpdateTextFooter={newDate => {
@@ -115,6 +116,7 @@ const mapStateToProps = state => {
     services: state.services.data,
     hasErrored: state.calendar.hasErrored,
     isLoading: state.booking.isLoading,
+    isLoadingCalendar: state.booking.isLoadingCalendar,
     errorMessage: state.calendar.errorMessage,
     unauthorized: state.login.unauthorized
   }

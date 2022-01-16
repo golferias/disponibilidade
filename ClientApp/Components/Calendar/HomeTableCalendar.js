@@ -7,7 +7,10 @@ class HomeTableCalendar extends Component {
     return (
       <div>
         {itemComponents.length ? (
-          <TableCalendar items={itemComponents} />
+          <TableCalendar
+            isLoadingCalendar={this.props.isLoadingCalendar}
+            items={itemComponents}
+          />
         ) : (
           <div className='emptyList'>
             <p>Calendario Sem dados </p>

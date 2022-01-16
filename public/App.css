@@ -15849,3 +15849,285 @@ body {
 .header-image::before{
 	background-image: url("assets/images/SVCClogo.png");
 }
+.calendar-topposition{
+	margin-top: 5px;
+}
+
+/*Loader*/
+.loader {
+		visibility: var(--visibility);
+		margin-top: 14.5rem;
+		z-index: 20;
+		border: 6px solid #f3f3f3;
+		border-radius: 50%;
+		border-top: 6px solid #198bbb;
+		width: 35px;
+		height: 35px;
+		-webkit-animation: spin 2s linear infinite;
+		animation: spin 2s linear infinite;
+		position: absolute;
+		margin-left: 22rem;
+		background-color: #25aae2;
+  }
+@media screen and (max-width: 415px) {
+	.loader  {
+		margin-top: 14.5rem;
+		margin-left: 11rem;	
+	}
+}
+  /* Iphone 11 */
+@media screen and (max-width: 375px)  {
+	.loader  {
+		margin-top: 14.5rem;
+		margin-left: 9rem;		
+	}
+}
+/* Samsung */
+@media screen and (max-width: 360px)  {
+	.loader  {
+		margin-top: 14.5rem;
+		margin-left: 9rem;
+	}
+}
+/* Iphone 5 */
+@media screen and (max-width: 320px)  { 
+	.loader  {
+		margin-top: 14.5rem;
+		margin-left: 9rem;
+	}
+}
+@media screen and (max-width: 315px)  {
+	.loader  {
+		margin-top: 14.5rem;
+		margin-left: 9rem;
+	}
+}  
+  /* Safari */
+  @-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+/* END LOADER*/
+
+/*Loading*/
+.loading{
+	position: absolute;
+	top: 69%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	margin: auto;
+    
+	/* width: 100%;
+    height: 100%;
+    z-index: 20;
+    position: absolute; */
+}
+  .loading span {
+	display: inline-block;
+    vertical-align: middle;
+    /* width: .6em; */
+	width: 10px;
+    /* height: .6em; */
+	height: 10px;
+    /* margin-top: 15.45em;
+    margin-left: 9em;
+    margin-bottom: .19em;
+    margin-right: .19em; */
+	margin: 0 15px;
+    background: #007DB6;
+    border-radius: 8px;
+    animation: loading 0.5s infinite alternate;
+	box-shadow: 0 0 3px 0 orange;
+  }
+  
+  /*
+   * Dots Colors
+   * Smarter targeting vs nth-of-type?
+   */
+  .loading span:nth-of-type(2) {
+	background: #008FB2;
+	animation-delay: 0.2s;
+  }
+  .loading span:nth-of-type(3) {
+	background: #009B9E;
+	animation-delay: 0.4s;
+  }
+  .loading span:nth-of-type(4) {
+	background: #00A77D;
+	animation-delay: 0.6s;
+  }
+  .loading span:nth-of-type(5) {
+	background: #00B247;
+	animation-delay: 0.8s;
+  }
+  .loading span:nth-of-type(6) {
+	background: #5AB027;
+	animation-delay: 1.0s;
+  }
+  .loading span:nth-of-type(7) {
+	background: #A0B61E;
+	animation-delay: 1.2s;
+  }
+  
+ 
+  @keyframes loading {
+	0% {
+	  opacity: 0;
+	}
+	100% {
+	  opacity: 1;
+	}
+  }
+
+  /* EBD LOADING */
+
+  /* LOADING 2*/
+  .container2 {
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+  }
+  
+  .dash {
+	margin: 0 15px;
+	width: 10px;
+	height: 155px;
+	border-radius: 8px;
+	background: #25aae2;
+	box-shadow: 0 0 3px 0 orange;
+  }
+  
+  /* .uno {
+	margin-right: -18px;
+	transform-origin: center left;
+	animation: spin 3s linear infinite;  
+  } */
+  
+  .dos {
+	transform-origin: center right;
+	animation: spin2 3s linear infinite;
+	animation-delay: .2s;
+  }
+  
+  /* .tres {
+	transform-origin: center right;
+	animation: spin3 3s linear infinite;
+	animation-delay: .3s;
+  } */
+  
+  /* .cuatro {
+	transform-origin: center right;
+	animation: spin4 3s linear infinite;
+	animation-delay: .4s;
+  } */
+  
+  /* @keyframes spin {
+	0% {
+	  transform: rotate(0deg);
+	}
+	25% {
+	  transform: rotate(360deg);
+	}
+	30% {
+	  transform: rotate(370deg);
+	}
+	35% {
+	  transform: rotate(360deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  } */
+  
+  /* @keyframes spin2 {
+	  0% {
+	  transform: rotate(90deg);
+	} 
+	20% {
+	  transform: rotate(110deg);
+	}
+	30% {
+	  transform: rotate(120deg);
+	}
+	35% {
+	  transform: rotate(130deg);
+	}
+	40% {
+	  transform: rotate(140deg);
+	} 
+	 78% {
+	  transform: rotate(130deg);
+	}
+	80% {
+	  transform: rotate(120deg);
+	}
+	95% {
+	  transform: rotate(110deg);
+	}
+	100% {
+	  transform: rotate(90deg);
+	} 
+  } */
+  
+  /* @keyframes spin3 {
+	0% {
+	  transform: rotate(0deg);
+	}
+	27% {
+	  transform: rotate(0deg);  
+	}
+	40% {
+	  transform: rotate(180deg);
+	}
+	45% {
+	  transform: rotate(190deg);
+	}
+	50% {
+	  transform: rotate(180deg);
+	}
+	62% {
+	  transform: rotate(180deg);
+	}
+	75% {
+	  transform: rotate(360deg);
+	}
+	80% {
+	  transform: rotate(370deg);
+	}
+	85% {
+	  transform: rotate(360deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+  
+  @keyframes spin4 {
+	0% {
+	  transform: rotate(0deg);
+	}
+	38% {
+	  transform: rotate(0deg);
+	}
+	60% {
+	  transform: rotate(-360deg);
+	}
+	65% {
+	  transform: rotate(-370deg);
+	}
+	75% {
+	  transform: rotate(-360deg);
+	}
+	100% {
+	  transform: rotate(-360deg);
+	}
+  } */
+  /*END LOADING 2*/
