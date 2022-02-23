@@ -15751,7 +15751,7 @@ body {
 }
 
 .tablecalendar-day-text_free{
-	background-color: #198bbb;
+	background-color: #139487;
 }
 
 .tablecalendar-day-text_booked,.tablecalendar-day-text_holiday
@@ -15772,7 +15772,7 @@ body {
 
 .jumbo-common {
 	/* background-image: url("sassAssets/images/events-jumbo-bg.jpg"); */
-	background-image: url("sassAssets/images/filipe.png");
+	background-image: url("sassAssets/images/demo2.png");
 	background-size: cover;
 	background-position: top;
 	background-repeat: no-repeat;
@@ -15781,44 +15781,44 @@ body {
 }
 @media screen and (max-width: 850px) {
 	.jumbo-common  {
-		padding-top: 23rem;
+		padding-top: 16rem;
 	}
 }
 @media screen and (max-width: 600px) {
 	.jumbo-common  {
-		padding-top: 17.1rem;
+		padding-top: 10rem;
 	}
 }
 @media screen and (max-width: 415px) {
 	.jumbo-common  {
 		/* padding-top: 16.5rem; */
-		padding-top: 15rem;
+		padding-top: 9rem;
 	}
 }
 
 /* Iphone 11 */
 @media screen and (max-width: 375px)  {
 	.jumbo-common  {
-		padding-top: 14.5rem;
+		padding-top: 5rem;
 		
 	}
 }
 /* Samsung */
 @media screen and (max-width: 360px)  {
 	.jumbo-common  {
-		 padding-top: 14rem; 
+		 padding-top: 3rem; 
 	}
 }
 /* Iphone 5 */
 @media screen and (max-width: 320px)  { 
 	.jumbo-common  {
-		 padding-top: 12rem; 
+		 padding-top: 3rem; 
 	}
 }
 
 @media screen and (max-width: 315px)  {
 	.jumbo-common  {
-		padding-top: 10rem;
+		padding-top: 3rem;
 	}
 }
 

@@ -35,11 +35,11 @@ export default function Footer () {
             <i className='fa fa-phone-square fa-2x ' aria-hidden='true'>
               {' '}
             </i>
-            <p> 914 486 146</p>
+            <p> 919 999 999</p>
           </a>
           <p></p>
           <p className='footerdevelopedby'>
-            Desenvolvido por <strong>Pedro Costa</strong>
+            Desenvolvido por <strong>PhD DevSolutions</strong>
           </p>
         </div>
       </div>

@@ -14,8 +14,8 @@ export default function LoadingCalendar (props) {
   //   )
 
   return (
-    // <div class='loading' style={STYLE.visibility}>
-    <div className='loading'>
+    <div class='loading' style={STYLE.visibility}>
+      {/* </div> <div className='loading'> */}
       <span></span>
       <span></span>
       <span></span>
