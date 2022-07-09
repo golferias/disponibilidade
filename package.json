@@ -53,9 +53,10 @@
     "cleanwwwroot": "rimraf ../WebApplication1/wwwroot",
     "copytowwwroot": "cpx public/**/* ../WebApplication1/wwwroot",
     "jsonserver": "nodemon jsonserver.js",
-    "prod:deploy": "npm-run-all --serial dev:build-client cleanwwwroot copytowwwroot --output public",
+    "prod:deploy": "npm-run-all --serial dev:build-client cleanwwwroot copytowwwroot",
     "start": "npm-run-all --parallel start:dev jsonserver",
-    "x": "npm-run-all --serial dev:build-server dev:build-client dev:server"
+    "x": "npm-run-all --serial dev:build-server dev:build-client dev:server",
+    "build":"npm run prod:deploy"
   },
   "author": "",
   "license": "ISC"
