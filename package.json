@@ -53,7 +53,7 @@
     "cleanwwwroot": "rimraf ../WebApplication1/wwwroot",
     "copytowwwroot": "cpx public/**/* ../WebApplication1/wwwroot",
     "jsonserver": "nodemon jsonserver.js",
-    "prod:deploy": "npm-run-all --serial dev:build-client cleanwwwroot copytowwwroot",
+    "prod:deploy": "npm-run-all --serial dev:build-client cleanwwwroot copytowwwroot --output public",
     "start": "npm-run-all --parallel start:dev jsonserver",
     "x": "npm-run-all --serial dev:build-server dev:build-client dev:server"
   },
