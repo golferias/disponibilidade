@@ -14792,7 +14792,7 @@ function Footer() {
         _react2.default.createElement(
           'p',
           { className: 'footerdevelopedby' },
-          'Desenvolvido por ',
+          'Developed by ',
           _react2.default.createElement(
             'strong',
             null,

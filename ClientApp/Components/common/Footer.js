@@ -39,7 +39,7 @@ export default function Footer () {
           </a>
           <p></p>
           <p className='footerdevelopedby'>
-            Desenvolvido por <strong>PhD DevSolutions</strong>
+            Developed by <strong>PhD DevSolutions</strong>
           </p>
         </div>
       </div>
