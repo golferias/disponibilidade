@@ -9,7 +9,7 @@ class Acompanhamento extends Component {
     if (this.props.unauthorized) {
       return <LoginUnsuccessful />
     } else if (this.props.isLoading) {
-      return <Loading title='A carregar Acompanhamentos...' />
+      return <Loading title='A carregar acompanhamentos...' />
     } else if (this.props.hasErrored) {
       return (
         <div className='alert alert-danger alert-dismissible fade show'>
