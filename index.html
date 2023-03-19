@@ -3,15 +3,21 @@
 <head>
     <meta charset="utf-8">
     <title>Golferias</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no,minimal-ui">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1 ,width=device-width">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+      let  heightScreen=window.screen.height
+      if(heightScreen>800){
+        heightScreen="auto"
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'multiMonthYear',
         locale: 'pt',
         firstDay:1,
+        contentHeight:heightScreen,
         headerToolbar: 
         {
           center: '',
