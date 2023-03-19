@@ -6,42 +6,49 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no,minimal-ui">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
     <script>
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'multiMonthYear',
-      headerToolbar: {
-                      
-                      center: '',
-                      end: '' // hide buttons,
-                      //end: 'prev,next' 
-                      },
-    events: [
-    {
-      title:"Ze",
-      allDay:true,
-      start: '2023-08-10T00:00:00',
-      end: '2023-08-15T23:59:59',
-      display: 'auto'
-    },
-    {
-      title:"Marcos",
-      allDay:true,
-      start: '2023-04-01T00:00:00',
-      end: '2023-04-06T23:59:59',
-      display: 'auto'
-    },
-  ]
+        document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'multiMonthYear',
+        locale: 'pt',
+        firstDay:1,
+        headerToolbar: 
+        {
+          center: '',
+          //center: 'dayGridMonth,timeGridWeek,listWeek',
+          end: '' // hide buttons,
+          //end: 'prev,next' 
+        },
+        eventSources: [
+          {
+            events: marcacoes(),        
+            allDay:"true",
+          }
+        ]
+      });
+      calendar.render();
     });
-    calendar.render();
-  });
 
+        function marcacoes(){
+          return [
+            {       
+                "textColor": "black",
+                "color": "#ffb677",
+                "title":"Manutenção",
+                "start": "2023-04-01",
+                "end": "2023-04-08"
+            },
+            {
+                "color": "#e84a5f",
+                "title":"Ocupado - Belgas",
+                "start": "2023-07-24",
+                "end": "2023-08-07"
+            },
+          ]  
+        }
     </script>
 </head>
-
 <body>
-    <div id='calendar'></div>
+    <div id='calendar'></div>   
 </body>
-
 </html>
