@@ -31,15 +31,37 @@
           center: '',
           //center: 'dayGridMonth,timeGridWeek,listWeek',
           end: '' // hide buttons,
-          //end: 'prev,next' 
+          //end: 'prev,next'
+          //end: 'next' 
         },
-        eventSources: [
-          {
-                  
-            url:"https://golferiasapi-production.up.railway.app/marcacoes",
-            allDay:"true",
+        events: [
+          { 
+            title: 'Pré-Reservado Fernanda',
+            classNames:['prereservado'],
+            textColor:'black',
+            start: '2024-03-25', 
+            end: '2024-04-01', // Add always one more day
+            allDay:true,
+            borderColor:"white"
+          },
+          { 
+            title: 'Pré-Reservado Belgas', 
+            classNames:['prereservado'],
+            textColor:'black',
+            start: '2024-07-22', 
+            end: '2024-08-12',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
           }
-        ]
+       ]
+        // eventSources: [
+        //   {
+                  
+        //     url:"https://golferiasapi-production.up.railway.app/marcacoes",
+        //     allDay:"true",
+        //   }
+        // ]
       });
       
       calendar.render();
@@ -73,6 +95,13 @@
         margin-right: auto;
         margin-bottom: 0px;
         text-align: center;
+      }
+
+      .prereservado{
+        background: #ffb677;
+      }
+      .ocupado{
+        background: #e84a5f;
       }
 
       .slick-dotted.slick-slider {
