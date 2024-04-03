@@ -11,10 +11,128 @@
    
     
     <script>
+
       let  heightScreen=window.screen.height
       if(heightScreen>800){
         heightScreen="auto"
       }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      let show =0;
+      if(urlParams.size===1){
+        show =1;
+      }
+      
+
+      let list = [//{ //Nome
+            //title: show ? '':'',
+            //classNames:['prereservado'],
+            //textColor:'black',
+            //start: '2024-03-25', 
+            //end: '2024-04-01', // Add always one more day
+            //allDay:true,
+            //borderColor:"white"
+          //},
+          { 
+            //Suicos
+            title: show ? 'Suicos': '', 
+            classNames:['ocupado'],
+            textColor:'black',
+            start: '2024-08-12', 
+            end: '2024-08-19',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
+          },         
+          { 
+            //Fernando e Patricia
+            title: show ?'Fernando e Patricia':'', 
+            classNames:['prereservado'],
+            textColor:'black',
+            start: '2024-07-01', 
+            end: '2024-07-15',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
+          },
+         { 
+            //Marcos e patricia
+            title: show ?'Marcos e patricia':'', 
+            classNames:['ocupado'],
+            textColor:'black',
+            start: '2024-06-09', 
+            end: '2024-06-17',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
+          },
+         { 
+            //Adriana Brico
+            title: show ?'Adriana Brico':'', 
+            classNames:['ocupado'],
+            textColor:'black',
+            start: '2024-06-17', 
+            end: '2024-06-24',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
+          },
+         { 
+            //Suicos
+            title: show ?'Suicos':'', 
+            classNames:['ocupado'],
+            textColor:'black',
+            start: '2024-08-19', 
+            end: '2024-08-26',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
+          },
+         { 
+            //Belgas
+            title: show ?'Belgas':'', 
+            classNames:['ocupado'],
+            textColor:'black',
+            start: '2024-07-29', 
+            end: '2024-08-12',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
+          },
+         { 
+            //Mario Guedes
+            title: show ?'Mario Guedes':'', 
+            classNames:['ocupado'],
+            textColor:'black',
+            start: '2024-08-26', 
+            end: '2024-09-02',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
+          },
+         { 
+            //Madrinha e Tio Miguel
+            title: show ?'Madrinha e Tio Miguel':'', 
+            classNames:['prereservado','titlefont'],
+            textColor:'black',
+            start: '2024-09-18', 
+            end: '2024-09-30',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
+          },
+         { 
+            //Tio Freire
+            title: show ?'Tio Freire':'', 
+            classNames:['ocupado'],
+            textColor:'black',
+            start: '2024-09-02', 
+            end: '2024-09-15',// Add always one more day
+            allDay:true,
+            borderColor:"white"
+            
+          }
+        ]
       document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -34,117 +152,7 @@
           //end: 'prev,next'
           //end: 'next' 
         },
-        events: [
-          //{ //Nome
-            //title: '',
-            //classNames:['prereservado'],
-            //textColor:'black',
-            //start: '2024-03-25', 
-            //end: '2024-04-01', // Add always one more day
-            //allDay:true,
-            //borderColor:"white"
-          //},
-          { 
-            //Suicos
-            title: '', 
-            classNames:['ocupado'],
-            textColor:'black',
-            start: '2024-08-12', 
-            end: '2024-08-19',// Add always one more day
-            allDay:true,
-            borderColor:"white"
-            
-          },
-         
-          { 
-            //Fernando e Patricia
-            title: 'Pré-Reservado', 
-            classNames:['prereservado'],
-            textColor:'black',
-            start: '2024-07-01', 
-            end: '2024-07-15',// Add always one more day
-            allDay:true,
-            borderColor:"white"
-            
-          },
-         { 
-            //Marcos e patricia
-            title: '', 
-            classNames:['ocupado'],
-            textColor:'black',
-            start: '2024-06-09', 
-            end: '2024-06-17',// Add always one more day
-            allDay:true,
-            borderColor:"white"
-            
-          },
-         { 
-            //Adriana Brico
-            title: '', 
-            classNames:['ocupado'],
-            textColor:'black',
-            start: '2024-06-17', 
-            end: '2024-06-24',// Add always one more day
-            allDay:true,
-            borderColor:"white"
-            
-          },
-         { 
-            //Suicos
-            title: '', 
-            classNames:['ocupado'],
-            textColor:'black',
-            start: '2024-08-19', 
-            end: '2024-08-26',// Add always one more day
-            allDay:true,
-            borderColor:"white"
-            
-          },
-         { 
-            //Belgas
-            title: '', 
-            classNames:['ocupado'],
-            textColor:'black',
-            start: '2024-07-29', 
-            end: '2024-08-12',// Add always one more day
-            allDay:true,
-            borderColor:"white"
-            
-          },
-         { 
-            //Mario Guedes
-            title: '', 
-            classNames:['ocupado'],
-            textColor:'black',
-            start: '2024-08-26', 
-            end: '2024-09-02',// Add always one more day
-            allDay:true,
-            borderColor:"white"
-            
-          },
-         { 
-            //Madrinha e Tio Miguel
-            title: 'Pré-Reservado', 
-            classNames:['prereservado'],
-            textColor:'black',
-            start: '2024-09-18', 
-            end: '2024-09-30',// Add always one more day
-            allDay:true,
-            borderColor:"white"
-            
-          },
-         { 
-            //Tio Freire
-            title: 'Pré-Reservado', 
-            classNames:['ocupado'],
-            textColor:'black',
-            start: '2024-09-02', 
-            end: '2024-09-15',// Add always one more day
-            allDay:true,
-            borderColor:"white"
-            
-          }
-       ]
+        events:list
         // eventSources: [
         //   {
                   
@@ -186,7 +194,9 @@
         margin-bottom: 0px;
         text-align: center;
       }
-
+      .titlefont {
+        color:chartreuse !important
+      }
       .prereservado{
         background: #ffb677;
       }
